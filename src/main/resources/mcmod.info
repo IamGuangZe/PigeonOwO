@@ -1,0 +1,10 @@
+[
+  {
+    "modid": "pigeonowo",
+    "name": "PigeonOWO",
+    "description": "The result of the first attempt at writing a mod.",
+    "version": "0.0.1",
+    "authorList": ["GuangZe"],
+    "credits": ["JiYunNya"]
+  }
+]
