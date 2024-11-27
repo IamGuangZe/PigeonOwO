@@ -1,0 +1,124 @@
+buildscript {
+    repositories {
+        maven { url = "https://repo.spongepowered.org/repository/maven-public/" }
+        maven { url = "http://lss233.littleservice.cn/repositories/minecraft" }
+        maven { url = 'https://plugins.gradle.org/m2' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
+        classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
+        classpath group: 'com.github.jengelman.gradle.plugins', name: 'shadow', version: '4.0.4'
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'org.spongepowered.mixin'
+apply plugin: 'java'
+apply plugin: "com.github.johnrengelman.shadow"
+
+group = 'owo.pigeon'
+version = '0.0.1'
+archivesBaseName = "PigeonOwO"
+
+compileJava.options.encoding = "UTF-8"
+
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+
+configurations {
+    include
+    implementation.extendsFrom(include)
+}
+
+minecraft {
+    version = "1.8.9-11.15.1.2318-1.8.9"
+    runDir = 'run'
+    mappings = 'stable_22'
+    clientJvmArgs += ["-Dfml.coreMods.load=owo.pigeon.injections.PigeonMixinLoader","-Ddev-mode"]
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+repositories {
+    mavenCentral()
+    maven { url = "https://repo.spongepowered.org/repository/maven-public/" }
+    maven { url = "http://lss233.littleservice.cn/repositories/minecraft" }
+}
+
+
+dependencies {
+//    minecraft 'net.minecraftforge:forge:1.8.9-11.15.1.2318'
+
+    implementation('org.spongepowered:mixin:0.7.11-SNAPSHOT') {
+        exclude module: 'guava'
+        exclude module: 'commons-io'
+        exclude module: 'gson'
+    }
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+}
+
+gradle.taskGraph.whenReady { taskGraph ->
+    def tasks = taskGraph.getAllTasks()
+    tasks.each {
+        def taskName = it.getName()
+        if(taskName == 'runClient') {
+            println("Found $taskName")
+
+            it.setOnlyIf { true }
+            it.outputs.upToDateWhen { false }
+        }
+    }
+}
+
+mixin {
+    disableRefMapWarning = true
+    defaultObfuscationEnv searge
+    add sourceSets.main, "mixins.pigeon.refmap.json"
+}
+
+jar {
+    manifest.attributes(
+            "FMLCorePlugin": "owo.pigeon.injections.PigeonMixinLoader",
+            "FMLCorePluginContainsFMLMod": true,
+            "ForceLoadAsMod": true,
+            "MixinConfigs": "mixins.pigeon.json",
+            "ModSide": "CLIENT",
+            "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
+            "TweakOrder": "0",
+            "FMLAT": "pigeon_at.cfg"
+    )
+    enabled = true
+}
+
+processResources {
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+
+        // replace version and mcversion
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+
+    // copy everything else, thats not the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+reobf {
+    shadowJar {}
+}
+
+jar.dependsOn("shadowJar")
+
+shadowJar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    //configurations = [project.configurations.include]
+    exclude "LICENSE.md"
+}
