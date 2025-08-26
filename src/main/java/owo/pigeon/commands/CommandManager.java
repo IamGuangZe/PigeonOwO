@@ -1,36 +1,43 @@
 package owo.pigeon.commands;
 
-import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import owo.pigeon.commands.impl.*;
-import owo.pigeon.commands.impl.test.GetScoreboard;
-import owo.pigeon.commands.impl.test.GetToolCommand;
-import owo.pigeon.commands.impl.test.ItemCommand;
-import owo.pigeon.commands.impl.test.SlotCommand;
+import owo.pigeon.commands.impl.test.*;
+import owo.pigeon.events.playerevent.PlayerChatEvent;
+import owo.pigeon.features.commands.Ping;
+import owo.pigeon.features.commands.Rejoin;
 import owo.pigeon.utils.ChatUtil;
-import owo.pigeon.utils.TimerExample;
 
 import java.util.*;
+
+import static owo.pigeon.features.Module.mc;
 
 public class CommandManager {
 
     private static final ArrayList<Command> commands = new ArrayList<>();
-    private static char chatPrefix = '.';
+    public static char chatPrefix = '.';
     public static boolean isSay = false;
 
     public void init() {
         MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(new Ping());
+        MinecraftForge.EVENT_BUS.register(new Rejoin());
 
+        commands.add(new BindCommand());
+        commands.add(new BrushCommand());
         commands.add(new CopyCommand());
+        commands.add(new FillCommand());
         commands.add(new HelpCommand());
+        commands.add(new LimboCommand());
         commands.add(new PingCommand());
+        commands.add(new PrefixCommand());
+        commands.add(new RejoinCommand());
         commands.add(new SayCommand());
+        commands.add(new SetBlockCommand());
         commands.add(new ToggleCommand());
 
-        commands.add(new GetScoreboard());
-        commands.add(new GetToolCommand());
-        commands.add(new ItemCommand());
+        commands.add(new GetCommand());
         commands.add(new SlotCommand());
     }
 
@@ -64,56 +71,28 @@ public class CommandManager {
         }
     }
 
-    // 为Runclient 无法 Mixin 的产物，仅在单人模式(作为服务端)可用
-    /*        @SubscribeEvent
-        public void onCommand(ServerChatEvent event) {
-            if (event.message.startsWith(String.valueOf(chatPrefix))) {
-                event.setCanceled(true);
-                mc.ingameGUI.getChatGUI().addToSentMessages(event.message);
-                String command = event.message.substring(1);
-                if (command.isEmpty()){
-                    ChatUtil.sendMessage("&cThe command cannot be empty!");
-                    return;
-                }
-                String[] parts = command.split(" ");
-                String commandName = parts[0];
-                boolean executed = false;
-                for (Command Command : commands) {
-                    if (Command.getCommand().equalsIgnoreCase(commandName)) {
-                        Command.execute(Arrays.copyOfRange(parts,1,parts.length));
-                        executed = true;
-                    }
-                }
-                if (!executed) {
-                    ChatUtil.sendMessage("&cCommand not found!");
-                }
-            }
-        }*/
-
-    // 返回延迟
     @SubscribeEvent
-    public void onChatReceivePing(ClientChatReceivedEvent event) {
-        if ((ChatUtil.removeColor(event.message.getFormattedText()).contains("pigeongetping") ||
-                ChatUtil.removeColor(event.message.getFormattedText()).contains("command")) &&
-                TimerExample.isTimerRunning
-        ) {
-            TimerExample.stopTimer();
+    public void onCommand(PlayerChatEvent event) {
+        if (event.message.startsWith(String.valueOf(chatPrefix))) {
             event.setCanceled(true);
-
-            String color;
-            if (TimerExample.elapsedTime < 50) {
-                color = "&a";
-            } else if (TimerExample.elapsedTime < 100) {
-                color = "&2";
-            } else if (TimerExample.elapsedTime < 150) {
-                color = "&e";
-            } else if (TimerExample.elapsedTime < 250) {
-                color = "&6";
-            } else {
-                color = "&c";
+            mc.ingameGUI.getChatGUI().addToSentMessages(event.message);
+            String command = event.message.substring(1);
+            if (command.isEmpty()) {
+                ChatUtil.sendMessage("&cThe command cannot be empty!");
+                return;
             }
-
-            ChatUtil.sendMessage(color + TimerExample.elapsedTime + " &7ms");
+            String[] parts = command.split(" ");
+            String commandName = parts[0];
+            boolean executed = false;
+            for (Command Command : commands) {
+                if (Command.getCommand().equalsIgnoreCase(commandName)) {
+                    Command.execute(Arrays.copyOfRange(parts, 1, parts.length));
+                    executed = true;
+                }
+            }
+            if (!executed) {
+                ChatUtil.sendMessage("&cCommand not found!");
+            }
         }
     }
 }

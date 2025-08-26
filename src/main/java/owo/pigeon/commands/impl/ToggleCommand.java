@@ -1,9 +1,8 @@
 package owo.pigeon.commands.impl;
 
-import owo.pigeon.Pigeon;
 import owo.pigeon.commands.Command;
-import owo.pigeon.modules.Module;
 import owo.pigeon.utils.ChatUtil;
+import owo.pigeon.utils.ModuleUtil;
 
 public class ToggleCommand extends Command {
     public ToggleCommand() {
@@ -12,12 +11,33 @@ public class ToggleCommand extends Command {
 
     @Override
     public void execute(String[] args) {
-        if(args.length == 0) {
+        if (args.length == 0) {
             ChatUtil.sendMessage("&cPlease type a module!");
             return;
         }
+
         String module = args[0];
-        boolean found = false;
+        if (ModuleUtil.isModuleExist(module)) {
+
+            String action = args.length > 1 ? args[1].toLowerCase() : "";
+
+            switch (action) {
+                case "enable":
+                    ModuleUtil.moduleEnable(module);
+                    break;
+                case "disable":
+                    ModuleUtil.moduleDisable(module);
+                    break;
+                default:
+                    ModuleUtil.moduleToggle(module);
+                    break;
+            }
+
+        } else {
+            ChatUtil.sendMessage("&cModule not found!");
+        }
+
+        /*boolean found = false;
         for (Module modules : Pigeon.modulemanager.getAllModules()) {
             if (modules.Name.equalsIgnoreCase(module)) {
                 modules.toggle();
@@ -27,6 +47,6 @@ public class ToggleCommand extends Command {
 
         if (!found) {
             ChatUtil.sendMessage("&cModule not found!");
-        }
+        }*/
     }
 }

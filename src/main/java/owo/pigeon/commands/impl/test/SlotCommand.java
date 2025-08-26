@@ -6,7 +6,7 @@ import owo.pigeon.utils.PlayerUtil;
 
 public class SlotCommand extends Command {
     public SlotCommand() {
-        super("Slot");
+        super("s");
     }
 
     @Override
@@ -20,6 +20,6 @@ public class SlotCommand extends Command {
             ChatUtil.sendMessage("&cSlot must between 0 and 8!");
             return;
         }
-        PlayerUtil.switchItemSlot(solt,null);
+        PlayerUtil.switchItemSlot(solt);
     }
 }

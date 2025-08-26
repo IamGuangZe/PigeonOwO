@@ -1,60 +1,44 @@
 package owo.pigeon.injections.mixins;
 
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.network.NetHandlerPlayClient;
-import net.minecraft.network.play.client.C01PacketChatMessage;
+import net.minecraftforge.common.MinecraftForge;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import owo.pigeon.commands.CommandManager;
+import owo.pigeon.events.playerevent.PlayerChatEvent;
 
 
 @Mixin(EntityPlayerSP.class)
 public class MixinEntityPlayerSP {
-
-    @Shadow
-    public NetHandlerPlayClient sendQueue;
-
-    /**
-     * @author GuangZe
-     * @reason Intercept messages through sendChatMessage
-     */
-    @Overwrite
-    public void sendChatMessage(String message) {
-
-        //ChatUtil.sendMessage("MixinEntityPlayerSP sendChatMessage Test Message");
-        //ChatUtil.sendMessageWithoutColor("You are sending Message : "+message);
-
-        if (CommandManager.isCommand(message) && !CommandManager.isSay) {
-
-            CommandManager.RunCommand(message);
-
-        } else {
-
-            this.sendQueue.addToSendQueue(new C01PacketChatMessage(message));
-            // 执行原版方法，发送消息
-            // 如果你需要修改消息内容，可以在这里做处理
-            // 比如，添加一些自定义的内容：
-            // message = message + " [Modified]"; // 修改消息内容
-
+    @Inject(method = "sendChatMessage", at = @At("HEAD"), cancellable = true)
+    public void CommandDetection(String message, CallbackInfo ci) {
+        if (CommandManager.isSay) {
             CommandManager.isSay = false;
+        } else {
+            if (MinecraftForge.EVENT_BUS.post(new PlayerChatEvent(message))) ci.cancel();
         }
     }
 }
 
 
 
-//                        -----ci.cancel()会crash-----
-// 使用@Inject在sendChatMessage调用前后插入代码
-//    @Inject(method = "sendChatMessage", at = @At("HEAD"))
-//    public void sendChatMessage(String message, CallbackInfo ci) {
-//        // 打印调试信息，验证是否进入到我们的Mixin
-//        ChatUtil.sendMessage("MixinEntityPlayerSP sendChatMessage Test Message");
-//        ChatUtil.sendMessageWithoutColor("You are sending Message : " + message);
-//
-//        if (message.contains("test")) {  // 示例：如果消息包含特定的词语
-//            ChatUtil.sendMessage("该消息包含禁止的词语，取消发送！");
-//            ci.cancel();
+//    @Shadow
+//    public NetHandlerPlayClient sendQueue;
+//    /**
+//     * @author GuangZe
+//     * @reason Intercept messages through sendChatMessage
+//     */
+//    @Overwrite
+//    public void sendChatMessage(String message) {
+//        //ChatUtil.sendMessage("MixinEntityPlayerSP sendChatMessage Test Message");
+//        //ChatUtil.sendMessageWithoutColor("You are sending Message : "+message);
+//        if (CommandManager.isCommand(message) && !CommandManager.isSay) {
+//            CommandManager.RunCommand(message);
+//        } else {
+//            this.sendQueue.addToSendQueue(new C01PacketChatMessage(message));
+//            CommandManager.isSay = false;
 //        }
 //    }
 

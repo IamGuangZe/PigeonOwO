@@ -1,11 +1,14 @@
 package owo.pigeon;
 
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import org.lwjgl.opengl.Display;
 import owo.pigeon.commands.CommandManager;
-import owo.pigeon.listener.ChatListener;
-import owo.pigeon.modules.ModuleManager;
+import owo.pigeon.features.commands.Rejoin;
+import owo.pigeon.gui.ClickGuiScreen;
+import owo.pigeon.features.ModuleManager;
+import owo.pigeon.features.commands.Ping;
 
 
 @Mod(modid = Pigeon.MOD_ID,name = Pigeon.MOD_NAME,version = Pigeon.MOD_VER)
@@ -18,12 +21,12 @@ public class Pigeon {
     public static ModuleManager modulemanager;
     public static CommandManager commandmanager;
 
+    public static ClickGuiScreen clickGuiScreen;
+
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         Display.setTitle("Ciallo～(∠・ω< )⌒★ | Minecraft 1.8.9");
-
-//        MinecraftForge.EVENT_BUS.register(new ChatListener());
 
         modulemanager = new ModuleManager();
         modulemanager.init();
@@ -31,5 +34,8 @@ public class Pigeon {
         commandmanager = new CommandManager();
         commandmanager.init();
 
+        clickGuiScreen = new ClickGuiScreen();
+
+//        new ConfigManager().init();
     }
 }

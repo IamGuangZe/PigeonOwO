@@ -4,10 +4,7 @@ import owo.pigeon.commands.Command;
 import owo.pigeon.commands.CommandManager;
 import owo.pigeon.utils.ChatUtil;
 
-import java.awt.*;
-import java.awt.datatransfer.StringSelection;
-
-import static owo.pigeon.modules.Module.mc;
+import static owo.pigeon.features.Module.mc;
 
 public class SayCommand extends Command {
     public SayCommand() {
