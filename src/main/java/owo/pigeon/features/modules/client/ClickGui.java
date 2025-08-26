@@ -1,0 +1,22 @@
+package owo.pigeon.features.modules.client;
+
+import org.lwjgl.input.Keyboard;
+import owo.pigeon.Pigeon;
+import owo.pigeon.features.Category;
+import owo.pigeon.features.Module;
+
+public class ClickGui extends Module {
+    public ClickGui() {
+        super("ClickGui",Category.CLIENT, Keyboard.KEY_RSHIFT);
+    }
+
+    @Override
+    public void onEnable() {
+        mc.displayGuiScreen(Pigeon.clickGuiScreen);
+    }
+
+    @Override
+    public void onDisable() {
+        if (mc.currentScreen == Pigeon.clickGuiScreen) mc.displayGuiScreen(null);
+    }
+}
