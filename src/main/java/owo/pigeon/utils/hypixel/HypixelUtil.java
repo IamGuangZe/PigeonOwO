@@ -4,6 +4,7 @@ import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
@@ -67,7 +68,28 @@ public class HypixelUtil {
         } else {
             return !String.valueOf(itemStack).contains("item.deyPowder") &&   // 物品不为染料
                     !itemStack.getDisplayName().contains("#") &&  // 物品名称不包含# (Gun #2 / Gun #3)
-                    (itemStack.getItem() instanceof ItemTool || itemStack.getItem() instanceof ItemSword || itemStack.getItem() instanceof ItemHoe);
+                    (
+                     itemStack.getItem() instanceof ItemTool ||
+                     itemStack.getItem() instanceof ItemSword ||
+                     itemStack.getItem() instanceof ItemHoe ||
+                     itemStack.getItem() == Items.flint ||              // black hole gun
+                     itemStack.getItem() == Items.flint_and_steel ||    // double barrel shotgun
+                     itemStack.getItem() == Items.shears               // elder gun
+                    );
+        }
+    }
+
+    public static boolean isHypixelZombieGun(int slot) {
+        if (isHypixelZombieWeapon(slot)) {
+            ItemStack itemStack = PlayerUtil.getItemStackfromSlot(slot);
+            if (itemStack == null) {
+                return false;
+            }
+            return !(itemStack.getItem() == Items.iron_sword ||
+                    itemStack.getItem() == Items.diamond_axe ||
+                    itemStack.getItem() == Items.golden_axe);
+        } else {
+            return false;
         }
     }
 

@@ -9,7 +9,7 @@ public class Rejoin {
     private static boolean isRejoin = false;
 
     public static void rejoin() {
-        mc.thePlayer.sendChatMessage("/lobby");
+        mc.thePlayer.sendChatMessage("/l");
         isRejoin = true;
     }
 

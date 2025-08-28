@@ -1,8 +1,5 @@
 package owo.pigeon.features.modules.hypixel;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import owo.pigeon.features.Category;
@@ -12,13 +9,16 @@ import owo.pigeon.utils.ChatUtil;
 import owo.pigeon.utils.WorldUtil;
 import owo.pigeon.utils.hypixel.HypixelUtil;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class AutoTipLite extends Module {
 
     public AutoTipLite() {
         super("Autotip", Category.HYPIXEL, -1);
     }
 
-    public IntSetting delay = setting("Delay", 15, 1, 30, "The time interval between each tip (Minutes).", v -> true);
+    public IntSetting delay = setting("Delay", 15, 1, 60, "The time interval between each tip (Minutes).", v -> true);
 
     private Timer timer;
 

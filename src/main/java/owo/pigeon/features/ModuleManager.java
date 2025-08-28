@@ -8,9 +8,9 @@ import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.lwjgl.input.Keyboard;
 import owo.pigeon.events.clickevent.LeftClickEvent;
+import owo.pigeon.events.clickevent.RightClickEndEvent;
 import owo.pigeon.events.clickevent.RightClickEvent;
 import owo.pigeon.events.renderevent.Render2DEvent;
-import owo.pigeon.events.clickevent.RightClickEndEvent;
 import owo.pigeon.events.renderevent.Render3DEvent;
 import owo.pigeon.features.modules.client.ClickGui;
 import owo.pigeon.features.modules.client.ModifyChat;
@@ -23,16 +23,17 @@ import owo.pigeon.features.modules.hypixel.Skyblock.Dungeon.F7.SetClipBlock;
 import owo.pigeon.features.modules.hypixel.Skyblock.Dungeon.LividSolver;
 import owo.pigeon.features.modules.hypixel.Skyblock.Dungeon.StarMobEsp;
 import owo.pigeon.features.modules.hypixel.Skyblock.Fishing.AutoFish;
+import owo.pigeon.features.modules.hypixel.Skyblock.GhostBlock;
 import owo.pigeon.features.modules.hypixel.Skyblock.Nether.DojoSolver;
 import owo.pigeon.features.modules.hypixel.Skyblock.RotateNotice;
-import owo.pigeon.features.modules.player.DelayRemover;
-import owo.pigeon.features.modules.player.Eagle;
 import owo.pigeon.features.modules.movement.LegitSpeed;
 import owo.pigeon.features.modules.movement.Sprint;
 import owo.pigeon.features.modules.player.AutoTool;
+import owo.pigeon.features.modules.player.DelayRemover;
+import owo.pigeon.features.modules.player.Eagle;
 import owo.pigeon.features.modules.player.NoRotateSet;
 import owo.pigeon.features.modules.render.*;
-import owo.pigeon.features.modules.hypixel.Skyblock.GhostBlock;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -99,6 +100,7 @@ public class ModuleManager {
 
     public void addTestModules() {
         modules.add(new BlockBreaking());
+        modules.add(new ContainerName());
         modules.add(new EntityInformation());
         modules.add(new InstantUseItem());
         modules.add(new MessageRetrieval());

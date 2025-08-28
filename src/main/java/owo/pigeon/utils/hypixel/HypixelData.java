@@ -1677,6 +1677,7 @@ public class HypixelData {
             "Sunlight",
             "Sunrise",
             "Sunset",
+            "Superhero",
             "Super Hero",
             "Super Mario",
             "Supermarket",

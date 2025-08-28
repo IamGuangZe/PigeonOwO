@@ -1,9 +1,14 @@
 package owo.pigeon.features.modules.hypixel;
 
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ContainerChest;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
+import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import owo.pigeon.features.Category;
 import owo.pigeon.features.Module;
+import owo.pigeon.features.commands.Rejoin;
 import owo.pigeon.settings.EnableSetting;
 import owo.pigeon.utils.ChatUtil;
 import owo.pigeon.utils.FontUtils;
@@ -24,6 +29,7 @@ public class GTBHelper extends Module {
         }
     }
 
+    public EnableSetting autoSkip = setting("Auto Skip",false,"Automatically skip while you are building.",v->true);
     public EnableSetting autoAnswer = setting("Auto Answer",false,"Automatically respond only when there is just one remaining result.",v->true);
     public EnableSetting secondAnswer = setting("Second Answer",true,"Only automatically respond after others have finished guessing.",v->true);
 
@@ -31,7 +37,7 @@ public class GTBHelper extends Module {
 
     @SubscribeEvent
     public void onChatReceive(ClientChatReceivedEvent event) {
-        if (GTBHelper.this.isEnable()) {
+        if (this.isEnable()) {
             String message = OtherUtil.removeColor(event.message.getFormattedText());
             if (event.type == 0 && message.contains("Round:")) {
                 reload();
@@ -51,6 +57,28 @@ public class GTBHelper extends Module {
                 if (autoAnswer.getValue() && guesses.length == 1 && !guesses[0].contains("Not Found")) {
                     mc.thePlayer.sendChatMessage(guesses[0]);
                 }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onGuiOpen(GuiOpenEvent event) {
+        if (this.isEnable() && autoSkip.getValue() && event.gui instanceof GuiContainer) {
+            GuiContainer guiContainer = (GuiContainer) event.gui;
+            Container container = guiContainer.inventorySlots;
+
+            String title = null;
+
+            if (container instanceof ContainerChest) {
+                title = ((ContainerChest) container).getLowerChestInventory().getDisplayName().getUnformattedText();
+            }
+            else if (!container.inventorySlots.isEmpty() && container.getSlot(0).getStack() != null) {
+                title = container.getSlot(0).getStack().getDisplayName();
+            }
+
+            if (title != null && "select a theme to build!".equalsIgnoreCase(title)) {
+                //TODO : Automatically select theme.
+                Rejoin.rejoin();
             }
         }
     }
