@@ -16,7 +16,7 @@ public class MessageRetrieval extends Module {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onChatReceive(ClientChatReceivedEvent event) {
 
-        if (MessageRetrieval.this.isEnable()) {
+        if (this.isEnable()) {
             String message = OtherUtil.removeColor(event.message.getFormattedText());
             ChatUtil.sendMessage("Received a new message!");
             ChatUtil.sendMessage("type : " + String.valueOf(event.type) + " , IsOnlyWhiteSpace : " + OtherUtil.OnlyWhitespace(message));

@@ -72,6 +72,7 @@ public class ModuleManager {
         modules.add(new GTBHelper());
         modules.add(new MurderHelper());
         modules.add(new PixelHelper());
+        modules.add(new ProphuntHelper());
         modules.add(new ZombieHelper());
     }
     public void addMovementModules() {
@@ -100,7 +101,7 @@ public class ModuleManager {
 
     public void addTestModules() {
         modules.add(new BlockBreaking());
-        modules.add(new ContainerName());
+        modules.add(new ContainerClick());
         modules.add(new EntityInformation());
         modules.add(new InstantUseItem());
         modules.add(new MessageRetrieval());

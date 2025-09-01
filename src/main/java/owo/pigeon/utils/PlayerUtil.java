@@ -4,7 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.item.*;
+import net.minecraft.item.ItemStack;
+import net.minecraft.network.play.client.C0EPacketClickWindow;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.WorldSettings;
@@ -177,5 +178,27 @@ public class PlayerUtil {
         // 设置玩家视角
         mc.thePlayer.rotationYaw = yaw;
         mc.thePlayer.rotationPitch = pitch;
+    }
+
+    /**
+     * @param mouseButton   鼠标按钮：0 = 左键点击，1 = 右键点击
+     * @param mode          操作模式：
+     *                       0 = PICKUP（普通点击）
+     *                       1 = QUICK_MOVE（Shift+点击）
+     *                       2 = SWAP（使用热键栏交换）
+     *                       3 = CLONE（创造模式中复制）
+     *                       4 = THROW（丢弃）
+     *                       5 = QUICK_CRAFT（快速合成）
+     *                       6 = PICKUP_ALL（拾取全部同类）
+     */
+    public static void packetClickWindow(int windowId, int slotNumber, int mouseButton, int mode, ItemStack clickedStack, short actionNumber) {
+        mc.getNetHandler().addToSendQueue(new C0EPacketClickWindow(
+                windowId,
+                slotNumber,
+                mouseButton,
+                mode,
+                clickedStack,
+                actionNumber
+        ));
     }
 }

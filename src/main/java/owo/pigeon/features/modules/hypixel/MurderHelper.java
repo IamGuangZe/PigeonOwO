@@ -3,10 +3,10 @@ package owo.pigeon.features.modules.hypixel;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Item;
-import net.minecraft.init.Items;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import owo.pigeon.features.Category;
@@ -17,14 +17,15 @@ import owo.pigeon.utils.hypixel.HypixelGames;
 import owo.pigeon.utils.hypixel.HypixelUtil;
 
 import java.awt.*;
-import java.util.*;
 import java.util.List;
+import java.util.*;
 
 public class MurderHelper extends Module {
     public MurderHelper() {
         super("MurderHelper", Category.HYPIXEL, -1); // 模块名称和键位绑定
     }
 
+    public EnableSetting hud = setting("HUD",true,"",v->true);
     public EnableSetting playerEsp = setting("Player Esp",true,"",v->true);
     public EnableSetting itemEsp = setting("Item Esp", true, "", v -> true);
     public EnableSetting hideSpamCurse = setting("Hide Spamcurse", true, "Hide Spamcurse message.", v -> true);
@@ -143,17 +144,18 @@ public class MurderHelper extends Module {
     @Override
     public void onRender2D() {
         if (WorldUtil.isNotNull()) {
-            FontUtils.drawStringWithShadow("Murder Mystery",5,5);
-            FontUtils.drawStringWithShadow("Murders : &c" + String.join("&r, &c", MurderersName),5,5 + h);
-            FontUtils.drawStringWithShadow("Who has bow : " + String.join(", ", Playerwithbow),5,5 + h * 2);
+            if (hud.getValue() && HypixelUtil.isInGame(HypixelGames.MURDER)) {
+                FontUtils.drawStringWithShadow("Murder Mystery", 5, 5);
+                FontUtils.drawStringWithShadow("Murders : &c" + String.join("&r, &c", MurderersName), 5, 5 + h);
+                FontUtils.drawStringWithShadow("Who has bow : " + String.join(", ", Playerwithbow), 5, 5 + h * 2);
+            }
         }
     }
 
     @Override
     public void onRender3D() {
         for (Entity entity : mc.theWorld.loadedEntityList) {
-
-            if (playerEsp.getValue()) {
+            if (playerEsp.getValue() && HypixelUtil.isInGame(HypixelGames.MURDER)) {
                 if (entity instanceof EntityPlayer && !(entity instanceof EntityPlayerSP)) {
                     if (!HypixelUtil.isNPC(entity)) {
                         String playername = entity.getName();
