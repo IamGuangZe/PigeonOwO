@@ -1,3 +1,5 @@
+# 以下内容均来自AI
+
 ## 1.Minecraft.getMinecraft().thePlayer 什么时候为 null
 在 Minecraft 中，`Minecraft.getMinecraft().thePlayer` 是指当前游戏中的玩家角色（`EntityPlayerSP`）。在正常的情况下，这个值应该总是指向玩家角色，然而，在某些特殊情况下，它可能会变为 `null`。
 

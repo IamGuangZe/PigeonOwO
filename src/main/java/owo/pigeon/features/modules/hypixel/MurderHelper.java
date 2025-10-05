@@ -17,8 +17,8 @@ import owo.pigeon.utils.hypixel.HypixelGames;
 import owo.pigeon.utils.hypixel.HypixelUtil;
 
 import java.awt.*;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 
 public class MurderHelper extends Module {
     public MurderHelper() {
@@ -145,9 +145,9 @@ public class MurderHelper extends Module {
     public void onRender2D() {
         if (WorldUtil.isNotNull()) {
             if (hud.getValue() && HypixelUtil.isInGame(HypixelGames.MURDER)) {
-                FontUtils.drawStringWithShadow("Murder Mystery", 5, 5);
-                FontUtils.drawStringWithShadow("Murders : &c" + String.join("&r, &c", MurderersName), 5, 5 + h);
-                FontUtils.drawStringWithShadow("Who has bow : " + String.join(", ", Playerwithbow), 5, 5 + h * 2);
+                FontUtil.drawStringWithShadow("Murder Mystery", 5, 5);
+                FontUtil.drawStringWithShadow("Murders : &c" + String.join("&r, &c", MurderersName), 5, 5 + h);
+                FontUtil.drawStringWithShadow("Who has bow : " + String.join(", ", Playerwithbow), 5, 5 + h * 2);
             }
         }
     }

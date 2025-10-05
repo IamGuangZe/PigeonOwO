@@ -180,12 +180,20 @@ public class WorldUtil {
     }*/
 
     // 获取计分板对应行数的内容(fixed)
-    public static String getSidebarLine(int line) {
+    public static String getSidebarLineBottonUp(int line) {
         List<String> lines = getSidebarLines();
         if (line > 0 && line <= lines.size()) {
             return lines.get(line - 1); // 第 line 行 (索引从 0 开始)
         } else {
             return null; // 如果指定行不存在，返回 null
+        }
+    }
+    public static String getSidebarLineTopDown(int line) {
+        List<String> lines = getSidebarLines();
+        if (line > 0 && line <= lines.size()) {
+            return lines.get(lines.size() - line); // 倒序取
+        } else {
+            return null;
         }
     }
     public static List<String> getSidebarLines() {

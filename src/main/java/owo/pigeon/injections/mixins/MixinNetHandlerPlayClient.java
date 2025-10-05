@@ -12,11 +12,6 @@ import owo.pigeon.events.networkevent.PacketReceiveEvent;
 import owo.pigeon.events.networkevent.S08PacketPlayerPosLookEvent;
 import owo.pigeon.events.networkevent.S08PacketPlayerPosLookEventEnd;
 import owo.pigeon.events.networkevent.addToSendQueueEvent;
-import owo.pigeon.features.modules.player.NoRotateSet;
-import owo.pigeon.utils.ChatUtil;
-import owo.pigeon.utils.ModuleUtil;
-
-import static owo.pigeon.features.Module.mc;
 
 @Mixin(NetHandlerPlayClient.class)
 public class MixinNetHandlerPlayClient {
@@ -43,6 +38,11 @@ public class MixinNetHandlerPlayClient {
 
     @Inject(method = "handleMultiBlockChange" , at = @At("HEAD"))
     public void PacketReceive (S22PacketMultiBlockChange packetIn, CallbackInfo ci) {
+        MinecraftForge.EVENT_BUS.post(new PacketReceiveEvent(packetIn));
+    }
+
+    @Inject(method = "handleMaps" , at = @At("HEAD"))
+    public void PacketReceive(S34PacketMaps packetIn, CallbackInfo ci) {
         MinecraftForge.EVENT_BUS.post(new PacketReceiveEvent(packetIn));
     }
 

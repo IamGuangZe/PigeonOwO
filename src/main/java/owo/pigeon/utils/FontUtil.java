@@ -5,7 +5,7 @@ import net.minecraft.util.StringUtils;
 
 import static owo.pigeon.features.Module.mc;
 
-public class FontUtils {
+public class FontUtil {
     public static final FontRenderer fontRenderer = mc.fontRendererObj;
 
     private static String parseColor(String text) { return text.replaceAll("&","§").replaceAll("§§","&"); }
@@ -36,18 +36,18 @@ public class FontUtils {
     }
 
     public static void drawCenteredString(String text, int x, int y, int color) {
-        FontUtils.drawString(text, x - fontRenderer.getStringWidth(text) / 2, y, color);
+        drawString(text, x - fontRenderer.getStringWidth(text) / 2, y, color);
     }
 
     public static void drawCenteredStringWithShadow(String text, double x, double y, int color) {
-        FontUtils.drawStringWithShadow(text, x - (double)(fontRenderer.getStringWidth(text) / 2), y, color);
+        drawStringWithShadow(text, x - (double)(fontRenderer.getStringWidth(text) / 2), y, color);
     }
 
     public static void drawTotalCenteredString(String text, int x, int y, int color) {
-        FontUtils.drawString(text, x - fontRenderer.getStringWidth(text) / 2, y - fontRenderer.FONT_HEIGHT / 2, color);
+        drawString(text, x - fontRenderer.getStringWidth(text) / 2, y - fontRenderer.FONT_HEIGHT / 2, color);
     }
 
     public static void drawTotalCenteredStringWithShadow(String text, double x, double y, int color) {
-        FontUtils.drawStringWithShadow(text, x - (double)(fontRenderer.getStringWidth(text) / 2), y - (double)((float)fontRenderer.FONT_HEIGHT / 2.0f), color);
+        drawStringWithShadow(text, x - (double)(fontRenderer.getStringWidth(text) / 2), y - (double)((float)fontRenderer.FONT_HEIGHT / 2.0f), color);
     }
 }

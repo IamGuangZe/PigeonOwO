@@ -15,7 +15,7 @@ import owo.pigeon.features.Module;
 import owo.pigeon.settings.EnableSetting;
 import owo.pigeon.settings.IntSetting;
 import owo.pigeon.settings.PageSetting;
-import owo.pigeon.utils.FontUtils;
+import owo.pigeon.utils.FontUtil;
 import owo.pigeon.utils.OtherUtil;
 import owo.pigeon.utils.PlayerUtil;
 
@@ -160,10 +160,10 @@ public class AutoFish extends Module {
 
     @Override
     public void onRender2D() {
-        FontUtils.drawStringWithShadow("Auto Fish", 5, 5);
-        FontUtils.drawStringWithShadow("Is Throw Hook : " + isThrow, 5, 5 + h);
-        FontUtils.drawStringWithShadow("Throw Tick : " + throwTick, 5, 5 + h * 2);
-        FontUtils.drawStringWithShadow("tick : " + tick, 5, 5 + h * 3);
+        FontUtil.drawStringWithShadow("Auto Fish", 5, 5);
+        FontUtil.drawStringWithShadow("Is Throw Hook : " + isThrow, 5, 5 + h);
+        FontUtil.drawStringWithShadow("Throw Tick : " + throwTick, 5, 5 + h * 2);
+        FontUtil.drawStringWithShadow("tick : " + tick, 5, 5 + h * 3);
     }
 
     @Override

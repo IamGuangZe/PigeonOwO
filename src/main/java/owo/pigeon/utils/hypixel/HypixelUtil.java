@@ -21,7 +21,7 @@ public class HypixelUtil {
 
         String ip = serverData.serverIP == null ? "" : serverData.serverIP.toLowerCase();
         String name = serverData.serverName == null ? "" : serverData.serverName.toLowerCase();
-        String firstLine = WorldUtil.getSidebarLine(1) == null ? "" : WorldUtil.getSidebarLine(1).toLowerCase();
+        String firstLine = WorldUtil.getSidebarLineBottonUp(1) == null ? "" : WorldUtil.getSidebarLineBottonUp(1).toLowerCase();
 
         return ip.contains("hypixel.net") || name.contains("hypixel") || firstLine.contains("hypixel");
     }

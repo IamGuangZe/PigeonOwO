@@ -1,15 +1,15 @@
 package owo.pigeon.gui.panels;
 
 import net.minecraft.client.gui.Gui;
-import owo.pigeon.gui.AbstractDisplableItem;
 import owo.pigeon.features.Category;
 import owo.pigeon.features.Module;
+import owo.pigeon.gui.AbstractDisplableItem;
 import owo.pigeon.utils.ModuleUtil;
 
 import java.awt.*;
 import java.util.ArrayList;
 
-import static owo.pigeon.utils.FontUtils.fontRenderer;
+import static owo.pigeon.utils.FontUtil.fontRenderer;
 
 public class CategoryPanel extends AbstractDisplableItem {
     private final Category category;

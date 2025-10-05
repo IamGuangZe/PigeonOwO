@@ -1,7 +1,5 @@
 package owo.pigeon.utils;
 
-import net.minecraft.block.Block;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -43,6 +41,16 @@ public class OtherUtil {
             }
         }
         return null;
+    }
+    public static int regexGetPartInteger(String regex, String message, int part) {
+        String result = regexGetPart(regex, message, part);
+        if (result != null) {
+            try {
+                return Integer.parseInt(result);
+            } catch (NumberFormatException ignored) {
+            }
+        }
+        return -1;
     }
 
     public static boolean OnlyWhitespace(String message) {

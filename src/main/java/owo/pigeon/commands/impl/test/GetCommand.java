@@ -14,7 +14,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.scoreboard.ScoreObjective;
 import net.minecraft.scoreboard.Scoreboard;
 import owo.pigeon.commands.Command;
-import owo.pigeon.utils.*;
+import owo.pigeon.utils.ChatUtil;
+import owo.pigeon.utils.OtherUtil;
+import owo.pigeon.utils.PlayerUtil;
+import owo.pigeon.utils.WorldUtil;
 import owo.pigeon.utils.hypixel.HypixelUtil;
 import owo.pigeon.utils.hypixel.skyblock.SkyblockUtil;
 
@@ -79,7 +82,7 @@ public class GetCommand extends Command {
 
                     }
                 } else {
-                    ChatUtil.sendMessage(WorldUtil.getSidebarLine(Integer.parseInt(args[1])));
+                    ChatUtil.sendMessage(WorldUtil.getSidebarLineBottonUp(Integer.parseInt(args[1])));
                 }
 
                 break;
@@ -113,14 +116,17 @@ public class GetCommand extends Command {
                     return;
                 }
 
+                // 基础
                 ChatUtil.sendMessage("ItemStack : " + itemStack);
                 ChatUtil.sendMessage("Item : " + itemStack.getItem());
                 ChatUtil.sendMessage("DisplayName : " + itemStack.getDisplayName());
 
+                // 附魔
                 if (itemStack.isItemEnchanted()) {
                     ChatUtil.sendMessage("Enchantments : " + (EnchantmentHelper.getEnchantments(itemStack)));
                 }
 
+                // 颜色
                 if (itemStack.getItem() instanceof ItemBlock) {
                     ItemBlock itemBlock = (ItemBlock) itemStack.getItem();
                     Block block = itemBlock.getBlock();
