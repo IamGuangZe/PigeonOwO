@@ -46,6 +46,11 @@ public class MixinNetHandlerPlayClient {
         MinecraftForge.EVENT_BUS.post(new PacketReceiveEvent(packetIn));
     }
 
+    @Inject(method = "handleSpawnGlobalEntity" , at = @At("HEAD"))
+    public void PacketReceive(S2CPacketSpawnGlobalEntity packetIn, CallbackInfo ci) {
+        MinecraftForge.EVENT_BUS.post(new PacketReceiveEvent(packetIn));
+    }
+
     @Inject(method = "handlePlayerPosLook" , at = @At("HEAD"))
     public void PacketReceive(S08PacketPlayerPosLook packetIn, CallbackInfo ci) {
         MinecraftForge.EVENT_BUS.post(new PacketReceiveEvent(packetIn));

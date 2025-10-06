@@ -34,6 +34,7 @@ import owo.pigeon.features.modules.player.DelayRemover;
 import owo.pigeon.features.modules.player.Eagle;
 import owo.pigeon.features.modules.player.NoRotateSet;
 import owo.pigeon.features.modules.render.*;
+import owo.pigeon.features.modules.world.LightningTracker;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -97,7 +98,7 @@ public class ModuleManager {
         modules.add(new PlayerESP());
     }
     public void addworldModules() {
-
+        modules.add(new LightningTracker());
     }
 
     public void addTestModules() {
