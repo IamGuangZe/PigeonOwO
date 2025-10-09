@@ -3,20 +3,22 @@ package owo.pigeon.commands;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import owo.pigeon.commands.impl.*;
-import owo.pigeon.commands.impl.test.*;
+import owo.pigeon.commands.impl.test.GetCommand;
+import owo.pigeon.commands.impl.test.SlotCommand;
 import owo.pigeon.events.playerevent.PlayerChatEvent;
 import owo.pigeon.features.commands.Ping;
 import owo.pigeon.features.commands.Rejoin;
 import owo.pigeon.utils.ChatUtil;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static owo.pigeon.features.Module.mc;
 
 public class CommandManager {
 
     private static final ArrayList<Command> commands = new ArrayList<>();
-    public static char chatPrefix = '.';
+    public static char chatPrefix = '>';
     public static boolean isSay = false;
 
     public void init() {

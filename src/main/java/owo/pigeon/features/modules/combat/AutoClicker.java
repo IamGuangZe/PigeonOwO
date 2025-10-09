@@ -1,6 +1,7 @@
 package owo.pigeon.features.modules.combat;
 
-import net.minecraft.world.WorldSettings;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import owo.pigeon.features.Category;
@@ -9,34 +10,39 @@ import owo.pigeon.settings.EnableSetting;
 import owo.pigeon.settings.IntSetting;
 import owo.pigeon.utils.PlayerUtil;
 
+import static owo.pigeon.utils.OtherUtil.intRandom;
+
 public class AutoClicker extends Module {
 
     public AutoClicker() {
         super("AutoClicker", Category.COMBAT, Keyboard.KEY_R);
     }
 
-    // 写个AutoClicker能写两天也是神人了 - 2024.11.22
-    public EnableSetting leftClick = setting("LeftClick",true,"Enable Left Click", v -> true);
-    public EnableSetting rightClick = setting("RifhtClick",true,"Enable Right Click", v -> true);
-    public IntSetting cps = setting("CPS",15,1,20,"click per second", v -> true);
+    // 写个AutoClicker能写2天也是神人了 - 2024.11.22
+    // 历经11个月才发现有一处拼写错误 - 2025.10.9
 
-    public boolean firstLeftClick = true;
-    public boolean firstRightClick = true;
-    public long lastLeftClickTime = 0;  // 上次点击时间
-    public long lastRightClickTime = 0;
+    public IntSetting minCPS = setting("minCPS",12,1,20,"",v -> true);
+    public IntSetting maxCPS = setting("maxCPS",18,1,20,"",v -> true);
+    public EnableSetting leftClick = setting("LeftClick",true,"Enable Left Click", v -> true);
+    public EnableSetting rightClick = setting("RightClick",true,"Enable Right Click", v -> true);
+    public EnableSetting onlySword = setting("Only Sword",false,"",v->true);
+
+    private boolean firstLeftClick = true;
+    private boolean firstRightClick = true;
+    private long lastLeftClickTime = 0;  // 上次点击时间
+    private long lastRightClickTime = 0;
 
     @Override
     public void onUpdate() {
 
-        long clickInterval = 1000 / cps.getValue(); // 每次点击间隔时间（毫秒）
+        long clickInterval = 1000 / intRandom(minCPS.getValue(),maxCPS.getValue()); // 每次点击间隔时间（毫秒）
         long currentTime = System.currentTimeMillis(); // 当前时间
 
         if (Mouse.isButtonDown(0) && leftClick.getValue()) {
-            if (mc.currentScreen == null &&
-                !mc.thePlayer.isBlocking() &&
-                !mc.thePlayer.isUsingItem() &&
+            if (canClick() &&
                 !PlayerUtil.isBreakingBlock() &&
-                currentTime - lastLeftClickTime >= clickInterval
+                    onlySwordCheck() &&
+                    currentTime - lastLeftClickTime >= clickInterval
             ) {
                 if (firstLeftClick) {
                     firstLeftClick = false;
@@ -50,9 +56,7 @@ public class AutoClicker extends Module {
         }
 
         if (Mouse.isButtonDown(1) && rightClick.getValue()) {
-            if (mc.currentScreen == null &&
-                    !mc.thePlayer.isBlocking() &&
-                    !mc.thePlayer.isUsingItem() &&
+            if (canClick() &&
                     currentTime - lastRightClickTime >= clickInterval
             ) {
                 if (firstRightClick) {
@@ -65,6 +69,23 @@ public class AutoClicker extends Module {
         }else {
             firstRightClick = true;
         }
+    }
+
+    private boolean canClick() {
+        return mc.currentScreen == null && !mc.thePlayer.isBlocking() && !mc.thePlayer.isUsingItem();
+    }
+
+    private boolean onlySwordCheck() {
+        if (!onlySword.getValue()) {
+            return true;
+        }
+
+        ItemStack itemStack = mc.thePlayer.inventory.getStackInSlot(mc.thePlayer.inventory.currentItem);
+        if (itemStack == null) {
+            return false;
+        }
+
+        return (itemStack.getItem() instanceof ItemSword);
     }
 }
 

@@ -27,7 +27,7 @@ public class AutoTool extends Module {
                 Block block = mc.theWorld.getBlockState(blockPos).getBlock();
                 ItemStack tool = PlayerUtil.getBestTool(block);
                 if (tool != null) {
-                    PlayerUtil.switchItemSlot(PlayerUtil.getSlotfromItemStack(tool));
+                    PlayerUtil.switchItemSlot(PlayerUtil.getSlotfromItemStackEx(tool,true));
                     israwslot = false;
                 } else {
                     PlayerUtil.switchItemSlot(rawslot);

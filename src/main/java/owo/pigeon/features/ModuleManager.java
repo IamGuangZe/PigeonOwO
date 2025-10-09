@@ -27,7 +27,6 @@ import owo.pigeon.features.modules.hypixel.Skyblock.GhostBlock;
 import owo.pigeon.features.modules.hypixel.Skyblock.Nether.DojoSolver;
 import owo.pigeon.features.modules.hypixel.Skyblock.RotateNotice;
 import owo.pigeon.features.modules.movement.LegitSpeed;
-import owo.pigeon.features.modules.movement.SafeWalk;
 import owo.pigeon.features.modules.movement.Sprint;
 import owo.pigeon.features.modules.player.AutoTool;
 import owo.pigeon.features.modules.player.DelayRemover;
@@ -67,7 +66,8 @@ public class ModuleManager {
         modules.add(new AutoClicker());
     }
     public void addHypixelModules() {
-        addSkyblockModules();
+        // addSkyblockModules();
+        modules.add(new GhostBlock());
 
         modules.add(new FarmhuntHelper());
         modules.add(new GTBHelper());
@@ -79,11 +79,12 @@ public class ModuleManager {
     public void addMovementModules() {
         modules.add(new LegitSpeed());
         // modules.add(new Parkour());
-        modules.add(new SafeWalk());
+        // modules.add(new SafeWalk());
         modules.add(new Sprint());
     }
     public void addPlayerModules() {
         modules.add(new AutoTool());
+        // modules.add(new ChestStealer());
         modules.add(new DelayRemover());
         modules.add(new Eagle());
         modules.add(new NoRotateSet());

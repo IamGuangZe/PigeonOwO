@@ -1,5 +1,6 @@
 package owo.pigeon.utils;
 
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -85,4 +86,24 @@ public class OtherUtil {
         return count;
     }
 
+    public static int intRandom(int min, int max) {
+        if (min > max) {
+            int temp = min;
+            min = max;
+            max = temp;
+        }
+
+        Random random = new Random();
+        return min + random.nextInt(max - min + 1);
+    }
+    public static double doubleRandom(double min, double max) {
+        if (min > max) {
+            double temp = min;
+            min = max;
+            max = temp;
+        }
+
+        Random random = new Random();
+        return min + (random.nextDouble() * (max - min + Double.MIN_VALUE));
+    }
 }

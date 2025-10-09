@@ -6,7 +6,6 @@ import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.boss.BossStatus;
-import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
@@ -19,7 +18,6 @@ import owo.pigeon.utils.OtherUtil;
 import owo.pigeon.utils.PlayerUtil;
 import owo.pigeon.utils.WorldUtil;
 import owo.pigeon.utils.hypixel.HypixelUtil;
-import owo.pigeon.utils.hypixel.skyblock.SkyblockUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,10 +37,16 @@ public class GetCommand extends Command {
         }
 
         switch (args[0].toLowerCase()) {
-            case "area" :
+            /*case "area" :
                 ChatUtil.sendMessage(String.valueOf(SkyblockUtil.getIsland()));
 
-                break;
+                break;*/
+
+            /*case "floor":
+            case "f":
+                ChatUtil.sendMessage(String.valueOf(SkyblockUtil.getFloor()));
+
+                break;*/
 
             case "allarmorstandname":
             case "aasn":
@@ -54,12 +58,6 @@ public class GetCommand extends Command {
                         }
                     }
                 }
-
-                break;
-
-            case "floor":
-            case "f":
-                ChatUtil.sendMessage(String.valueOf(SkyblockUtil.getFloor()));
 
                 break;
 
@@ -90,7 +88,29 @@ public class GetCommand extends Command {
             case "tool":
             case "t":
                 ItemStack tool = PlayerUtil.getBestTool(mc.theWorld.getBlockState(mc.objectMouseOver.getBlockPos()).getBlock());
-                ChatUtil.sendMessage("BestToolAt : " + PlayerUtil.getSlotfromItemStack(tool));
+                ChatUtil.sendMessage("BestToolAt : " + PlayerUtil.getSlotfromItemStackEx(tool,true));
+
+                break;
+
+            case "weapon":
+            case "w":
+                ItemStack weapon = PlayerUtil.getBestWeapon();
+                ChatUtil.sendMessage("BestWeaponAt : " + PlayerUtil.getSlotfromItemStackEx(weapon,false));
+
+                break;
+
+            case "armor":
+            case "a":
+                ItemStack Helmet = PlayerUtil.getBestHelmet();
+                ItemStack Chestplate = PlayerUtil.getBestChestplate();
+                ItemStack Leggings = PlayerUtil.getBestLeggings();
+                ItemStack Boots = PlayerUtil.getBestBoots();
+                ChatUtil.sendMessage("BestArmorAT : " +
+                        PlayerUtil.getSlotfromItemStackEx(Helmet,false) + "; " +
+                        PlayerUtil.getSlotfromItemStackEx(Chestplate,false) + "; " +
+                        PlayerUtil.getSlotfromItemStackEx(Leggings,false) + "; " +
+                        PlayerUtil.getSlotfromItemStackEx(Boots,false)
+                );
 
                 break;
 
@@ -168,16 +188,6 @@ public class GetCommand extends Command {
                 String color = WorldUtil.getBlockColor(state);
                 if (color != null) {
                     ChatUtil.sendMessage("Color : " + color);
-                }
-
-                break;
-
-            case "wither":
-            case "w":
-                for (Entity entity : mc.theWorld.loadedEntityList) {
-                    if (entity instanceof EntityWither) {
-                        ChatUtil.sendMessage("Wither Name : ");
-                    }
                 }
 
                 break;
