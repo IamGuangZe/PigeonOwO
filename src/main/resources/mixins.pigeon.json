@@ -11,10 +11,12 @@
     "MixinGuiIngame"
   ],
   "client": [
+    "MixinBlockRendererDispatcher",
     "MixinEntityRenderer",
     "MixinItemRenderer",
     "MixinMinecraft",
     "MixinNetHandlerPlayClient",
-    "MixinPlayerControllerMP"
+    "MixinPlayerControllerMP",
+    "MixinTileEntityRendererDispatcher"
   ]
 }

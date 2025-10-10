@@ -63,12 +63,14 @@ public class HypixelData {
     };
 
     //Skull UUID
-    public static final Set<String> GIFT = Sets.newHashSet(
-            "ac755b48-6b5c-2418-9bae-c7315457d9dc", //murder green gift
-            "be152120-96b7-2aff-a4f7-dcb7d7715536",       //murder purple gift
+    public static final Set<String> GIFTSKULLUUID = Sets.newHashSet(
+            // murder
+            "ac755b48-6b5c-2418-9bae-c7315457d9dc",
+            "be152120-96b7-2aff-a4f7-dcb7d7715536",
 
-            "22261a71-4de4-2076-8404-2ad7e156efe1",      //lobby green gift
-            "cb3efefb-f959-2b9d-b519-fec2d7edaef1"      //lobby red gift
+            // new year - lobby
+            "22261a71-4de4-2076-8404-2ad7e156efe1",
+            "cb3efefb-f959-2b9d-b519-fec2d7edaef1"
     );
 
     public static final String[] BTGLIST = {

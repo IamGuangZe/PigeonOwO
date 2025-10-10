@@ -97,6 +97,7 @@ public class ModuleManager {
         modules.add(new FullBright());
         modules.add(new OreESP());
         modules.add(new PlayerESP());
+        modules.add(new SkullESP());
     }
     public void addworldModules() {
         modules.add(new LightningTracker());

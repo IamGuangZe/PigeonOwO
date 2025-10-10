@@ -4,10 +4,13 @@ import net.minecraft.block.*;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemDye;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.scoreboard.Score;
 import net.minecraft.scoreboard.ScoreObjective;
 import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.scoreboard.Scoreboard;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraft.util.BlockPos;
 
 import java.util.ArrayList;
@@ -243,5 +246,33 @@ public class WorldUtil {
         } catch (NumberFormatException e) {
             return null;
         }
+    }
+
+    // 获取头颅UUID
+    public static String getSkullUUID(BlockPos blockPos) {
+        if (mc.theWorld.getBlockState(blockPos).getBlock() instanceof BlockSkull) {
+            return getSkullUUID(mc.theWorld.getTileEntity(blockPos));
+        }
+        return null;
+    }
+    public static String getSkullUUID(TileEntity tileEntity) {
+        if (tileEntity instanceof TileEntitySkull) {
+            return getSkullUUID((TileEntitySkull)tileEntity);
+        }
+        return null;
+    }
+    public static String getSkullUUID(TileEntitySkull tileEntitySkull){
+            // 获取NBT数据
+            NBTTagCompound nbt = new NBTTagCompound();
+            tileEntitySkull.writeToNBT(nbt);
+
+            // 检查是否有UUID
+            if (nbt.hasKey("Owner")) {
+                NBTTagCompound ownerTag = nbt.getCompoundTag("Owner");
+                if (ownerTag.hasKey("Id")) {
+                    return ownerTag.getString("Id");
+                }
+            }
+        return null;
     }
 }

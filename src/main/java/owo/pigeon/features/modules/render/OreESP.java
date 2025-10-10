@@ -62,7 +62,6 @@ public class OreESP extends Module {
 
         if (pos.getY() < 0 || pos.getY() > 64) return;
 
-        // 调试输出
         // ChatUtil.sendCustomPrefixMessage(this.name,"§7[S23] " + pos + " -> " + Block.blockRegistry.getNameForObject(block));
 
         addBlock(block, pos);
@@ -75,7 +74,6 @@ public class OreESP extends Module {
 
             if (pos.getY() < 0 || pos.getY() > 64) continue;
 
-            // 调试输出
             // ChatUtil.sendCustomPrefixMessage(this.name,"§7[S22] " + pos + " -> " + Block.blockRegistry.getNameForObject(block));
 
             addBlock(block, pos);
