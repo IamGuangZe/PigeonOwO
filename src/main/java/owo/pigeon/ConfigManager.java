@@ -12,8 +12,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public class ConfigManager {
     private final File CONFIG_DIR = new File("pigeon/");
@@ -67,11 +65,11 @@ public class ConfigManager {
             if (setting instanceof KeySetting) {
                 ((KeySetting) setting).setValue(json.get(setting.getName()).getAsInt());
             }
-            if (setting instanceof PageSetting) {
+            if (setting instanceof ModeSetting) {
                 try {
                     EnumConverter converter = new EnumConverter(((Enum) setting.getValue()).getClass());
                     Enum value = converter.doBackward(json.get(setting.getName()));
-                    ((PageSetting) setting).setValue((value == null) ? setting.defaultValue : value);
+                    ((ModeSetting) setting).setValue((value == null) ? setting.defaultValue : value);
                 } catch (Exception exception) {
                 }
                 return;

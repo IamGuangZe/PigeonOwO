@@ -4,9 +4,9 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import org.lwjgl.opengl.GL11;
 import owo.pigeon.features.Category;
 import owo.pigeon.features.Module;
+import owo.pigeon.settings.ModeSetting;
 import owo.pigeon.utils.RenderUtil;
 
 import java.awt.*;
@@ -16,6 +16,11 @@ public class BlockOverlay extends Module {
         super("BlockOverlay", Category.RENDER, -1);
     }
 
+    public enum modeEnum {
+            OUTLINE, FULL
+    }
+
+    public ModeSetting<modeEnum> mode = setting("mode",modeEnum.FULL,"", v->true);
     public Color color = new Color(0, 0, 0, 66);
 
     @SubscribeEvent
@@ -31,7 +36,11 @@ public class BlockOverlay extends Module {
         GlStateManager.disableTexture2D();
         GlStateManager.depthMask(false);
 
-        RenderUtil.drawFullBoxA(RenderUtil.getAxisAlignedBBWithOffset(event.target.getBlockPos()), color);
+        if (mode.getValue() == modeEnum.OUTLINE) {
+            RenderUtil.drawOutlinedBoxA(RenderUtil.getAxisAlignedBBWithOffset(event.target.getBlockPos()), color);
+        } else if (mode.getValue() == modeEnum.FULL) {
+            RenderUtil.drawFullBoxA(RenderUtil.getAxisAlignedBBWithOffset(event.target.getBlockPos()), color);
+        }
 
         GlStateManager.depthMask(true);
         GlStateManager.enableTexture2D();

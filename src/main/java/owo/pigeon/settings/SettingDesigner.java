@@ -50,8 +50,8 @@ public abstract class SettingDesigner {
         return setting;
     }
 
-    public <T extends Enum<T>> PageSetting<T> setting(String name, T value,String descriptions, Predicate<Boolean> visible) {
-        PageSetting<T> setting = new PageSetting<T>(name, value,descriptions,visible);
+    public <T extends Enum<T>> ModeSetting<T> setting(String name, T value, String descriptions, Predicate<Boolean> visible) {
+        ModeSetting<T> setting = new ModeSetting<T>(name, value,descriptions,visible);
         settings.add(setting);
         return setting;
     }

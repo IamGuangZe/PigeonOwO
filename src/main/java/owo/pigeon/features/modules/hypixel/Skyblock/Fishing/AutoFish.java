@@ -14,7 +14,7 @@ import owo.pigeon.features.Category;
 import owo.pigeon.features.Module;
 import owo.pigeon.settings.EnableSetting;
 import owo.pigeon.settings.IntSetting;
-import owo.pigeon.settings.PageSetting;
+import owo.pigeon.settings.ModeSetting;
 import owo.pigeon.utils.FontUtil;
 import owo.pigeon.utils.OtherUtil;
 import owo.pigeon.utils.PlayerUtil;
@@ -31,14 +31,14 @@ public class AutoFish extends Module {
     // 石山代码 - 2024.12.27
 
     public enum checkModeEnum {
-        splashSound,noteSound,armorstandName
+        SPLASHSOUND, NOTESOUND, ARMORSTANDNAME
     }
     public enum fishModeEnum {
-        packet,rightClick
+        PACKET, RIGHTCLICK
     }
 
-    public PageSetting<checkModeEnum> checkMode = setting("Check Mode", checkModeEnum.armorstandName,"Hook detection mode.", v->true);
-    public PageSetting<fishModeEnum> FishMode = setting("FishMode",fishModeEnum.packet,"",v->true);
+    public ModeSetting<checkModeEnum> checkMode = setting("Check Mode", checkModeEnum.ARMORSTANDNAME,"Hook detection mode.", v->true);
+    public ModeSetting<fishModeEnum> FishMode = setting("FishMode",fishModeEnum.PACKET,"", v->true);
     public EnableSetting reThrow = setting("ReThrow",true,"Rethrow hook when reel.",v->true);
     public IntSetting reThrowTick = setting("ReThrowTick",10,0,20,"Rethrow hook time.",v->true);
     public EnableSetting rotate = setting("AutoRotate", true,"", v->true);
@@ -123,7 +123,7 @@ public class AutoFish extends Module {
 
     @SubscribeEvent
     public void onSoundReceived(PlaySoundEvent event) {
-        if (checkMode.getValue() == checkModeEnum.splashSound && isNotNull()) {
+        if (checkMode.getValue() == checkModeEnum.SPLASHSOUND && isNotNull()) {
             if (event.name.equals("game.player.swim.splash")) {
                 float posX = event.result.getXPosF();
                 float posY = event.result.getYPosF();
@@ -143,7 +143,7 @@ public class AutoFish extends Module {
             }
         }
 
-        if (checkMode.getValue() == checkModeEnum.noteSound && isNotNull()) {
+        if (checkMode.getValue() == checkModeEnum.NOTESOUND && isNotNull()) {
             if (event.name.equals("note.pling") && event.sound.getPitch() == 1) {
                 useRod();
                 isThrow = false;
@@ -168,7 +168,7 @@ public class AutoFish extends Module {
 
     @Override
     public void onRender3D() {
-        if (checkMode.getValue() == checkModeEnum.armorstandName) {
+        if (checkMode.getValue() == checkModeEnum.ARMORSTANDNAME) {
             for (Entity entity : mc.theWorld.loadedEntityList) {
                 if (entity instanceof EntityArmorStand) {
                     EntityArmorStand armorStand = (EntityArmorStand) entity;
@@ -191,9 +191,9 @@ public class AutoFish extends Module {
     }
 
     private void useRod () {
-        if (FishMode.getValue() == fishModeEnum.packet) {
+        if (FishMode.getValue() == fishModeEnum.PACKET) {
             mc.playerController.sendUseItem(mc.thePlayer,mc.theWorld,mc.thePlayer.getHeldItem());
-        } else if (FishMode.getValue() == fishModeEnum.rightClick) {
+        } else if (FishMode.getValue() == fishModeEnum.RIGHTCLICK) {
             PlayerUtil.rightClick();
         }
     }
