@@ -1,6 +1,7 @@
 package owo.pigeon.commands.impl;
 
 import net.minecraft.block.Block;
+import org.lwjgl.input.Keyboard;
 import owo.pigeon.commands.Command;
 import owo.pigeon.commands.CommandManager;
 import owo.pigeon.features.Module;
@@ -92,14 +93,14 @@ public class SettingCommand extends Command {
                         return;
                     }
                 } else if (setting instanceof KeySetting) {
-                    try {
-                        Integer k = Integer.parseInt(value);
-                        ((KeySetting)setting).setValue(k);
-                        value = String.valueOf(k);
-                    } catch (NumberFormatException e) {
-                        ChatUtil.sendMessage("&cInvalid value!");
-                        return;
+                    Integer k = Keyboard.getKeyIndex(value.toUpperCase());
+
+                    if (k == 0) {
+                        k = -1;
                     }
+
+                    ((KeySetting) setting).setValue(k);
+                    value = Keyboard.getKeyName(k) + "(keycode: " + k + ")";
                 } else if (setting instanceof ModeSetting) {
                     try {
                         ModeSetting<?> modeSetting = (ModeSetting<?>) setting;
