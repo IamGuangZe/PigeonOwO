@@ -2,7 +2,6 @@ package owo.pigeon.features.modules.combat;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import owo.pigeon.features.Category;
 import owo.pigeon.features.Module;
@@ -15,7 +14,7 @@ import static owo.pigeon.utils.OtherUtil.intRandom;
 public class AutoClicker extends Module {
 
     public AutoClicker() {
-        super("AutoClicker", Category.COMBAT, Keyboard.KEY_R);
+        super("AutoClicker", Category.COMBAT, -1);
     }
 
     // 写个AutoClicker能写2天也是神人了 - 2024.11.22

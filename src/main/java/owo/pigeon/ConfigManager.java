@@ -14,7 +14,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
 public class ConfigManager {
-    private final File CONFIG_DIR = new File("pigeon/");
+    private final File CONFIG_DIR = new File("config/pigeonowo/");
     private final Gson gson = new GsonBuilder().disableHtmlEscaping().create();
 
     public void init() {
