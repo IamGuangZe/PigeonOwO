@@ -12,4 +12,12 @@ public class AbstractNumberSetting<N extends Number> extends AbstractSetting<N> 
         this.minValue = minValue;
         this.maxValue = maxValue;
     }
+
+    public N getMinValue() {
+        return minValue;
+    }
+
+    public N getMaxValue() {
+        return maxValue;
+    }
 }

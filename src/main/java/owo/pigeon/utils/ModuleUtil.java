@@ -34,6 +34,14 @@ public class ModuleUtil {
         }
         throw new RuntimeException();
     }
+    public static Module getModule(String module) {
+        for (Module m : modules) {
+            if (m.name.equalsIgnoreCase(module)) {
+                return m;
+            }
+        }
+        throw new RuntimeException();
+    }
 
     public static boolean isEnable(String module) {
         for (Module m : modules) {

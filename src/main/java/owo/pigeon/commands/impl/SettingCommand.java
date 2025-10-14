@@ -1,0 +1,127 @@
+package owo.pigeon.commands.impl;
+
+import net.minecraft.block.Block;
+import owo.pigeon.commands.Command;
+import owo.pigeon.commands.CommandManager;
+import owo.pigeon.features.Module;
+import owo.pigeon.settings.*;
+import owo.pigeon.utils.ChatUtil;
+import owo.pigeon.utils.ModuleUtil;
+
+public class SettingCommand extends Command {
+    public SettingCommand() {
+        super("setting");
+    }
+
+    @Override
+    public void execute(String[] args) {
+        if (args.length < 3) {
+            ChatUtil.sendMessage("&cIncomplete parameters! Usage: "+ CommandManager.chatPrefix + "setting <module> <setting> <value>");
+            return;
+        }
+
+        String modulename = args[0];
+        String settingname = args[1];
+        String value = args[2];
+
+        if (!ModuleUtil.isModuleExist(modulename)) {
+            ChatUtil.sendMessage("&cModule not found!");
+            return;
+        }
+
+        Module module = ModuleUtil.getModule(modulename);
+        modulename = module.name;
+
+        boolean found = false;
+        for (AbstractSetting<?> setting : module.getSettings()) {
+            if (setting.getName().equalsIgnoreCase(settingname)) {
+                found = true;
+                settingname = setting.getName();
+                if (setting instanceof BlockSetting) {
+                    Block block = Block.getBlockFromName(value);
+                    if (block == null) {
+                        ChatUtil.sendMessage("&cBlock not found!");
+                        return;
+                    }
+                    ((BlockSetting)setting).setValue(block);
+                    value = block.getLocalizedName() + "(" + block.getRegistryName() + ")";
+                } else if (setting instanceof EnableSetting) {
+                    boolean b;
+                    if (value.equalsIgnoreCase("true") || value.equalsIgnoreCase("enable")) {
+                        b = true;
+                    } else if (value.equalsIgnoreCase("false") || value.equalsIgnoreCase("disable")) {
+                        b = false;
+                    } else {
+                        ChatUtil.sendMessage("&cInvalid value!");
+                        return;
+                    }
+                    ((EnableSetting)setting).setValue(b);
+                    value = String.valueOf(b);
+                } else if (setting instanceof FloatSetting) {
+                    try {
+                        FloatSetting floatSetting = (FloatSetting) setting;
+                        float f = Float.parseFloat(value);
+
+                        if (f < floatSetting.getMinValue()) {
+                            f = floatSetting.getMinValue();
+                        } else if (f > floatSetting.getMaxValue()) {
+                            f = floatSetting.getMaxValue();
+                        }
+
+                        ((FloatSetting)setting).setValue(f);
+                        value = String.valueOf(f);
+                    } catch (NumberFormatException e) {
+                        ChatUtil.sendMessage("&cInvalid value!");
+                        return;
+                    }
+                } else if (setting instanceof IntSetting) {
+                    try {
+                        IntSetting intSetting = (IntSetting)setting;
+                        Integer i = Integer.parseInt(value);
+
+                        if (i < intSetting.getMinValue()) {
+                            i = intSetting.getMinValue();
+                        } else if (i > intSetting.getMaxValue()) {
+                            i = intSetting.getMaxValue();
+                        }
+
+                        ((IntSetting)setting).setValue(i);
+                        value = String.valueOf(i);
+                    } catch (NumberFormatException e) {
+                        ChatUtil.sendMessage("&cInvalid value!");
+                        return;
+                    }
+                } else if (setting instanceof KeySetting) {
+                    try {
+                        Integer k = Integer.parseInt(value);
+                        ((KeySetting)setting).setValue(k);
+                        value = String.valueOf(k);
+                    } catch (NumberFormatException e) {
+                        ChatUtil.sendMessage("&cInvalid value!");
+                        return;
+                    }
+                } else if (setting instanceof ModeSetting) {
+                    try {
+                        ModeSetting<?> modeSetting = (ModeSetting<?>) setting;
+                        Enum<?> e = Enum.valueOf((Class<Enum>) modeSetting.getValue().getClass(), value.toUpperCase());
+                        ((ModeSetting)setting).setValue(e);
+                        value = e.toString().toUpperCase();
+                    } catch (IllegalArgumentException e) {
+                        ChatUtil.sendMessage("&cInvalid value!");
+                        return;
+                    }
+                } else if (setting instanceof StringSetting) {
+                    ((StringSetting)setting).setValue(value);
+                } else {
+                    ChatUtil.sendMessage("&cUnknown setting type!");
+                    return;
+                }
+
+                ChatUtil.sendMessage("The &l" + settingname + "&r of &l" + modulename + "&r has been changed to &l" + value + "&r.");
+            }
+        }
+        if (!found) {
+            ChatUtil.sendMessage("&cSetting not found!");
+        }
+    }
+}
