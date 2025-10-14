@@ -229,7 +229,7 @@ public class WorldUtil {
     }
 
     // 处理坐标
-    public static Integer parseCoordinate(String arg, int base) {
+    public static Double parseCoordinate(String arg, double base) {
         try {
             if (arg.equals("~")) {
                 return base;
@@ -238,10 +238,10 @@ public class WorldUtil {
                 if (offset.isEmpty()) {
                     return base;
                 } else {
-                    return base + Integer.parseInt(offset);
+                    return base + Double.parseDouble(offset);
                 }
             } else {
-                return Integer.parseInt(arg);
+                return Double.parseDouble(arg);
             }
         } catch (NumberFormatException e) {
             return null;

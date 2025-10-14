@@ -26,12 +26,12 @@ public class FillCommand extends Command {
             return;
         }
 
-        Integer startPosX = WorldUtil.parseCoordinate(args[0], (int) mc.thePlayer.posX);
-        Integer startPosY = WorldUtil.parseCoordinate(args[1], (int) mc.thePlayer.posY);
-        Integer startPosZ = WorldUtil.parseCoordinate(args[2], (int) mc.thePlayer.posZ);
-        Integer endPosX   = WorldUtil.parseCoordinate(args[3], (int) mc.thePlayer.posX);
-        Integer endPosY   = WorldUtil.parseCoordinate(args[4], (int) mc.thePlayer.posY);
-        Integer endPosZ   = WorldUtil.parseCoordinate(args[5], (int) mc.thePlayer.posZ);
+        Double startPosX = WorldUtil.parseCoordinate(args[0], mc.thePlayer.posX);
+        Double startPosY = WorldUtil.parseCoordinate(args[1], mc.thePlayer.posY);
+        Double startPosZ = WorldUtil.parseCoordinate(args[2], mc.thePlayer.posZ);
+        Double endPosX   = WorldUtil.parseCoordinate(args[3], mc.thePlayer.posX);
+        Double endPosY   = WorldUtil.parseCoordinate(args[4], mc.thePlayer.posY);
+        Double endPosZ   = WorldUtil.parseCoordinate(args[5], mc.thePlayer.posZ);
 
         if (startPosX == null || startPosY == null || startPosZ == null ||
                 endPosX == null   || endPosY == null   || endPosZ == null) {
@@ -39,8 +39,8 @@ public class FillCommand extends Command {
             return;
         }
 
-        BlockPos startPos = new BlockPos(startPosX,startPosY,startPosZ);
-        BlockPos endPos = new BlockPos(endPosX,endPosY,endPosZ);
+        BlockPos startPos = new BlockPos((int) Math.floor(startPosX), (int) Math.floor(startPosY), (int) Math.floor(startPosZ));
+        BlockPos endPos = new BlockPos((int) Math.floor(endPosX), (int) Math.floor(endPosY), (int) Math.floor(endPosZ));
 
         WorldUtil.fillBlock(startPos,endPos,block);
     }

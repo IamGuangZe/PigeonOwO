@@ -26,16 +26,16 @@ public class SetBlockCommand extends Command {
             return;
         }
 
-        Integer posX = WorldUtil.parseCoordinate(args[0], (int) mc.thePlayer.posX);
-        Integer posY = WorldUtil.parseCoordinate(args[1], (int) mc.thePlayer.posY);
-        Integer posZ = WorldUtil.parseCoordinate(args[2], (int) mc.thePlayer.posZ);
+        Double posX = WorldUtil.parseCoordinate(args[0], mc.thePlayer.posX);
+        Double posY = WorldUtil.parseCoordinate(args[1], mc.thePlayer.posY);
+        Double posZ = WorldUtil.parseCoordinate(args[2], mc.thePlayer.posZ);
 
         if (posX == null || posY == null || posZ == null) {
             ChatUtil.sendMessage("&cInvalid coordinate input.");
             return;
         }
 
-        BlockPos pos = new BlockPos(posX, posY, posZ);
+        BlockPos pos = new BlockPos((int) Math.floor(posX), (int) Math.floor(posY), (int) Math.floor(posZ));
 
         WorldUtil.setBlock(pos,block);
     }
