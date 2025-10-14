@@ -6,7 +6,7 @@ import owo.pigeon.utils.ModuleUtil;
 
 public class ToggleCommand extends Command {
     public ToggleCommand() {
-        super("Toggle");
+        super("toggle");
     }
 
     @Override

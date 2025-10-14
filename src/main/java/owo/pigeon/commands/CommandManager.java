@@ -4,7 +4,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import owo.pigeon.commands.impl.*;
 import owo.pigeon.commands.impl.test.GetCommand;
-import owo.pigeon.commands.impl.test.SlotCommand;
 import owo.pigeon.events.playerevent.PlayerChatEvent;
 import owo.pigeon.features.commands.Ping;
 import owo.pigeon.features.commands.Rejoin;
@@ -28,7 +27,7 @@ public class CommandManager {
         MinecraftForge.EVENT_BUS.register(new Rejoin());
 
         commands.add(new BindCommand());
-        commands.add(new BrushCommand());
+        //commands.add(new BrushCommand());
         commands.add(new CopyCommand());
         commands.add(new FillCommand());
         commands.add(new HelpCommand());
@@ -41,7 +40,6 @@ public class CommandManager {
         commands.add(new ToggleCommand());
 
         commands.add(new GetCommand());
-        commands.add(new SlotCommand());
     }
 
     public static List<Command> getAllCommands(){

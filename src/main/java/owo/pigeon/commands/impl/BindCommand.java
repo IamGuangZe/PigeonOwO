@@ -7,7 +7,7 @@ import owo.pigeon.utils.ModuleUtil;
 
 public class BindCommand extends Command {
     public BindCommand() {
-        super("Bind");
+        super("bind");
     }
 
     @Override

@@ -33,6 +33,7 @@ public class GetCommand extends Command {
     public void execute(String[] args) {
         if (args.length == 0) {
             ChatUtil.sendMessage("&cPlease enter the type!");
+            ChatUtil.sendMessage("&cType : allarmorstandname(aasn), scoreboard(s), tool(t), weapon(w), armor(a), item(i), player(p), block(b), bossbar(bb)");
             return;
         }
 
@@ -205,6 +206,7 @@ public class GetCommand extends Command {
 
             default:
                 ChatUtil.sendMessage("&cType Not Found!");
+                ChatUtil.sendMessage("&cType : allarmorstandname(aasn), scoreboard(s), tool(t), weapon(w), armor(a), item(i), player(p), block(b), bossbar(bb)");
         }
     }
 }

@@ -10,7 +10,7 @@ import static owo.pigeon.features.Module.mc;
 
 public class FillCommand extends Command {
     public FillCommand() {
-        super("Fill");
+        super("fill");
     }
 
     @Override

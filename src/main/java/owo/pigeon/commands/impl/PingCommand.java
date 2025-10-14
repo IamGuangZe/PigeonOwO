@@ -5,7 +5,7 @@ import owo.pigeon.features.commands.Ping;
 
 public class PingCommand extends Command {
     public PingCommand() {
-        super("Ping");
+        super("ping");
     }
 
     @Override

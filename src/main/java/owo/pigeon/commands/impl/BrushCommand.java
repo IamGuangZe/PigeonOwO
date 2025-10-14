@@ -8,7 +8,7 @@ import owo.pigeon.utils.ModuleUtil;
 
 public class BrushCommand extends Command {
     public BrushCommand() {
-        super("Brush");
+        super("brush");
     }
 
     @Override

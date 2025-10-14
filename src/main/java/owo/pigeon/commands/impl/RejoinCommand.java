@@ -5,7 +5,7 @@ import owo.pigeon.features.commands.Rejoin;
 
 public class RejoinCommand extends Command {
     public RejoinCommand() {
-        super("rej");
+        super("rejoin");
     }
 
     @Override

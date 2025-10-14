@@ -8,7 +8,7 @@ import java.util.List;
 
 public class HelpCommand extends Command {
     public HelpCommand() {
-        super("Help");
+        super("help");
     }
 
     @Override

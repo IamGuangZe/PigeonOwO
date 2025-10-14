@@ -10,7 +10,7 @@ import static owo.pigeon.features.Module.mc;
 
 public class SetBlockCommand extends Command {
     public SetBlockCommand() {
-        super("Setblock");
+        super("setblock");
     }
 
     @Override
