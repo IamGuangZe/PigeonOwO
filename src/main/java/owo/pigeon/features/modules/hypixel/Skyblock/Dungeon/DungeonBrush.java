@@ -20,7 +20,7 @@ public class DungeonBrush extends Module {
         super("[WIP]DungeonBrush", Category.HYPIXEL, -1);
     }
 
-    public BlockSetting block = setting("Block", Blocks.stained_glass, "" ,v->false);
+    public BlockSetting block = setting("block", Blocks.stained_glass, "" ,v->false);
 
     private boolean isFirstUse = true;
 

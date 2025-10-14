@@ -8,8 +8,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import owo.pigeon.events.networkevent.PacketReceiveEvent;
 import owo.pigeon.features.Category;
 import owo.pigeon.features.Module;
-import owo.pigeon.settings.EnableSetting;
 import owo.pigeon.settings.IntSetting;
+import owo.pigeon.settings.ModeSetting;
 import owo.pigeon.utils.ChatUtil;
 import owo.pigeon.utils.RenderUtil;
 
@@ -22,8 +22,10 @@ public class OreESP extends Module {
         super("OreESP", Category.RENDER, -1);
     }
 
-    public EnableSetting uhcMode = setting("UHC Mode",true,"",v->true);
-    public IntSetting range = setting("Range", 16, 0, 64, "Display range (X/Z)", v -> true);
+    public enum modeenum {NORAML, UHC}
+
+    public ModeSetting<modeenum> mode = setting ("mode",modeenum.UHC,"", v->true);
+    public IntSetting range = setting("range", 16, 0, 64, "Display range (X/Z)", v -> true);
 
     public Color coalColor = new Color(0, 0, 0);
     public Color ironColor = new Color(228, 163, 134);

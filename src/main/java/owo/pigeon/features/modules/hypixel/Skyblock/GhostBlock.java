@@ -11,25 +11,25 @@ import owo.pigeon.features.Category;
 import owo.pigeon.features.Module;
 import owo.pigeon.settings.EnableSetting;
 import owo.pigeon.settings.KeySetting;
+import owo.pigeon.utils.WorldUtil;
 import owo.pigeon.utils.hypixel.HypixelGames;
 import owo.pigeon.utils.hypixel.HypixelUtil;
-import owo.pigeon.utils.WorldUtil;
 
-import java.util.*;
+import java.util.Set;
 
 public class GhostBlock extends Module {
     public GhostBlock() {
         super("GhostBlock", Category.HYPIXEL, -1);
     }
 
-    public EnableSetting onlyInSkyblock = setting("onlyInSkyblock", true, "Only create in Skyblock.", v -> true);
-    public EnableSetting onlyinDungeon = setting("onlyinDungeon", true, "Only create in Dungeon.", v -> true);
+    public EnableSetting onlyInSkyblock = setting("onlyinskyblock", true, "Only create in Skyblock.", v -> true);
+    public EnableSetting onlyinDungeon = setting("onlyindungeon", true, "Only create in Dungeon.", v -> true);
 
-    public EnableSetting createWithPickaxe = setting("createWithPickaxe", true, "Right click to create while holding a pickaxe.", v -> true);
-    public EnableSetting onlyHoldPickaxe = setting("onlyHoldPickaxe", false, "", v -> true);
+    public EnableSetting createWithPickaxe = setting("createwithpickaxe", true, "Right click to create while holding a pickaxe.", v -> true);
+    public EnableSetting onlyHoldPickaxe = setting("onlyholdpickaxe", false, "", v -> true);
 
-    public EnableSetting createWithKeyDown = setting("createWithKeyDown", true, "", v -> true);
-    public KeySetting key = setting("Create key",Keyboard.KEY_G,"Create GhostBlock when this key down",v->true);
+    public EnableSetting createWithKeyDown = setting("createwithkeydown", true, "", v -> true);
+    public KeySetting key = setting("create-key",Keyboard.KEY_G,"Create GhostBlock when this key down",v->true);
 
     private final Set<Block> blackListBlock = Sets.newHashSet(
             Blocks.stone_button,

@@ -12,22 +12,21 @@ import owo.pigeon.features.Category;
 import owo.pigeon.features.Module;
 import owo.pigeon.settings.EnableSetting;
 import owo.pigeon.utils.ChatUtil;
-import owo.pigeon.utils.hypixel.skyblock.Floor;
-import owo.pigeon.utils.hypixel.skyblock.SkyblockUtil;
 import owo.pigeon.utils.OtherUtil;
 import owo.pigeon.utils.RenderUtil;
+import owo.pigeon.utils.hypixel.skyblock.Floor;
+import owo.pigeon.utils.hypixel.skyblock.SkyblockUtil;
 
 import java.awt.*;
 
 import static owo.pigeon.utils.WorldUtil.isNotNull;
-import static owo.pigeon.utils.WorldUtil.setBlock;
 
 public class LividSolver extends Module {
     public LividSolver() {
         super("LividSolver", Category.HYPIXEL, -1);
     }
 
-    public EnableSetting hideFakeLivid = setting("Hide Fake Livid", true, "", v -> true);
+    public EnableSetting hideFakeLivid = setting("hidefake", true, "", v -> true);
 
     private boolean isBlindness = false;
     private boolean isGotLivid = false;

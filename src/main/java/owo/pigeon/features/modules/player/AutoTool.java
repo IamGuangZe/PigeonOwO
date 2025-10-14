@@ -14,7 +14,7 @@ public class AutoTool extends Module {
         super("AutoTool", Category.PLAYER, -1);
     }
 
-    public EnableSetting switchBack = setting("Switch Back",true,"Switch back to the original slot after mining.",v->true);
+    public EnableSetting switchBack = setting("switchback",true,"Switch back to the original slot after mining.",v->true);
 
     private boolean israwslot = true;
     private int rawslot = 0;

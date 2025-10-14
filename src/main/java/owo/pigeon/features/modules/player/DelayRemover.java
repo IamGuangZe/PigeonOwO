@@ -9,7 +9,7 @@ public class DelayRemover extends Module {
         super("DelayRemover", Category.PLAYER,-1);
     }
 
-    public EnableSetting noClickDelay = setting("NoClickDealy",true,"Remove leftClickCounter",v->true);
-    public EnableSetting noRightClickDelay = setting("NoRightClickDealy",true,"Remove rightClickDelayTimer",v->true);
-    public EnableSetting noJumpDelay = setting("NoJumpDealy",true,"Remove leftClickCounter",v->true);
+    public EnableSetting noClickDelay = setting("noclickdealy",true,"Remove leftClickCounter",v->true);
+    public EnableSetting noRightClickDelay = setting("norightclickdealy",true,"Remove rightClickDelayTimer",v->true);
+    public EnableSetting noJumpDelay = setting("nojumpdealy",true,"Remove leftClickCounter",v->true);
 }

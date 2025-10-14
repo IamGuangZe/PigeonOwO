@@ -25,10 +25,10 @@ public class MurderHelper extends Module {
         super("MurderHelper", Category.HYPIXEL, -1); // 模块名称和键位绑定
     }
 
-    public EnableSetting hud = setting("HUD",true,"",v->true);
-    public EnableSetting playerEsp = setting("Player Esp",true,"",v->true);
-    public EnableSetting itemEsp = setting("Item Esp", true, "", v -> true);
-    public EnableSetting hideSpamCurse = setting("Hide Spamcurse", true, "Hide Spamcurse message.", v -> true);
+    public EnableSetting hud = setting("hud",true,"",v->true);
+    public EnableSetting playerEsp = setting("playeresp",true,"",v->true);
+    public EnableSetting itemEsp = setting("itemesp", true, "", v -> true);
+    public EnableSetting hideSpamCurse = setting("hidespamcurse", true, "Hide Spamcurse message.", v -> true);
 
     private static List<String> AllPlayer = new ArrayList<>();
     private static List<String> Aliveplayer = new ArrayList<>();

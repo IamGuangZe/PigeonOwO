@@ -21,11 +21,11 @@ public class AutoClicker extends Module {
     // 写个AutoClicker能写2天也是神人了 - 2024.11.22
     // 历经11个月才发现有一处拼写错误 - 2025.10.9
 
-    public IntSetting minCPS = setting("minCPS",12,1,20,"",v -> true);
-    public IntSetting maxCPS = setting("maxCPS",18,1,20,"",v -> true);
-    public EnableSetting leftClick = setting("LeftClick",true,"Enable Left Click", v -> true);
-    public EnableSetting rightClick = setting("RightClick",true,"Enable Right Click", v -> true);
-    public EnableSetting onlySword = setting("Only Sword",false,"",v->true);
+    public IntSetting minCPS = setting("mincps",12,1,20,"",v -> true);
+    public IntSetting maxCPS = setting("maxcps",18,1,20,"",v -> true);
+    public EnableSetting leftClick = setting("leftclick",true,"Enable Left Click", v -> true);
+    public EnableSetting rightClick = setting("rightclick",true,"Enable Right Click", v -> true);
+    public EnableSetting onlySword = setting("onlysword",false,"",v->true);
 
     private boolean firstLeftClick = true;
     private boolean firstRightClick = true;

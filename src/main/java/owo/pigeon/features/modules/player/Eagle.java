@@ -14,7 +14,7 @@ public class Eagle extends Module {
         super("Eagle", Category.PLAYER,-1);
     }
 
-    public EnableSetting onlyBackward = setting("Only Backward",true,"Only trigger when moving backward.",v->true);
+    public EnableSetting onlyBackward = setting("onlybackward",true,"Only trigger when moving backward.",v->true);
 
     @Override
     public void onUpdate() {

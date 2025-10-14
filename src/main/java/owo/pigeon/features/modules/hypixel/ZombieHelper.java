@@ -21,10 +21,10 @@ public class ZombieHelper extends Module {
         super("ZombieHelper", Category.HYPIXEL, -1);
     }
 
-    public EnableSetting hud = setting("HUD",true,"",v->true);
-    public EnableSetting cyclicSwitch = setting("Cyclic Wwitch",true,"Auto cyclic switch weapons to reduce the impact of gun CD time.",v->true);
-    public EnableSetting thirdGun = setting("Third Gun",false,"Switch includes the third gun.",v->true);
-    public EnableSetting smartThirdGun = setting("Smart Third Gun",true,"(For AA)Use the third gun when Giant and The Old One spawning.",v->true);
+    public EnableSetting hud = setting("hud",true,"",v->true);
+    public EnableSetting cyclicSwitch = setting("cyclic",true,"Auto cyclic switch weapons to reduce the impact of gun CD time.",v->true);
+    public EnableSetting thirdGun = setting("3rd",false,"Switch includes the third gun.",v->true);
+    public EnableSetting smartThirdGun = setting("smart3rd",true,"(For AA)Use the third gun when Giant and The Old One spawning.",v->true);
 
     private int round = -1;
     private boolean third = false;

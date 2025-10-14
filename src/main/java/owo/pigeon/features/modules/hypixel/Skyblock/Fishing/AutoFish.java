@@ -37,12 +37,12 @@ public class AutoFish extends Module {
         PACKET, RIGHTCLICK
     }
 
-    public ModeSetting<checkModeEnum> checkMode = setting("Check Mode", checkModeEnum.ARMORSTANDNAME,"Hook detection mode.", v->true);
-    public ModeSetting<fishModeEnum> FishMode = setting("FishMode",fishModeEnum.PACKET,"", v->true);
-    public EnableSetting reThrow = setting("ReThrow",true,"Rethrow hook when reel.",v->true);
-    public IntSetting reThrowTick = setting("ReThrowTick",10,0,20,"Rethrow hook time.",v->true);
-    public EnableSetting rotate = setting("AutoRotate", true,"", v->true);
-    public EnableSetting move = setting("AutoMove", true,"", v->true);
+    public ModeSetting<checkModeEnum> checkMode = setting("check-mode", checkModeEnum.ARMORSTANDNAME,"Hook detection mode.", v->true);
+    public ModeSetting<fishModeEnum> FishMode = setting("fish-mode",fishModeEnum.PACKET,"", v->true);
+    public EnableSetting reThrow = setting("rethrow",true,"Rethrow hook when reel.",v->true);
+    public IntSetting reThrowTick = setting("rethrowtick",10,0,20,"Rethrow hook time.",v->true);
+    public EnableSetting rotate = setting("autorotate", true,"", v->true);
+    public EnableSetting move = setting("automove", true,"", v->true);
 
     private int tick = 999;
 

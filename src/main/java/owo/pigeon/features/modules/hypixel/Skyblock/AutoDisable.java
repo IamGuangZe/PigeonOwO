@@ -15,10 +15,10 @@ public class AutoDisable extends Module {
         super("AutoDisable", Category.HYPIXEL, -1);
     }
 
-    public EnableSetting onWorldLoad = setting("World load",true,"",v->true);
+    public EnableSetting onWorldLoad = setting("worldload",true,"",v->true);
     public EnableSetting onS01PacketJoinGame = setting("S01PacketJoinGame",true,"",v->true);
     public EnableSetting onS08PacketPlayerPosLook = setting("S08PacketPlayerPosLook",false,"",v->true);
-    public EnableSetting onRotate = setting("Rotate",true,"",v->true);
+    public EnableSetting onRotate = setting("rotate",true,"",v->true);
 
     @Override
     public void onWorldLoad() {

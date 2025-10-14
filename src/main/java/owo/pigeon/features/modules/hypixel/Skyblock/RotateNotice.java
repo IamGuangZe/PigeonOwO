@@ -19,7 +19,7 @@ public class RotateNotice extends Module {
         super("RotateNotice", Category.HYPIXEL, -1);
     }
 
-    public EnableSetting disableMacro = setting("Auto Disable Macro",true,"",v->true);
+    public EnableSetting disableMacro = setting("autodisable",true,"",v->true);
 
     private int tick = 0;
     private float yaw,pitch;

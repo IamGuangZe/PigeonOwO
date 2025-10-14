@@ -7,10 +7,10 @@ import net.minecraft.util.MovingObjectPosition;
 import owo.pigeon.features.Category;
 import owo.pigeon.features.Module;
 import owo.pigeon.settings.EnableSetting;
+import owo.pigeon.utils.PlayerUtil;
 import owo.pigeon.utils.hypixel.skyblock.Dojo;
 import owo.pigeon.utils.hypixel.skyblock.Island;
 import owo.pigeon.utils.hypixel.skyblock.SkyblockUtil;
-import owo.pigeon.utils.PlayerUtil;
 
 import static owo.pigeon.utils.WorldUtil.isNotNull;
 
@@ -18,8 +18,8 @@ public class DojoSolver extends Module {
     public DojoSolver() {
         super("DojoSolver", Category.HYPIXEL, -1);
     }
-    public EnableSetting Force = setting("Force",true,"Hide bad Zombie",v->true);
-    public EnableSetting Discipline = setting("Discipline",true,"Auto switch sword in discipline.",v->true);
+    public EnableSetting Force = setting("force",true,"Hide bad Zombie",v->true);
+    public EnableSetting Discipline = setting("discipline",true,"Auto switch sword in discipline.",v->true);
 
     @Override
     public void onUpdate() {
