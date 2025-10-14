@@ -4,8 +4,8 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import owo.pigeon.features.Category;
-import owo.pigeon.features.Module;
+import owo.pigeon.features.modules.Category;
+import owo.pigeon.features.modules.Module;
 import owo.pigeon.settings.ModeSetting;
 import owo.pigeon.utils.RenderUtil;
 

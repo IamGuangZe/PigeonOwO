@@ -6,7 +6,7 @@ import owo.pigeon.commands.Command;
 import owo.pigeon.utils.ChatUtil;
 import owo.pigeon.utils.WorldUtil;
 
-import static owo.pigeon.features.Module.mc;
+import static owo.pigeon.features.modules.Module.mc;
 
 public class SetBlockCommand extends Command {
     public SetBlockCommand() {

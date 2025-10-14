@@ -2,8 +2,8 @@ package owo.pigeon.features.modules.render;
 
 import net.minecraft.block.BlockBed;
 import net.minecraft.util.BlockPos;
-import owo.pigeon.features.Category;
-import owo.pigeon.features.Module;
+import owo.pigeon.features.modules.Category;
+import owo.pigeon.features.modules.Module;
 import owo.pigeon.utils.RenderUtil;
 
 import java.awt.*;

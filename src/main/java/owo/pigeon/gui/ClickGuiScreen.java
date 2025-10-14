@@ -1,10 +1,10 @@
 package owo.pigeon.gui;
 
 import net.minecraft.client.gui.GuiScreen;
-import owo.pigeon.gui.panels.CategoryPanel;
-import owo.pigeon.features.Category;
-import owo.pigeon.features.Module;
+import owo.pigeon.features.modules.Category;
+import owo.pigeon.features.modules.Module;
 import owo.pigeon.features.modules.client.ClickGui;
+import owo.pigeon.gui.panels.CategoryPanel;
 import owo.pigeon.utils.ModuleUtil;
 
 import java.io.IOException;

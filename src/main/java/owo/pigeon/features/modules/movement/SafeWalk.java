@@ -1,7 +1,7 @@
 package owo.pigeon.features.modules.movement;
 
-import owo.pigeon.features.Category;
-import owo.pigeon.features.Module;
+import owo.pigeon.features.modules.Category;
+import owo.pigeon.features.modules.Module;
 
 public class SafeWalk extends Module {
     public SafeWalk() {

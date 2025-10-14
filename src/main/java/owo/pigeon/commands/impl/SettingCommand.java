@@ -4,7 +4,7 @@ import net.minecraft.block.Block;
 import org.lwjgl.input.Keyboard;
 import owo.pigeon.commands.Command;
 import owo.pigeon.commands.CommandManager;
-import owo.pigeon.features.Module;
+import owo.pigeon.features.modules.Module;
 import owo.pigeon.settings.*;
 import owo.pigeon.utils.ChatUtil;
 import owo.pigeon.utils.ModuleUtil;

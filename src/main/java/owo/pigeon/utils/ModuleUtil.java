@@ -1,7 +1,7 @@
 package owo.pigeon.utils;
 
-import owo.pigeon.features.Category;
-import owo.pigeon.features.Module;
+import owo.pigeon.features.modules.Category;
+import owo.pigeon.features.modules.Module;
 import owo.pigeon.features.modules.hypixel.Skyblock.Fishing.AutoFish;
 
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static owo.pigeon.features.ModuleManager.modules;
+import static owo.pigeon.features.modules.ModuleManager.modules;
 
 public class ModuleUtil {
 

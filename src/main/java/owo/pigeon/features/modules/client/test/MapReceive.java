@@ -5,8 +5,8 @@ import net.minecraft.network.play.server.S34PacketMaps;
 import net.minecraft.world.storage.MapData;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import owo.pigeon.events.networkevent.PacketReceiveEvent;
-import owo.pigeon.features.Category;
-import owo.pigeon.features.Module;
+import owo.pigeon.features.modules.Category;
+import owo.pigeon.features.modules.Module;
 import owo.pigeon.utils.ChatUtil;
 
 public class MapReceive extends Module {

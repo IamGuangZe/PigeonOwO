@@ -2,8 +2,8 @@ package owo.pigeon.features.modules.client;
 
 import org.lwjgl.input.Keyboard;
 import owo.pigeon.Pigeon;
-import owo.pigeon.features.Category;
-import owo.pigeon.features.Module;
+import owo.pigeon.features.modules.Category;
+import owo.pigeon.features.modules.Module;
 
 public class ClickGui extends Module {
     public ClickGui() {

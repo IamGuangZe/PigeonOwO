@@ -7,8 +7,8 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import owo.pigeon.events.clickevent.LeftClickEvent;
 import owo.pigeon.events.clickevent.RightClickEvent;
-import owo.pigeon.features.Category;
-import owo.pigeon.features.Module;
+import owo.pigeon.features.modules.Category;
+import owo.pigeon.features.modules.Module;
 import owo.pigeon.settings.BlockSetting;
 import owo.pigeon.utils.ChatUtil;
 

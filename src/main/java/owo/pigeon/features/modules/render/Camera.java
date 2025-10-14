@@ -1,8 +1,8 @@
 package owo.pigeon.features.modules.render;
 
 import org.lwjgl.input.Keyboard;
-import owo.pigeon.features.Category;
-import owo.pigeon.features.Module;
+import owo.pigeon.features.modules.Category;
+import owo.pigeon.features.modules.Module;
 import owo.pigeon.settings.EnableSetting;
 
 public class Camera extends Module {

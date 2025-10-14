@@ -2,12 +2,12 @@ package owo.pigeon.features.modules.client.test;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityArmorStand;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSkull;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MovingObjectPosition;
-import owo.pigeon.features.Category;
-import owo.pigeon.features.Module;
+import owo.pigeon.features.modules.Category;
+import owo.pigeon.features.modules.Module;
 import owo.pigeon.utils.ChatUtil;
 import owo.pigeon.utils.WorldUtil;
 

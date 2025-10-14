@@ -2,8 +2,8 @@ package owo.pigeon.commands.impl;
 
 import org.lwjgl.input.Keyboard;
 import owo.pigeon.commands.Command;
-import owo.pigeon.features.Module;
-import owo.pigeon.features.ModuleManager;
+import owo.pigeon.features.modules.Module;
+import owo.pigeon.features.modules.ModuleManager;
 import owo.pigeon.utils.ChatUtil;
 import owo.pigeon.utils.ModuleUtil;
 

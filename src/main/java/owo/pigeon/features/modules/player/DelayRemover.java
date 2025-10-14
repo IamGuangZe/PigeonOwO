@@ -1,7 +1,7 @@
 package owo.pigeon.features.modules.player;
 
-import owo.pigeon.features.Category;
-import owo.pigeon.features.Module;
+import owo.pigeon.features.modules.Category;
+import owo.pigeon.features.modules.Module;
 import owo.pigeon.settings.EnableSetting;
 
 public class DelayRemover extends Module {

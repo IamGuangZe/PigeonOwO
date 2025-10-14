@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import static owo.pigeon.features.Module.mc;
+import static owo.pigeon.features.modules.Module.mc;
 
 public class WorldUtil {
     // 检测玩家和世界是否为空

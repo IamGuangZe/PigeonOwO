@@ -3,8 +3,8 @@ package owo.pigeon.features.modules.render;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import owo.pigeon.features.Category;
-import owo.pigeon.features.Module;
+import owo.pigeon.features.modules.Category;
+import owo.pigeon.features.modules.Module;
 import owo.pigeon.utils.RenderUtil;
 import owo.pigeon.utils.hypixel.HypixelUtil;
 

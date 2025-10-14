@@ -3,7 +3,7 @@ package owo.pigeon.utils;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.util.StringUtils;
 
-import static owo.pigeon.features.Module.mc;
+import static owo.pigeon.features.modules.Module.mc;
 
 public class FontUtil {
     public static final FontRenderer fontRenderer = mc.fontRendererObj;

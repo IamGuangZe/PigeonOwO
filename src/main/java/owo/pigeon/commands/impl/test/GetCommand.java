@@ -22,7 +22,7 @@ import owo.pigeon.utils.hypixel.HypixelUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-import static owo.pigeon.features.Module.mc;
+import static owo.pigeon.features.modules.Module.mc;
 
 public class GetCommand extends Command {
     public GetCommand() {

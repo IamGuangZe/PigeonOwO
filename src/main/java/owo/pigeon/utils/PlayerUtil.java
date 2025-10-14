@@ -17,7 +17,7 @@ import org.lwjgl.input.Mouse;
 import java.util.Iterator;
 import java.util.Objects;
 
-import static owo.pigeon.features.Module.mc;
+import static owo.pigeon.features.modules.Module.mc;
 
 public class PlayerUtil {
 

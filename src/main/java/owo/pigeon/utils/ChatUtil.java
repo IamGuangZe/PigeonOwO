@@ -2,7 +2,7 @@ package owo.pigeon.utils;
 
 import net.minecraft.util.ChatComponentText;
 
-import static owo.pigeon.features.Module.mc;
+import static owo.pigeon.features.modules.Module.mc;
 
 public class ChatUtil {
 

@@ -1,7 +1,7 @@
 package owo.pigeon.features.modules.render;
 
-import owo.pigeon.features.Category;
-import owo.pigeon.features.Module;
+import owo.pigeon.features.modules.Category;
+import owo.pigeon.features.modules.Module;
 
 public class FullBright extends Module {
     public FullBright() {

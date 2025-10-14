@@ -1,7 +1,7 @@
 package owo.pigeon.gui.panels;
 
 import net.minecraft.client.gui.Gui;
-import owo.pigeon.features.Module;
+import owo.pigeon.features.modules.Module;
 import owo.pigeon.gui.AbstractDisplableItem;
 
 import java.awt.*;

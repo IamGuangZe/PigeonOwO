@@ -4,8 +4,8 @@ import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import org.lwjgl.input.Keyboard;
-import owo.pigeon.features.Category;
-import owo.pigeon.features.Module;
+import owo.pigeon.features.modules.Category;
+import owo.pigeon.features.modules.Module;
 import owo.pigeon.settings.EnableSetting;
 import owo.pigeon.utils.WorldUtil;
 

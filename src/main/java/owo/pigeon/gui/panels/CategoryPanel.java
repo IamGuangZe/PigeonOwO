@@ -1,8 +1,8 @@
 package owo.pigeon.gui.panels;
 
 import net.minecraft.client.gui.Gui;
-import owo.pigeon.features.Category;
-import owo.pigeon.features.Module;
+import owo.pigeon.features.modules.Category;
+import owo.pigeon.features.modules.Module;
 import owo.pigeon.gui.AbstractDisplableItem;
 import owo.pigeon.utils.ModuleUtil;
 

@@ -6,8 +6,8 @@ import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 import owo.pigeon.events.networkevent.PacketReceiveEvent;
 import owo.pigeon.events.networkevent.S08PacketPlayerPosLookEvent;
 import owo.pigeon.events.networkevent.addToSendQueueEvent;
-import owo.pigeon.features.Category;
-import owo.pigeon.features.Module;
+import owo.pigeon.features.modules.Category;
+import owo.pigeon.features.modules.Module;
 import owo.pigeon.utils.ChatUtil;
 
 public class PacketReceive extends Module {

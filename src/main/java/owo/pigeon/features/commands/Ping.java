@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import owo.pigeon.events.networkevent.PacketReceiveEvent;
 import owo.pigeon.utils.ChatUtil;
 
-import static owo.pigeon.features.Module.mc;
+import static owo.pigeon.features.modules.Module.mc;
 
 public class Ping {
 

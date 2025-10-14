@@ -1,12 +1,10 @@
 package owo.pigeon.features.modules.player;
 
-import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import owo.pigeon.events.networkevent.S08PacketPlayerPosLookEvent;
 import owo.pigeon.events.networkevent.S08PacketPlayerPosLookEventEnd;
-import net.minecraft.entity.player.EntityPlayer;
-import owo.pigeon.features.Category;
-import owo.pigeon.features.Module;
+import owo.pigeon.features.modules.Category;
+import owo.pigeon.features.modules.Module;
 
 public class NoRotateSet extends Module {
     public NoRotateSet() {

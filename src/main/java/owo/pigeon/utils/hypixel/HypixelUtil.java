@@ -12,7 +12,7 @@ import net.minecraft.item.ItemTool;
 import owo.pigeon.utils.PlayerUtil;
 import owo.pigeon.utils.WorldUtil;
 
-import static owo.pigeon.features.Module.mc;
+import static owo.pigeon.features.modules.Module.mc;
 
 public class HypixelUtil {
     public static boolean isInHypixel() {

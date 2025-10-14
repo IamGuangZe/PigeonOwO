@@ -3,8 +3,8 @@ package owo.pigeon.features.modules.hypixel.Skyblock.Dungeon;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.util.AxisAlignedBB;
-import owo.pigeon.features.Category;
-import owo.pigeon.features.Module;
+import owo.pigeon.features.modules.Category;
+import owo.pigeon.features.modules.Module;
 import owo.pigeon.utils.RenderUtil;
 
 import java.awt.*;

@@ -3,8 +3,8 @@ package owo.pigeon.features.modules.client.test;
 import net.minecraft.block.BlockSkull;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MovingObjectPosition;
-import owo.pigeon.features.Category;
-import owo.pigeon.features.Module;
+import owo.pigeon.features.modules.Category;
+import owo.pigeon.features.modules.Module;
 import owo.pigeon.utils.ChatUtil;
 import owo.pigeon.utils.WorldUtil;
 

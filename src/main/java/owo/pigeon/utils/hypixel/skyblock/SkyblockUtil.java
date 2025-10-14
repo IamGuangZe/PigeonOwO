@@ -2,14 +2,14 @@ package owo.pigeon.utils.hypixel.skyblock;
 
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.client.network.NetworkPlayerInfo;
-import owo.pigeon.utils.hypixel.HypixelGames;
-import owo.pigeon.utils.hypixel.HypixelUtil;
 import owo.pigeon.utils.OtherUtil;
 import owo.pigeon.utils.WorldUtil;
+import owo.pigeon.utils.hypixel.HypixelGames;
+import owo.pigeon.utils.hypixel.HypixelUtil;
 
 import java.util.Collection;
 
-import static owo.pigeon.features.Module.mc;
+import static owo.pigeon.features.modules.Module.mc;
 
 public class SkyblockUtil {
 

@@ -12,7 +12,7 @@ import owo.pigeon.utils.ChatUtil;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static owo.pigeon.features.Module.mc;
+import static owo.pigeon.features.modules.Module.mc;
 
 public class CommandManager {
 

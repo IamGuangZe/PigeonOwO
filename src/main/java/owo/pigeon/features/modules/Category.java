@@ -1,4 +1,4 @@
-package owo.pigeon.features;
+package owo.pigeon.features.modules;
 
 public enum Category {
     CLIENT,

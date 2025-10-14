@@ -1,4 +1,4 @@
-package owo.pigeon.features;
+package owo.pigeon.features.modules;
 
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.common.MinecraftForge;

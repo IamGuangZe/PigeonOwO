@@ -1,8 +1,8 @@
 package owo.pigeon.features.modules.client.test;
 
 import org.lwjgl.input.Keyboard;
-import owo.pigeon.features.Category;
-import owo.pigeon.features.Module;
+import owo.pigeon.features.modules.Category;
+import owo.pigeon.features.modules.Module;
 import owo.pigeon.utils.ChatUtil;
 import owo.pigeon.utils.PlayerUtil;
 

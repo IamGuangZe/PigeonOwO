@@ -11,7 +11,7 @@ import net.minecraft.util.BlockPos;
 
 import java.awt.*;
 
-import static owo.pigeon.features.Module.mc;
+import static owo.pigeon.features.modules.Module.mc;
 
 public class RenderUtil {
     static RenderManager renderManager = mc.getRenderManager();
