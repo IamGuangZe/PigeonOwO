@@ -12,12 +12,13 @@ import owo.pigeon.utils.ChatUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static owo.pigeon.features.Module.mc;
 
 public class CommandManager {
 
-    private static final ArrayList<Command> commands = new ArrayList<>();
+    public static final ArrayList<Command> commands = new ArrayList<>();
     public static char chatPrefix = '>';
     public static boolean isSay = false;
 
@@ -41,6 +42,10 @@ public class CommandManager {
 
         commands.add(new GetCommand());
         commands.add(new SlotCommand());
+    }
+
+    public static List<Command> getAllCommands(){
+        return commands;
     }
 
     // 判断是否为指令
@@ -97,4 +102,5 @@ public class CommandManager {
             }
         }
     }
+
 }

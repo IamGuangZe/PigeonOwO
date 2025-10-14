@@ -42,7 +42,7 @@ import java.util.Map;
 
 public class ModuleManager {
     public static final ArrayList<Module> modules = new ArrayList<>();
-    private static final Map<Integer, Boolean> keyStates = new HashMap<>();
+    public static final Map<Integer, Boolean> keyStates = new HashMap<>();
 
     public void init() {
         MinecraftForge.EVENT_BUS.register(this);
@@ -54,6 +54,10 @@ public class ModuleManager {
         addPlayerModules();
         addRenderModules();
         addworldModules();
+    }
+
+    public List<Module> getAllModules() {
+        return modules;
     }
 
     public void addClientModules() {
@@ -185,10 +189,6 @@ public class ModuleManager {
     @SubscribeEvent
     public void onRightClickEnd(RightClickEndEvent event) {
         modules.stream().filter(Module::isEnable).forEach(Module::onRightClickEnd);
-    }
-
-    public List<Module> getAllModules() {
-        return modules;
     }
 }
 
