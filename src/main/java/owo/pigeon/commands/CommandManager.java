@@ -11,7 +11,6 @@ import owo.pigeon.utils.ChatUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import static owo.pigeon.features.Module.mc;
 
@@ -40,10 +39,6 @@ public class CommandManager {
         commands.add(new ToggleCommand());
 
         commands.add(new GetCommand());
-    }
-
-    public static List<Command> getAllCommands(){
-        return commands;
     }
 
     // 判断是否为指令
