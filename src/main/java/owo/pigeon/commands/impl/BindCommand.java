@@ -24,7 +24,7 @@ public class BindCommand extends Command {
 
         String input = args[0];
         if (ModuleUtil.isModuleExist(input)) {
-            String modulename = ModuleUtil.getregisteredname(input);
+            String modulename = ModuleUtil.getName(input);
             if (args.length == 1) {
                 ChatUtil.sendMessage("&cPlease type a key!");
                 return;
@@ -34,10 +34,10 @@ public class BindCommand extends Command {
 
             if (key == 0) {
                 ModuleUtil.moduleSetKey(input,-1);
-                ChatUtil.sendMessage(modulename + " has been unbound!");
+                ChatUtil.sendMessage("&a" + modulename + " has been unbound!");
             } else {
                 ModuleUtil.moduleSetKey(input,key);
-                ChatUtil.sendMessage(modulename + " has been bound to " + args[1].toUpperCase() + " (keycode : " + key + ") !");
+                ChatUtil.sendMessage("&a" + modulename + " has been bound to " + args[1].toUpperCase() + " (keycode : " + key + ") !");
             }
 
         } else if (input.equalsIgnoreCase("list")) {

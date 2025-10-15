@@ -9,7 +9,9 @@ public class ChatUtil {
 
     // 发送客户端消息
     public static void sendRawMessage(String message) {
-        mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(message));
+        if (mc.ingameGUI != null && mc.ingameGUI.getChatGUI() != null) {
+            mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(message));
+        }
     }
 
     // 发送带客户端前缀且可上色的消息
@@ -27,7 +29,7 @@ public class ChatUtil {
         sendRawMessage(OtherUtil.parseColor("&8[&3" + prefix + "&8]&r " + message));
     }
 
-    // 确保mc.ingameGUI不为null时发送带客户端前缀且可上色的消息
+    // 直到mc.ingameGUI不为null时发送带客户端前缀且可上色的消息
     public static void sendMessageSafe(String message) {
         SafeMessage.messages.add(message);
     }

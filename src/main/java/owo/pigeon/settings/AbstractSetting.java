@@ -30,4 +30,8 @@ public abstract class AbstractSetting<T> {
     public String getName() {
         return name;
     }
+
+    public void resetValue() {
+        setValue(defaultValue);
+    }
 }

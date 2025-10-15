@@ -27,6 +27,7 @@ public class CommandManager {
 
         commands.add(new BindCommand());
         //commands.add(new BrushCommand());
+        commands.add(new ConfigCommand());
         commands.add(new CopyCommand());
         commands.add(new FillCommand());
         commands.add(new HelpCommand());

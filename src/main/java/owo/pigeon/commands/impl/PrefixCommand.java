@@ -2,6 +2,7 @@ package owo.pigeon.commands.impl;
 
 import owo.pigeon.commands.Command;
 import owo.pigeon.commands.CommandManager;
+import owo.pigeon.configs.PigeonowoConfig;
 import owo.pigeon.utils.ChatUtil;
 
 public class PrefixCommand extends Command {
@@ -17,6 +18,7 @@ public class PrefixCommand extends Command {
         }
 
         CommandManager.chatPrefix = args[0].charAt(0);
-        ChatUtil.sendMessage("The prefix has been set to \" " + CommandManager.chatPrefix + " \"!");
+        PigeonowoConfig.setPrefix(CommandManager.chatPrefix);
+        ChatUtil.sendMessage("&aThe prefix has been set to \" " + CommandManager.chatPrefix + " \"!");
     }
 }

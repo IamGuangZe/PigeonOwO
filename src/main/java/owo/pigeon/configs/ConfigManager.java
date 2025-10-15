@@ -1,23 +1,46 @@
-package owo.pigeon;
+package owo.pigeon.configs;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import owo.pigeon.features.Category;
-import owo.pigeon.features.Module;
-import owo.pigeon.settings.*;
-import owo.pigeon.utils.EnumConverter;
+import owo.pigeon.commands.CommandManager;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 
 public class ConfigManager {
-    private final File CONFIG_DIR = new File("config/pigeonowo/");
-    private final Gson gson = new GsonBuilder().disableHtmlEscaping().create();
+
+    // 超级史山代码 -- 2025.10.15
+    // 将超级史山拆分了 -- 2025.10.15
+
+    public static String currentConfig = "default";
+
+    public static final Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+    public static final File baseDir = new File("config/pigeonowo/");
+    public static final File settingDir = new File(baseDir, "setting/");
+
+    public static final File pigeonowo_f = new File(baseDir, "pigeonowo.json");
 
     public void init() {
+        if (!baseDir.exists()) {
+            baseDir.mkdirs();
+        }
+        if (!settingDir.exists()) {
+            settingDir.mkdirs();
+        }
+        if (!pigeonowo_f.exists()) {
+            PigeonowoConfig.setCurrentConfig("default");
+            PigeonowoConfig.setPrefix('>');
+        }
+
+        currentConfig = PigeonowoConfig.getCurrentConfig();
+        CommandManager.chatPrefix = PigeonowoConfig.getPrefix();
+
+        PigeonowoConfig.setCurrentConfig(currentConfig);
+        PigeonowoConfig.setPrefix(CommandManager.chatPrefix);
+
+        SettingConfig.load(currentConfig);
+    }
+}
+    /*public void init() {
             if (!CONFIG_DIR.exists()) CONFIG_DIR.mkdirs();
             for (Category category : Category.values()) {
                 File categoryDir = new File(CONFIG_DIR, category.name());
@@ -81,5 +104,4 @@ public class ConfigManager {
 
             }
         }
-    }
-}
+    }*/

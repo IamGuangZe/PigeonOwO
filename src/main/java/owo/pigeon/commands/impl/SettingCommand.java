@@ -118,7 +118,7 @@ public class SettingCommand extends Command {
                     return;
                 }
 
-                ChatUtil.sendMessage("The &l" + settingname + "&r of &l" + modulename + "&r has been changed to &l" + value + "&r.");
+                ChatUtil.sendMessage("&aThe &7&l" + settingname + "&r&a of &7&l" + modulename + "&r&a has been changed to &7&l" + value + "&r&a.");
             }
         }
         if (!found) {

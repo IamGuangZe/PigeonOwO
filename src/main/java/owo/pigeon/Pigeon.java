@@ -5,6 +5,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import org.lwjgl.opengl.Display;
 import owo.pigeon.commands.CommandManager;
+import owo.pigeon.configs.ConfigManager;
 import owo.pigeon.features.modules.ModuleManager;
 import owo.pigeon.features.utils.SafeMessage;
 import owo.pigeon.gui.ClickGuiScreen;
@@ -19,7 +20,7 @@ public class Pigeon {
     public static final Pigeon instance = new Pigeon();
     public static ModuleManager modulemanager;
     public static CommandManager commandmanager;
-
+    public static ConfigManager configManager;
     public static ClickGuiScreen clickGuiScreen;
 
 
@@ -34,8 +35,9 @@ public class Pigeon {
         commandmanager = new CommandManager();
         commandmanager.init();
 
-        clickGuiScreen = new ClickGuiScreen();
+        configManager = new ConfigManager();
+        configManager.init();
 
-//        new ConfigManager().init();
+        clickGuiScreen = new ClickGuiScreen();
     }
 }

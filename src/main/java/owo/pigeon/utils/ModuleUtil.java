@@ -77,9 +77,17 @@ public class ModuleUtil {
         return false;
     }
 
-    public static String getregisteredname(String module) {
+    public static String getName(String module) {
         for (Module m : modules) {
             if (m.name.equalsIgnoreCase(module)) {
+                return m.name;
+            }
+        }
+        return null;
+    }
+    public static String getName(Class<? extends Module> clazz) {
+        for (Module m : modules) {
+            if (m.getClass() == clazz) {
                 return m.name;
             }
         }
