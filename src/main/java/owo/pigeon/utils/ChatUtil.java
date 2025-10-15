@@ -1,6 +1,7 @@
 package owo.pigeon.utils;
 
 import net.minecraft.util.ChatComponentText;
+import owo.pigeon.features.utils.SafeMessage;
 
 import static owo.pigeon.features.modules.Module.mc;
 
@@ -24,5 +25,10 @@ public class ChatUtil {
     // 发送自定义前缀且可上色的消息
     public static void sendCustomPrefixMessage(String prefix,String message) {
         sendRawMessage(OtherUtil.parseColor("&8[&3" + prefix + "&8]&r " + message));
+    }
+
+    // 确保mc.ingameGUI不为null时发送带客户端前缀且可上色的消息
+    public static void sendMessageSafe(String message) {
+        SafeMessage.messages.add(message);
     }
 }

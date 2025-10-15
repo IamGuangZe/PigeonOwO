@@ -1,10 +1,12 @@
 package owo.pigeon;
 
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import org.lwjgl.opengl.Display;
 import owo.pigeon.commands.CommandManager;
 import owo.pigeon.features.modules.ModuleManager;
+import owo.pigeon.features.utils.SafeMessage;
 import owo.pigeon.gui.ClickGuiScreen;
 
 
@@ -24,6 +26,7 @@ public class Pigeon {
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         Display.setTitle("Ciallo～(∠・ω< )⌒★ | Minecraft 1.8.9");
+        MinecraftForge.EVENT_BUS.register(new SafeMessage());
 
         modulemanager = new ModuleManager();
         modulemanager.init();
