@@ -51,8 +51,8 @@ public class SettingConfig {
             e.printStackTrace();
         }
 
-        ChatUtil.sendMessageSafe("&aConfig &o" + name + ".json &rhas been saved");
-        PigeonowoConfig.setCurrentConfig(name);
+        ChatUtil.sendMessageSafe("&aConfig &o" + name + ".json &r&ahas been saved");
+        // PigeonowoConfig.setCurrentConfig(name);
     }
 
     public static void load(String name) {
@@ -61,15 +61,12 @@ public class SettingConfig {
         if (!config_F.exists()) {
             if (name.equalsIgnoreCase("default")) {
                 for (Module module : ModuleUtil.getAllModules()) {
+                    ModuleUtil.moduleDisable(module.getClass());
+                    module.setKey(-1);
                     for (AbstractSetting<?> setting : module.getSettings()) {
                         setting.resetValue();
                     }
                 }
-
-                if (!name.equalsIgnoreCase(ConfigManager.currentConfig)) {
-                    save(ConfigManager.currentConfig);
-                }
-
                 ChatUtil.sendMessageSafe("&aDefault config has been loaded.");
                 return;
             } else {
@@ -216,7 +213,7 @@ public class SettingConfig {
                 }
             }
 
-            PigeonowoConfig.setCurrentConfig(name);
+            // PigeonowoConfig.setCurrentConfig(name);
             ChatUtil.sendMessageSafe("&aConfig &o" + name + ".json &r&ahas been loaded.");
 
         } catch (IOException e) {

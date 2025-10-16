@@ -27,17 +27,17 @@ public class ConfigManager {
             settingDir.mkdirs();
         }
         if (!pigeonowo_f.exists()) {
-            PigeonowoConfig.setCurrentConfig("default");
+            // PigeonowoConfig.setCurrentConfig("default");
             PigeonowoConfig.setPrefix('>');
         }
 
-        currentConfig = PigeonowoConfig.getCurrentConfig();
+        // currentConfig = PigeonowoConfig.getCurrentConfig();
         CommandManager.chatPrefix = PigeonowoConfig.getPrefix();
 
-        PigeonowoConfig.setCurrentConfig(currentConfig);
+        // PigeonowoConfig.setCurrentConfig(currentConfig);
         PigeonowoConfig.setPrefix(CommandManager.chatPrefix);
 
-        SettingConfig.load(currentConfig);
+        SettingConfig.load("default");
     }
 }
     /*public void init() {

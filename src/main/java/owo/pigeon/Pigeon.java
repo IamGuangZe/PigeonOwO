@@ -6,6 +6,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import org.lwjgl.opengl.Display;
 import owo.pigeon.commands.CommandManager;
 import owo.pigeon.configs.ConfigManager;
+import owo.pigeon.configs.SettingConfig;
 import owo.pigeon.features.modules.ModuleManager;
 import owo.pigeon.features.utils.SafeMessage;
 import owo.pigeon.gui.ClickGuiScreen;
@@ -39,5 +40,10 @@ public class Pigeon {
         configManager.init();
 
         clickGuiScreen = new ClickGuiScreen();
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            SettingConfig.save("default");
+        }));
+
     }
 }
