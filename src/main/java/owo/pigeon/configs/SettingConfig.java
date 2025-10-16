@@ -61,6 +61,11 @@ public class SettingConfig {
         if (!config_F.exists()) {
             if (name.equalsIgnoreCase("default")) {
                 for (Module module : ModuleUtil.getAllModules()) {
+
+                    if (module.getClass() == ClickGui.class) {
+                        continue;
+                    }
+
                     ModuleUtil.moduleDisable(module.getClass());
                     module.setKey(-1);
                     for (AbstractSetting<?> setting : module.getSettings()) {
