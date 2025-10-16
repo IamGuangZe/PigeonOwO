@@ -1,4 +1,4 @@
-package owo.pigeon.features.modules.hypixel.Skyblock;
+package owo.pigeon.features.modules.world;
 
 import com.google.common.collect.Sets;
 import net.minecraft.block.Block;
@@ -19,7 +19,7 @@ import java.util.Set;
 
 public class GhostBlock extends Module {
     public GhostBlock() {
-        super("GhostBlock", Category.HYPIXEL, -1);
+        super("GhostBlock", Category.WORLD, -1);
     }
 
     public EnableSetting onlyInSkyblock = setting("onlyinskyblock", true, "Only create in Skyblock.", v -> true);

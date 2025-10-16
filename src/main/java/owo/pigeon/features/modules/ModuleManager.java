@@ -23,7 +23,6 @@ import owo.pigeon.features.modules.hypixel.Skyblock.Dungeon.F7.SetClipBlock;
 import owo.pigeon.features.modules.hypixel.Skyblock.Dungeon.LividSolver;
 import owo.pigeon.features.modules.hypixel.Skyblock.Dungeon.StarMobEsp;
 import owo.pigeon.features.modules.hypixel.Skyblock.Fishing.AutoFish;
-import owo.pigeon.features.modules.hypixel.Skyblock.GhostBlock;
 import owo.pigeon.features.modules.hypixel.Skyblock.Nether.DojoSolver;
 import owo.pigeon.features.modules.hypixel.Skyblock.RotateNotice;
 import owo.pigeon.features.modules.movement.LegitSpeed;
@@ -33,6 +32,7 @@ import owo.pigeon.features.modules.player.DelayRemover;
 import owo.pigeon.features.modules.player.Eagle;
 import owo.pigeon.features.modules.player.NoRotateSet;
 import owo.pigeon.features.modules.render.*;
+import owo.pigeon.features.modules.world.GhostBlock;
 import owo.pigeon.features.modules.world.LightningTracker;
 
 import java.util.ArrayList;
@@ -71,7 +71,6 @@ public class ModuleManager {
     }
     public void addHypixelModules() {
         // addSkyblockModules();
-        modules.add(new GhostBlock());
 
         modules.add(new FarmhuntHelper());
         modules.add(new GTBHelper());
@@ -104,6 +103,7 @@ public class ModuleManager {
         modules.add(new SkullESP());
     }
     public void addworldModules() {
+        modules.add(new GhostBlock());
         modules.add(new LightningTracker());
     }
 
