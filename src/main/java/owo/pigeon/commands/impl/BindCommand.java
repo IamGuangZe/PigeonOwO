@@ -10,6 +10,8 @@ import owo.pigeon.utils.ModuleUtil;
 import java.util.Map;
 import java.util.TreeMap;
 
+import static owo.pigeon.commands.CommandManager.commandPrefix;
+
 public class BindCommand extends Command {
     public BindCommand() {
         super("bind");
@@ -18,7 +20,7 @@ public class BindCommand extends Command {
     @Override
     public void execute(String[] args) {
         if (args.length == 0) {
-            ChatUtil.sendMessage("&cPlease type a module!");
+            sendUsage();
             return;
         }
 
@@ -26,7 +28,7 @@ public class BindCommand extends Command {
         if (ModuleUtil.isModuleExist(input)) {
             String modulename = ModuleUtil.getName(input);
             if (args.length == 1) {
-                ChatUtil.sendMessage("&cPlease type a key!");
+                sendUsage();
                 return;
             }
 
@@ -59,5 +61,11 @@ public class BindCommand extends Command {
         } else {
             ChatUtil.sendMessage("&cModule not found!");
         }
+    }
+
+    @Override
+    public String getUsage() {
+        return commandPrefix + "bind <module> <key> OR " +
+                commandPrefix + "bind list [page]";
     }
 }

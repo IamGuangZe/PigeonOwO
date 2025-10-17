@@ -3,11 +3,12 @@ package owo.pigeon.commands.impl;
 import net.minecraft.block.Block;
 import org.lwjgl.input.Keyboard;
 import owo.pigeon.commands.Command;
-import owo.pigeon.commands.CommandManager;
 import owo.pigeon.features.modules.Module;
 import owo.pigeon.settings.*;
 import owo.pigeon.utils.ChatUtil;
 import owo.pigeon.utils.ModuleUtil;
+
+import static owo.pigeon.commands.CommandManager.commandPrefix;
 
 public class SettingCommand extends Command {
     public SettingCommand() {
@@ -17,7 +18,7 @@ public class SettingCommand extends Command {
     @Override
     public void execute(String[] args) {
         if (args.length < 3) {
-            ChatUtil.sendMessage("&cIncomplete parameters! Usage: "+ CommandManager.chatPrefix + "setting <module> <setting> <value>");
+            sendUsage();
             return;
         }
 
@@ -124,5 +125,10 @@ public class SettingCommand extends Command {
         if (!found) {
             ChatUtil.sendMessage("&cSetting not found!");
         }
+    }
+
+    @Override
+    public String getUsage() {
+        return commandPrefix + "setting <module> <setting> <value>";
     }
 }

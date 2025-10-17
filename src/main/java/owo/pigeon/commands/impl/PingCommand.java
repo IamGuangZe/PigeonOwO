@@ -13,4 +13,9 @@ public class PingCommand extends Command {
         Ping.setInvokedCommand(true);
         Ping.sengPing();
     }
+
+    @Override
+    public String getUsage() {
+        return super.getUsage();
+    }
 }

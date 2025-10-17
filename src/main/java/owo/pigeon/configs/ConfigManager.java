@@ -32,10 +32,10 @@ public class ConfigManager {
         }
 
         // currentConfig = PigeonowoConfig.getCurrentConfig();
-        CommandManager.chatPrefix = PigeonowoConfig.getPrefix();
+        CommandManager.commandPrefix = PigeonowoConfig.getPrefix();
 
         // PigeonowoConfig.setCurrentConfig(currentConfig);
-        PigeonowoConfig.setPrefix(CommandManager.chatPrefix);
+        PigeonowoConfig.setPrefix(CommandManager.commandPrefix);
 
         SettingConfig.load("default");
     }

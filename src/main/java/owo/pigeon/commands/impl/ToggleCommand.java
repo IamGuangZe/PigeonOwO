@@ -4,6 +4,8 @@ import owo.pigeon.commands.Command;
 import owo.pigeon.utils.ChatUtil;
 import owo.pigeon.utils.ModuleUtil;
 
+import static owo.pigeon.commands.CommandManager.commandPrefix;
+
 public class ToggleCommand extends Command {
     public ToggleCommand() {
         super("toggle");
@@ -12,7 +14,7 @@ public class ToggleCommand extends Command {
     @Override
     public void execute(String[] args) {
         if (args.length == 0) {
-            ChatUtil.sendMessage("&cPlease type a module!");
+            sendUsage();
             return;
         }
 
@@ -48,5 +50,10 @@ public class ToggleCommand extends Command {
         if (!found) {
             ChatUtil.sendMessage("&cModule not found!");
         }*/
+    }
+
+    @Override
+    public String getUsage() {
+        return commandPrefix + "toggle <module> [enable|disable]";
     }
 }

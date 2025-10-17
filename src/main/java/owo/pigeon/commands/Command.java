@@ -1,5 +1,9 @@
 package owo.pigeon.commands;
 
+import owo.pigeon.utils.ChatUtil;
+
+import static owo.pigeon.commands.CommandManager.commandPrefix;
+
 public abstract class Command {
     private final String command;
 
@@ -11,5 +15,15 @@ public abstract class Command {
 
     public String getCommand() {
         return command;
+    }
+    public String getUsage() {
+        return commandPrefix + command;
+    }
+
+    public void sendFail(String message) {
+        ChatUtil.sendMessage("&c" + message);
+    }
+    public void sendUsage() {
+        sendFail("Usage: " + getUsage());
     }
 }

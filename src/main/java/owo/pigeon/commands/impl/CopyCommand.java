@@ -6,6 +6,8 @@ import owo.pigeon.utils.ChatUtil;
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 
+import static owo.pigeon.commands.CommandManager.commandPrefix;
+
 public class CopyCommand extends Command {
     public CopyCommand() {
         super("copy");
@@ -14,11 +16,16 @@ public class CopyCommand extends Command {
     @Override
     public void execute(String[] args) {
         if(args.length == 0) {
-            ChatUtil.sendMessage("&cPlease type Text!");
+            sendUsage();
             return;
         }
         String Text = String.join(" ", args);
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(Text), null);
         ChatUtil.sendMessage("You copied the text : " + Text);
+    }
+
+    @Override
+    public String getUsage() {
+        return commandPrefix + "copy <message ...>";
     }
 }

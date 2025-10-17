@@ -4,6 +4,8 @@ import owo.pigeon.commands.Command;
 import owo.pigeon.commands.CommandManager;
 import owo.pigeon.utils.ChatUtil;
 
+import static owo.pigeon.commands.CommandManager.commandPrefix;
+
 public class HelpCommand extends Command {
     public HelpCommand() {
         super("help");
@@ -31,9 +33,14 @@ public class HelpCommand extends Command {
 
         for (int i = start; i < end; i++) {
             if (i > CommandManager.commands.size() - 1) break;
-            ChatUtil.sendMessage("&7" + CommandManager.chatPrefix + " " + CommandManager.commands.get(i).getCommand().toLowerCase());
+            ChatUtil.sendMessage("&7" + commandPrefix + " " + CommandManager.commands.get(i).getCommand().toLowerCase());
         }
 
-        ChatUtil.sendMessage("&8Use \"" + CommandManager.chatPrefix + " help page\" to view other commands.");
+        ChatUtil.sendMessage("&8Use \"" + commandPrefix + " help page\" to view other commands.");
+    }
+
+    @Override
+    public String getUsage() {
+        return commandPrefix + "help [page]";
     }
 }

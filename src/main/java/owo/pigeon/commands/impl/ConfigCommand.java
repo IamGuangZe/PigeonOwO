@@ -1,12 +1,13 @@
 package owo.pigeon.commands.impl;
 
 import owo.pigeon.commands.Command;
-import owo.pigeon.commands.CommandManager;
 import owo.pigeon.configs.ConfigManager;
 import owo.pigeon.configs.SettingConfig;
 import owo.pigeon.utils.ChatUtil;
 
 import java.io.File;
+
+import static owo.pigeon.commands.CommandManager.commandPrefix;
 
 public class ConfigCommand extends Command {
     public ConfigCommand() {
@@ -16,7 +17,7 @@ public class ConfigCommand extends Command {
     @Override
     public void execute(String[] args) {
         if (args.length < 1) {
-            ChatUtil.sendMessage("&cUsage: config <save/load/rename/delete/list>");
+            sendUsage();
             return;
         }
 
@@ -25,7 +26,7 @@ public class ConfigCommand extends Command {
         switch (action) {
             case "save":
                 if (args.length < 2) {
-                    ChatUtil.sendMessage("&cUsage: config save <name>");
+                    sendUsage();
                     return;
                 }
                 SettingConfig.save(args[1]);
@@ -33,7 +34,7 @@ public class ConfigCommand extends Command {
 
             case "load":
                 if (args.length < 2) {
-                    ChatUtil.sendMessage("&cUsage: config load <name>");
+                    sendUsage();
                     return;
                 }
                 SettingConfig.load(args[1]);
@@ -41,7 +42,7 @@ public class ConfigCommand extends Command {
 
             case "rename":
                 if (args.length < 3) {
-                    ChatUtil.sendMessage("&cUsage: config rename <oldName> <newName>");
+                    sendUsage();
                     return;
                 }
                 File oldFile = new File(ConfigManager.settingDir, args[1] + ".json");
@@ -66,7 +67,7 @@ public class ConfigCommand extends Command {
 
             case "delete":
                 if (args.length < 2) {
-                    ChatUtil.sendMessage("&cUsage: config delete <name>");
+                    sendUsage();
                     return;
                 }
                 File delFile = new File(ConfigManager.settingDir, args[1] + ".json");
@@ -115,12 +116,19 @@ public class ConfigCommand extends Command {
                 for (int i = start; i < end; i++) {
                     ChatUtil.sendMessage("&7- " + files[i].replace(".json", ""));
                 }
-                ChatUtil.sendMessage("&8Use \"" + CommandManager.chatPrefix + " config list <page>\" to view other pages.");
+                ChatUtil.sendMessage("&8Use \"" + commandPrefix + " config list <page>\" to view other pages.");
                 break;
 
             default:
-                ChatUtil.sendMessage("&cUnknown subcommand: " + action);
+                sendUsage();
                 break;
         }
+    }
+
+    @Override
+    public String getUsage() {
+        return commandPrefix + "config <save|load|delete> <name> OR " +
+                commandPrefix + "config <rename> <oldname> <newname> OR " +
+                commandPrefix + "config <list> [page]";
     }
 }

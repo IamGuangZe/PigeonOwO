@@ -19,4 +19,9 @@ public class LimboCommand extends Command {
             ChatUtil.sendMessage("&cYou must be on Hypixel to use this command!");
         }
     }
+
+    @Override
+    public String getUsage() {
+        return super.getUsage();
+    }
 }

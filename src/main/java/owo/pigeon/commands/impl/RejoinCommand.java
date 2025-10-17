@@ -2,6 +2,8 @@ package owo.pigeon.commands.impl;
 
 import owo.pigeon.commands.Command;
 import owo.pigeon.features.commands.Rejoin;
+import owo.pigeon.utils.ChatUtil;
+import owo.pigeon.utils.hypixel.HypixelUtil;
 
 public class RejoinCommand extends Command {
     public RejoinCommand() {
@@ -10,6 +12,15 @@ public class RejoinCommand extends Command {
 
     @Override
     public void execute(String[] args) {
-        Rejoin.rejoin();
+        if (HypixelUtil.isInHypixel()) {
+            Rejoin.rejoin();
+        } else {
+            ChatUtil.sendMessage("&cYou must be on Hypixel to use this command!");
+        }
+    }
+
+    @Override
+    public String getUsage() {
+        return super.getUsage();
     }
 }

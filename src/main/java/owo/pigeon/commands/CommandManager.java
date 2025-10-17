@@ -17,7 +17,7 @@ import static owo.pigeon.features.modules.Module.mc;
 public class CommandManager {
 
     public static final ArrayList<Command> commands = new ArrayList<>();
-    public static char chatPrefix = '>';
+    public static char commandPrefix = '>';
     public static boolean isSay = false;
 
     public void init() {
@@ -43,39 +43,9 @@ public class CommandManager {
         commands.add(new GetCommand());
     }
 
-    // 判断是否为指令
-    public static boolean isCommand(String message) {
-        if (message.startsWith(String.valueOf(chatPrefix))){
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    // 执行指令
-    public static void RunCommand(String message) {
-        String command = message.substring(1);
-        if (command.isEmpty()){
-            ChatUtil.sendMessage("&cThe command cannot be empty!");
-            return;
-        }
-        String[] parts = command.split(" ");
-        String commandName = parts[0];
-        boolean executed = false;
-        for (Command Command : commands) {
-            if (Command.getCommand().equalsIgnoreCase(commandName)) {
-                Command.execute(Arrays.copyOfRange(parts,1,parts.length));
-                executed = true;
-            }
-        }
-        if (!executed) {
-            ChatUtil.sendMessage("&cCommand not found!");
-        }
-    }
-
     @SubscribeEvent
     public void onCommand(PlayerChatEvent event) {
-        if (event.message.startsWith(String.valueOf(chatPrefix))) {
+        if (event.message.startsWith(String.valueOf(commandPrefix))) {
             event.setCanceled(true);
             mc.ingameGUI.getChatGUI().addToSentMessages(event.message);
             String command = event.message.substring(1);
@@ -97,5 +67,35 @@ public class CommandManager {
             }
         }
     }
-
 }
+
+/*
+// 判断是否为指令
+public static boolean isCommand(String message) {
+    if (message.startsWith(String.valueOf(chatPrefix))){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// 执行指令
+public static void RunCommand(String message) {
+    String command = message.substring(1);
+    if (command.isEmpty()){
+        ChatUtil.sendMessage("&cThe command cannot be empty!");
+        return;
+    }
+    String[] parts = command.split(" ");
+    String commandName = parts[0];
+    boolean executed = false;
+    for (Command Command : commands) {
+        if (Command.getCommand().equalsIgnoreCase(commandName)) {
+            Command.execute(Arrays.copyOfRange(parts,1,parts.length));
+            executed = true;
+        }
+    }
+    if (!executed) {
+        ChatUtil.sendMessage("&cCommand not found!");
+    }
+}*/

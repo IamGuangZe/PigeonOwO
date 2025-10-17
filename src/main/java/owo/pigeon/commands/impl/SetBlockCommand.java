@@ -6,6 +6,7 @@ import owo.pigeon.commands.Command;
 import owo.pigeon.utils.ChatUtil;
 import owo.pigeon.utils.WorldUtil;
 
+import static owo.pigeon.commands.CommandManager.commandPrefix;
 import static owo.pigeon.features.modules.Module.mc;
 
 public class SetBlockCommand extends Command {
@@ -16,13 +17,13 @@ public class SetBlockCommand extends Command {
     @Override
     public void execute(String[] args) {
         if (args.length < 4) {
-            ChatUtil.sendMessage("&cIncorrect usage.");
+            sendUsage();
             return;
         }
 
         Block block = Block.getBlockFromName(args[3]);
         if (block == null) {
-            ChatUtil.sendMessage("&cBlock Not Found");
+            ChatUtil.sendMessage("&cThere is no such block with name " + args[3]);
             return;
         }
 
@@ -30,13 +31,26 @@ public class SetBlockCommand extends Command {
         Double posY = WorldUtil.parseCoordinate(args[1], mc.thePlayer.posY);
         Double posZ = WorldUtil.parseCoordinate(args[2], mc.thePlayer.posZ);
 
-        if (posX == null || posY == null || posZ == null) {
-            ChatUtil.sendMessage("&cInvalid coordinate input.");
+        if (posX == null) {
+            ChatUtil.sendMessage("&c" + args[0] + " is not a valid number");
+            return;
+        }
+        if (posY == null) {
+            ChatUtil.sendMessage("&c" + args[1] + " is not a valid number");
+            return;
+        }
+        if (posZ == null) {
+            ChatUtil.sendMessage("&c" + args[2] + " is not a valid number");
             return;
         }
 
         BlockPos pos = new BlockPos((int) Math.floor(posX), (int) Math.floor(posY), (int) Math.floor(posZ));
 
         WorldUtil.setBlock(pos,block);
+    }
+
+    @Override
+    public String getUsage() {
+        return commandPrefix + "setblock <x> <y> <z> <tilename>";
     }
 }

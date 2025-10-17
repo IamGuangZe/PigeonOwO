@@ -66,6 +66,6 @@ public class PigeonowoConfig {
         map.put("prefix", String.valueOf(prefix));
         write(map);
 
-        CommandManager.chatPrefix = prefix;
+        CommandManager.commandPrefix = prefix;
     }
 }
