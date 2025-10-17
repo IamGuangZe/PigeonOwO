@@ -13,13 +13,28 @@ public class HelpCommand extends Command {
     
     @Override
     public void execute(String[] args) {
+
+        if (args.length > 0) {
+            String input = args[0];
+
+            boolean found = false;
+            for (Command command : CommandManager.commands) {
+                if (command.getCommand().equalsIgnoreCase(input)) {
+                    command.sendUsage();
+                    found = true;
+                }
+            }
+
+            if (found) return;
+        }
+
         int maxpage = (int) Math.ceil((double)CommandManager.commands.size() / 7);
         int page = 1;
         try {
             if (args.length > 0) {
-                int input = Integer.parseInt(args[0]);
-                if (input > 0 && input <= maxpage) {
-                    page = input;
+                int inputpage = Integer.parseInt(args[0]);
+                if (inputpage > 0 && inputpage <= maxpage) {
+                    page = inputpage;
                 }
             }
         } catch (NumberFormatException ignored) {
@@ -41,6 +56,6 @@ public class HelpCommand extends Command {
 
     @Override
     public String getUsage() {
-        return commandPrefix + "help [page]";
+        return commandPrefix + "help [page|command]";
     }
 }
