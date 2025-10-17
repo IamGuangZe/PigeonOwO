@@ -20,7 +20,7 @@ public class MessageRetrieval extends Module {
             String message = OtherUtil.removeColor(event.message.getFormattedText());
             ChatUtil.sendMessage("Received a new message!");
             ChatUtil.sendMessage("type : " + String.valueOf(event.type) + " , IsOnlyWhiteSpace : " + OtherUtil.OnlyWhitespace(message));
-            ChatUtil.sendMessageWithoutColor("Message : " + message);
+            ChatUtil.sendUncoloredMessage("Message : " + message);
         }
     }
 }

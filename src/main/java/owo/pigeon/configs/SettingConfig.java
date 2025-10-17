@@ -51,7 +51,7 @@ public class SettingConfig {
             e.printStackTrace();
         }
 
-        ChatUtil.sendMessageSafe("&aConfig &o" + name + ".json &r&ahas been saved");
+        ChatUtil.sendSafeMessage("&aConfig &o" + name + ".json &r&ahas been saved");
         // PigeonowoConfig.setCurrentConfig(name);
     }
 
@@ -72,10 +72,10 @@ public class SettingConfig {
                         setting.resetValue();
                     }
                 }
-                ChatUtil.sendMessageSafe("&aDefault config has been loaded.");
+                ChatUtil.sendSafeMessage("&aDefault config has been loaded.");
                 return;
             } else {
-                ChatUtil.sendMessageSafe("&cConfig &o" + name + ".json &r&cnot found!");
+                ChatUtil.sendSafeMessage("&cConfig &o" + name + ".json &r&cnot found!");
                 return;
             }
         }
@@ -88,7 +88,7 @@ public class SettingConfig {
             Map<?, ?> config_m = ConfigManager.gson.fromJson(reader, Map.class);
 
             if (config_m == null) {
-                ChatUtil.sendMessageSafe("&cFailed to read config!");
+                ChatUtil.sendSafeMessage("&cFailed to read config!");
                 return;
             }
 
@@ -209,7 +209,7 @@ public class SettingConfig {
 
                                     } catch (Exception ex) {
                                         setting.resetValue();
-                                        ChatUtil.sendMessageSafe("&cThe value type of &l" + setting.getName() + "&r&c in &l" + module.name + "&r&c is incorrect and has been reset to the default value!");
+                                        ChatUtil.sendSafeMessage("&cThe value type of &l" + setting.getName() + "&r&c in &l" + module.name + "&r&c is incorrect and has been reset to the default value!");
                                     }
                                 }
                             }
@@ -219,10 +219,10 @@ public class SettingConfig {
             }
 
             // PigeonowoConfig.setCurrentConfig(name);
-            ChatUtil.sendMessageSafe("&aConfig &o" + name + ".json &r&ahas been loaded.");
+            ChatUtil.sendSafeMessage("&aConfig &o" + name + ".json &r&ahas been loaded.");
 
         } catch (IOException e) {
-            ChatUtil.sendMessageSafe("&cFailed to load config: " + e.getMessage());
+            ChatUtil.sendSafeMessage("&cFailed to load config: " + e.getMessage());
             e.printStackTrace();
         }
     }

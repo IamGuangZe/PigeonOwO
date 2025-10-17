@@ -55,7 +55,7 @@ public class GetCommand extends Command {
                     if (entity instanceof EntityArmorStand && entity.hasCustomName()) {
                         EntityArmorStand e = (EntityArmorStand) entity;
                         if (e.hasCustomName()) {
-                            ChatUtil.sendMessageWithoutColor(OtherUtil.removeColorA(entity.getName()));
+                            ChatUtil.sendUncoloredMessage(OtherUtil.removeColorA(entity.getName()));
                         }
                     }
                 }
