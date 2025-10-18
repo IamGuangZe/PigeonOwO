@@ -7,6 +7,7 @@ import net.minecraft.util.ChatStyle;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import owo.pigeon.commands.CommandManager;
 import owo.pigeon.features.modules.Category;
 import owo.pigeon.features.modules.Module;
 import owo.pigeon.utils.OtherUtil;
@@ -73,7 +74,7 @@ public class ModifyChat extends Module {
 
                 ChatComponentText component = new ChatComponentText(OtherUtil.parseColor(" &7[C]"));
                 component.setChatStyle(new ChatStyle()
-                        .setChatClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, ".copy " + copyText))
+                        .setChatClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,CommandManager.commandPrefix + "copy " + copyText))
                         .setChatHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
                                 new ChatComponentText("Click to Copy this message\n" + copyText)))
                 );
