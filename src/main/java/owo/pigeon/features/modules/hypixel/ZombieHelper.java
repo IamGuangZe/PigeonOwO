@@ -30,7 +30,7 @@ public class ZombieHelper extends Module {
     private boolean third = false;
 
     @Override
-    public void onUpdate() {
+    public void onTick() {
         if (WorldUtil.isNotNull()) {
             if (HypixelUtil.isInGame(HypixelGames.ZOMBIES)) {
                 third = thirdGun.getValue() || smartThirdGun();

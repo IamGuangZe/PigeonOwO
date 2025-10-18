@@ -16,7 +16,7 @@ public class BlockBreaking extends Module {
     }
 
     @Override
-    public void onUpdate() {
+    public void onTick() {
         if (WorldUtil.isNotNull()) {
             if (PlayerUtil.isBreakingBlock()) {
                 BlockPos blockPos = mc.objectMouseOver.getBlockPos();

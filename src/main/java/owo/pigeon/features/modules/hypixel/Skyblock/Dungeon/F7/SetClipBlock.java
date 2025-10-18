@@ -23,7 +23,7 @@ public class SetClipBlock extends Module {
     private final Block oak_fence_gate = Blocks.oak_fence_gate;
 
     @Override
-    public void onUpdate() {
+    public void onTick() {
         if (isNotNull()) {
             if (SkyblockUtil.isFloor(Floor.F7) || SkyblockUtil.isFloor(Floor.M7)) {
                 if (SkyblockUtil.isInBoss(7) || SkyblockUtil.isIsland(Island.SinglePlayer)) {

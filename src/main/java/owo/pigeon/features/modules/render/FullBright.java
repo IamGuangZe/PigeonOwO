@@ -10,7 +10,7 @@ public class FullBright extends Module {
 
     private float rawgamma;
 
-    public void onUpdate() {
+    public void onTick() {
         mc.gameSettings.gammaSetting = 15;
     }
 

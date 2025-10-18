@@ -20,7 +20,7 @@ public class AutoTool extends Module {
     private int rawslot = 0;
 
     @Override
-    public void onUpdate() {
+    public void onTick() {
         if (WorldUtil.isNotNull()) {
             if (PlayerUtil.isBreakingBlock()) {
                 BlockPos blockPos = mc.objectMouseOver.getBlockPos();

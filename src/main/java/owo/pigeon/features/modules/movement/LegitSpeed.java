@@ -12,7 +12,7 @@ public class LegitSpeed extends Module {
     }
 
     @Override
-    public void onUpdate() {
+    public void onTick() {
         if (WorldUtil.isNotNull()) {
             if (!Keyboard.isKeyDown(mc.gameSettings.keyBindJump.getKeyCode())) {
                 if (!mc.thePlayer.isInWater() && !mc.thePlayer.isInLava() && !mc.thePlayer.capabilities.allowFlying) {

@@ -22,7 +22,7 @@ public class ContainerClick extends Module {
     }
 
     @Override
-    public void onUpdate() {
+    public void onTick() {
         if (mc.thePlayer == null) return;
         if (!(mc.thePlayer.openContainer instanceof ContainerChest)) {
             // 容器关闭时重置标志

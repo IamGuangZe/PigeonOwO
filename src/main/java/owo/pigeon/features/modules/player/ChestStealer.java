@@ -41,7 +41,7 @@ public class ChestStealer extends Module {
     private int debug_action = 0;
 
     @Override
-    public void onUpdate() {
+    public void onTick() {
         if (isNotNull()) {
             if (!(mc.thePlayer.openContainer instanceof ContainerChest)) {
                 isFetched = false;

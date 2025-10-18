@@ -20,7 +20,7 @@ public class Module extends SettingDesigner {
         Key = key;
     }
 
-    public void onUpdate() { }
+    public void onTick() { }
     public void onEnable() { }
     public void onDisable() { }
     public void onRender2D() { }

@@ -13,7 +13,7 @@ public class SafeMessage {
     public static List<String> messages = new ArrayList<>();
 
     @SubscribeEvent
-    public void onUpdate(TickEvent.ClientTickEvent event) {
+    public void onTick(TickEvent.ClientTickEvent event) {
         if (mc.ingameGUI == null || mc.ingameGUI.getChatGUI() == null) {
             return;
         }

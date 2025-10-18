@@ -22,7 +22,7 @@ public class DojoSolver extends Module {
     public EnableSetting Discipline = setting("discipline",true,"Auto switch sword in discipline.",v->true);
 
     @Override
-    public void onUpdate() {
+    public void onTick() {
         if (isNotNull()) {
             if (SkyblockUtil.isIsland(Island.CrimsonIsle)) {
                 if (Discipline.getValue()) {

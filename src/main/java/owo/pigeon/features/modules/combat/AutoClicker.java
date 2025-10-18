@@ -32,7 +32,7 @@ public class AutoClicker extends Module {
     private long lastRightClickTime = 0;
 
     @Override
-    public void onUpdate() {
+    public void onTick() {
 
         long clickInterval = 1000 / intRandom(minCPS.getValue(),maxCPS.getValue()); // 每次点击间隔时间（毫秒）
         long currentTime = System.currentTimeMillis(); // 当前时间

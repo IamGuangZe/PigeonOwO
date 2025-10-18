@@ -16,7 +16,7 @@ public class Sprint extends Module {
     public int sprintToggleTimer;
 
     @Override
-    public void onUpdate() {
+    public void onTick() {
         if (WorldUtil.isNotNull()){
                 KeyBinding.setKeyBindState(mc.gameSettings.keyBindSprint.getKeyCode(), true);
 

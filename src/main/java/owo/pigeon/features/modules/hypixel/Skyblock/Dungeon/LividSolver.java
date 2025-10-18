@@ -35,7 +35,7 @@ public class LividSolver extends Module {
     private int colorIndex = -1;
 
     @Override
-    public void onUpdate() {
+    public void onTick() {
         if (isNotNull()) {
             if (SkyblockUtil.isFloor(Floor.F5) || SkyblockUtil.isFloor(Floor.M5)) {
                 if (SkyblockUtil.isInBoss(5)) {

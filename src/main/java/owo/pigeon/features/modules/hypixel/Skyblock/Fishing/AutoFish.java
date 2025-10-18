@@ -67,7 +67,7 @@ public class AutoFish extends Module {
     }
 
     @Override
-    public void onUpdate() {
+    public void onTick() {
         if (isNotNull()) {
             if (tick == 0) {
                 if (move.getValue()) {

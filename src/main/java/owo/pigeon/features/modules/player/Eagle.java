@@ -17,7 +17,7 @@ public class Eagle extends Module {
     public EnableSetting onlyBackward = setting("onlybackward",true,"Only trigger when moving backward.",v->true);
 
     @Override
-    public void onUpdate() {
+    public void onTick() {
         if (WorldUtil.isNotNull()) {
             if (!Keyboard.isKeyDown(mc.gameSettings.keyBindSneak.getKeyCode())) {
                 if (mc.theWorld.getBlockState(new BlockPos(mc.thePlayer.posX, mc.thePlayer.posY - 1, mc.thePlayer.posZ)).getBlock() == Blocks.air &&

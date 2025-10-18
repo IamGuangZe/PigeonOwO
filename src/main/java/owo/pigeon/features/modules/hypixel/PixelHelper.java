@@ -24,7 +24,7 @@ public class PixelHelper extends Module {
     public Color espColor = new Color(255, 255, 255);
 
     @Override
-    public void onUpdate() {
+    public void onTick() {
         if (WorldUtil.isNotNull()) {
             if (HypixelUtil.isInGame(HypixelGames.PIXELPARTY)) {
                 ItemStack itemStack = mc.thePlayer.inventory.getStackInSlot(8);

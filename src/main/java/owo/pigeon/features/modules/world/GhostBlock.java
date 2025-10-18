@@ -40,7 +40,7 @@ public class GhostBlock extends Module {
             Blocks.skull
     );
 
-    public void onUpdate() {
+    public void onTick() {
         if (WorldUtil.isNotNull()) {
             if (cancreateghostblock()) {
                 BlockPos targetblockpos = mc.objectMouseOver.getBlockPos();

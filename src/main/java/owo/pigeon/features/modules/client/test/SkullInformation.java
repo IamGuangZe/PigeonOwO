@@ -18,7 +18,7 @@ public class SkullInformation extends Module {
     private BlockPos temp;
 
     @Override
-    public void onUpdate() {
+    public void onTick() {
         if (isNotNull()) {
             if (mc.objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
 

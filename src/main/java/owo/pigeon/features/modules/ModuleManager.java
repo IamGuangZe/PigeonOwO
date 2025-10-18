@@ -158,9 +158,9 @@ public class ModuleManager {
     }
 
     @SubscribeEvent
-    public void onUpdate(TickEvent.ClientTickEvent event) {
+    public void onTick(TickEvent.ClientTickEvent event) {
         if (event.phase == TickEvent.Phase.START) {
-            modules.stream().filter(Module::isEnable).forEach(Module::onUpdate);
+            modules.stream().filter(Module::isEnable).forEach(Module::onTick);
         }
     }
 

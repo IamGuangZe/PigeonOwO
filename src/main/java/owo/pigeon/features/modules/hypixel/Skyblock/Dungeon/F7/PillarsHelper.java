@@ -44,7 +44,7 @@ public class PillarsHelper extends Module {
     private final int[] pillarscolor = {5,4,10,14};
 
     @Override
-    public void onUpdate() {
+    public void onTick() {
         if (isNotNull()) {
             if (SkyblockUtil.isInBoss(Floor.F7) || SkyblockUtil.isInBoss(Floor.M7) || SkyblockUtil.isIsland(Island.SinglePlayer)) {
                 if (SkyblockUtil.getF7Stage() == 2) {

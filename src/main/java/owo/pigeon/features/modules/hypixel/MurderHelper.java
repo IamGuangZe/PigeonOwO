@@ -68,7 +68,7 @@ public class MurderHelper extends Module {
     };
 
     @Override
-    public void onUpdate() {
+    public void onTick() {
         if (WorldUtil.isNotNull()) {
             if (HypixelUtil.isInGame(HypixelGames.MURDER)) {
                 Aliveplayer.clear();

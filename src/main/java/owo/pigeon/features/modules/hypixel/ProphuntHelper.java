@@ -51,7 +51,7 @@ public class ProphuntHelper extends Module {
     }
 
     @Override
-    public void onUpdate() {
+    public void onTick() {
         if (tracking && WorldUtil.isNotNull()) {
             for (Entity entity : mc.theWorld.loadedEntityList) {
                 if (entity instanceof EntityArmorStand) {

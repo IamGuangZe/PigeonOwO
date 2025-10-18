@@ -19,7 +19,7 @@ public class InstantUseItem extends Module {
     boolean iskeyup = true;
 
     @Override
-    public void onUpdate() {
+    public void onTick() {
         if (isNotNull()) {
             if (Keyboard.isKeyDown(key)) {
                 if (iskeyup) {

@@ -18,7 +18,7 @@ public class TimeDisplay extends Module {
     private long lastTime = -1; // 上一tick时间
 
     @Override
-    public void onUpdate() {
+    public void onTick() {
 
         if (tick == 0) {
             this.disable();

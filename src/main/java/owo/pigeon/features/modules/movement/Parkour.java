@@ -14,7 +14,7 @@ public class Parkour extends Module {
     }
 
     @Override
-    public void onUpdate() {
+    public void onTick() {
         if (WorldUtil.isNotNull()) {
             if (mc.theWorld.getBlockState(new BlockPos(mc.thePlayer.posX, mc.thePlayer.posY - 1, mc.thePlayer.posZ)).getBlock() == Blocks.air && mc.thePlayer.onGround) {
                 KeyBinding.setKeyBindState(mc.gameSettings.keyBindJump.getKeyCode(), true);

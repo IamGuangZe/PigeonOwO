@@ -38,7 +38,7 @@ public class GTBHelper extends Module {
     private short actionNumber = 0;
 
     @Override
-    public void onUpdate() {
+    public void onTick() {
         if (WorldUtil.isNotNull() && autoSkip.getValue()) {
             if (!(mc.thePlayer.openContainer instanceof ContainerChest)) {
                 return;

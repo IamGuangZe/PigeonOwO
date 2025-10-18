@@ -18,7 +18,7 @@ public class EntityInformation extends Module {
 
     private Entity temp;
     @Override
-    public void onUpdate() {
+    public void onTick() {
         if (WorldUtil.isNotNull()) {
             if (mc.objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY) {
 

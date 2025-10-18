@@ -46,7 +46,7 @@ public class RotateNotice extends Module {
     }
 
     @Override
-    public void onUpdate() {
+    public void onTick() {
         if (isRotate) {
             tick++;
             if (tick < 60) {

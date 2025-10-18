@@ -39,7 +39,7 @@ public class FarmhuntHelper extends Module {
     private boolean tracking = false;
 
     @Override
-    public void onUpdate() {
+    public void onTick() {
         if (WorldUtil.isNotNull()) {
             if (!tracking) {
                 if (BossStatus.statusBarTime > 0) {
