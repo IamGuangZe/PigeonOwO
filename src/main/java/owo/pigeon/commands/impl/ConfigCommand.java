@@ -4,6 +4,7 @@ import owo.pigeon.commands.Command;
 import owo.pigeon.configs.ConfigManager;
 import owo.pigeon.configs.SettingConfig;
 import owo.pigeon.utils.ChatUtil;
+import owo.pigeon.utils.CommandUtil;
 
 import java.io.File;
 
@@ -17,7 +18,11 @@ public class ConfigCommand extends Command {
     @Override
     public void execute(String[] args) {
         if (args.length < 1) {
-            sendUsage();
+            CommandUtil.sendCommandError(CommandUtil.errorReason.UnknownOrIncompleteCommand,
+                    this.getCommand(),
+                    args,
+                    args.length
+            );
             return;
         }
 
@@ -26,7 +31,11 @@ public class ConfigCommand extends Command {
         switch (action) {
             case "save":
                 if (args.length < 2) {
-                    sendUsage();
+                    CommandUtil.sendCommandError(CommandUtil.errorReason.UnknownOrIncompleteCommand,
+                            this.getCommand(),
+                            args,
+                            args.length
+                    );
                     return;
                 }
                 SettingConfig.save(args[1]);
@@ -34,7 +43,11 @@ public class ConfigCommand extends Command {
 
             case "load":
                 if (args.length < 2) {
-                    sendUsage();
+                    CommandUtil.sendCommandError(CommandUtil.errorReason.UnknownOrIncompleteCommand,
+                            this.getCommand(),
+                            args,
+                            args.length
+                    );
                     return;
                 }
                 SettingConfig.load(args[1]);
@@ -42,57 +55,65 @@ public class ConfigCommand extends Command {
 
             case "rename":
                 if (args.length < 3) {
-                    sendUsage();
+                    CommandUtil.sendCommandError(CommandUtil.errorReason.UnknownOrIncompleteCommand,
+                            this.getCommand(),
+                            args,
+                            args.length
+                    );
                     return;
                 }
                 File oldFile = new File(ConfigManager.settingDir, args[1] + ".json");
                 File newFile = new File(ConfigManager.settingDir, args[2] + ".json");
 
                 if (!oldFile.exists()) {
-                    ChatUtil.sendMessage("&cConfig &o" + args[1] + ".json &r&cdoes not exist!");
+                    this.sendCommandError("Unknown config &o" + args[1]);
                     return;
                 }
 
                 if (newFile.exists()) {
-                    ChatUtil.sendMessage("&cConfig &o" + args[2] + ".json &r&calready exists!");
+                    this.sendCommandError("Unknown config &o" + args[2]);
                     return;
                 }
 
                 if (oldFile.renameTo(newFile)) {
                     ChatUtil.sendMessage("&aConfig &o" + args[1] + ".json &ahas been renamed to &o" + args[2] + ".json");
                 } else {
-                    ChatUtil.sendMessage("&cFailed to rename config!");
+                    this.sendCommandError("Failed to rename config!");
                 }
                 break;
 
             case "delete":
                 if (args.length < 2) {
-                    sendUsage();
+                    CommandUtil.sendCommandError(CommandUtil.errorReason.UnknownOrIncompleteCommand,
+                            this.getCommand(),
+                            args,
+                            args.length
+                    );
                     return;
                 }
                 File delFile = new File(ConfigManager.settingDir, args[1] + ".json");
                 if (!delFile.exists()) {
-                    ChatUtil.sendMessage("&cConfig &o" + args[1] + ".json &r&cdoes not exist!");
+                    this.sendCommandError("Unknown config &o" + args[1]);
                     return;
                 }
 
                 if (delFile.delete()) {
                     ChatUtil.sendMessage("&aConfig &o" + args[1] + ".json &r&ahas been deleted.");
                 } else {
-                    ChatUtil.sendMessage("&cFailed to delete config!");
+                    this.sendCommandError("Failed to delete config!");
                 }
                 break;
 
             case "list":
                 File dir = ConfigManager.settingDir;
                 if (!dir.exists() || !dir.isDirectory()) {
-                    ChatUtil.sendMessage("&cNo configs found!");
+                    this.sendCommandError("No configs found!");
                     return;
                 }
 
                 String[] files = dir.list((d, name) -> name.endsWith(".json"));
                 if (files == null || files.length == 0) {
-                    ChatUtil.sendMessage("&cNo configs found!");
+                    this.sendCommandError("No configs found!");
                     return;
                 }
 
@@ -120,15 +141,19 @@ public class ConfigCommand extends Command {
                 break;
 
             default:
-                sendUsage();
+                CommandUtil.sendCommandError(CommandUtil.errorReason.IncorrectArgument,
+                        this.getCommand(),
+                        args,
+                        0
+                );
                 break;
         }
     }
 
     @Override
     public String getUsage() {
-        return commandPrefix + "config <save|load|delete> <name> OR " +
-                commandPrefix + "config <rename> <oldname> <newname> OR " +
-                commandPrefix + "config <list> [page]";
+        return commandPrefix + "config (save|load|delete) <name>\n" +
+                commandPrefix + "config rename <oldname> <newname>\n" +
+                commandPrefix + "config list [<page>]";
     }
 }

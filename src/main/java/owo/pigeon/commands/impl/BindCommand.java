@@ -5,6 +5,7 @@ import owo.pigeon.commands.Command;
 import owo.pigeon.features.modules.Module;
 import owo.pigeon.features.modules.ModuleManager;
 import owo.pigeon.utils.ChatUtil;
+import owo.pigeon.utils.CommandUtil;
 import owo.pigeon.utils.ModuleUtil;
 
 import java.util.Map;
@@ -19,16 +20,24 @@ public class BindCommand extends Command {
 
     @Override
     public void execute(String[] args) {
-        if (args.length == 0) {
-            sendUsage();
+        if (args.length < 1) {
+            CommandUtil.sendCommandError(CommandUtil.errorReason.UnknownOrIncompleteCommand,
+                    this.getCommand(),
+                    args,
+                    args.length
+            );
             return;
         }
 
         String input = args[0];
         if (ModuleUtil.isModuleExist(input)) {
             String modulename = ModuleUtil.getName(input);
-            if (args.length == 1) {
-                sendUsage();
+            if (args.length < 2) {
+                CommandUtil.sendCommandError(CommandUtil.errorReason.UnknownOrIncompleteCommand,
+                        this.getCommand(),
+                        args,
+                        args.length
+                );
                 return;
             }
 
@@ -59,13 +68,17 @@ public class BindCommand extends Command {
             }
 
         } else {
-            ChatUtil.sendMessage("&cModule not found!");
+            CommandUtil.sendCommandError(CommandUtil.errorReason.IncorrectArgument,
+                    this.getCommand(),
+                    args,
+                    0
+            );
         }
     }
 
     @Override
     public String getUsage() {
-        return commandPrefix + "bind <module> <key> OR " +
-                commandPrefix + "bind list [page]";
+        return commandPrefix + "bind <module> <key>\n" +
+                commandPrefix + "bind list [<page>]";
     }
 }

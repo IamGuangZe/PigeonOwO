@@ -2,6 +2,7 @@ package owo.pigeon.commands.impl;
 
 import owo.pigeon.commands.Command;
 import owo.pigeon.utils.ChatUtil;
+import owo.pigeon.utils.CommandUtil;
 
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
@@ -16,7 +17,11 @@ public class CopyCommand extends Command {
     @Override
     public void execute(String[] args) {
         if(args.length == 0) {
-            sendUsage();
+            CommandUtil.sendCommandError(CommandUtil.errorReason.UnknownOrIncompleteCommand,
+                    this.getCommand(),
+                    args,
+                    args.length
+            );
             return;
         }
         String Text = String.join(" ", args);
@@ -26,6 +31,6 @@ public class CopyCommand extends Command {
 
     @Override
     public String getUsage() {
-        return commandPrefix + "copy <message ...>";
+        return commandPrefix + "copy <message>";
     }
 }

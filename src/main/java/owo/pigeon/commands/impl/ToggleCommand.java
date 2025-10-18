@@ -1,7 +1,7 @@
 package owo.pigeon.commands.impl;
 
 import owo.pigeon.commands.Command;
-import owo.pigeon.utils.ChatUtil;
+import owo.pigeon.utils.CommandUtil;
 import owo.pigeon.utils.ModuleUtil;
 
 import static owo.pigeon.commands.CommandManager.commandPrefix;
@@ -14,11 +14,16 @@ public class ToggleCommand extends Command {
     @Override
     public void execute(String[] args) {
         if (args.length == 0) {
-            sendUsage();
+            CommandUtil.sendCommandError(CommandUtil.errorReason.UnknownOrIncompleteCommand,
+                    this.getCommand(),
+                    args,
+                    args.length
+            );
             return;
         }
 
         String module = args[0];
+
         if (ModuleUtil.isModuleExist(module)) {
 
             String action = args.length > 1 ? args[1].toLowerCase() : "";
@@ -36,8 +41,19 @@ public class ToggleCommand extends Command {
             }
 
         } else {
-            ChatUtil.sendMessage("&cModule not found!");
+            CommandUtil.sendCommandError(CommandUtil.errorReason.UnknownMoudle,
+                    this.getCommand(),
+                    args,
+                    0
+            );
         }
+    }
+
+    @Override
+    public String getUsage() {
+        return commandPrefix + "toggle <module> [(enable|disable)]";
+    }
+}
 
         /*boolean found = false;
         for (Module modules : Pigeon.modulemanager.getAllModules()) {
@@ -50,10 +66,3 @@ public class ToggleCommand extends Command {
         if (!found) {
             ChatUtil.sendMessage("&cModule not found!");
         }*/
-    }
-
-    @Override
-    public String getUsage() {
-        return commandPrefix + "toggle <module> [enable|disable]";
-    }
-}

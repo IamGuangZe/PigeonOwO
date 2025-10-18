@@ -7,7 +7,7 @@ import owo.pigeon.commands.impl.test.GetCommand;
 import owo.pigeon.events.playerevent.PlayerChatEvent;
 import owo.pigeon.features.commands.Ping;
 import owo.pigeon.features.commands.Rejoin;
-import owo.pigeon.utils.ChatUtil;
+import owo.pigeon.utils.CommandUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,7 +50,7 @@ public class CommandManager {
             mc.ingameGUI.getChatGUI().addToSentMessages(event.message);
             String command = event.message.substring(1);
             if (command.isEmpty()) {
-                ChatUtil.sendMessage("&cThe command cannot be empty!");
+                CommandUtil.sendCommandError(CommandUtil.errorReason.UnknownOrIncompleteCommand,"","");
                 return;
             }
             String[] parts = command.split(" ");
@@ -63,7 +63,7 @@ public class CommandManager {
                 }
             }
             if (!executed) {
-                ChatUtil.sendMessage("&cCommand not found!");
+                CommandUtil.sendCommandError(CommandUtil.errorReason.UnknownOrIncompleteCommand,"",parts[0]);
             }
         }
     }

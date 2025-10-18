@@ -16,14 +16,16 @@ public abstract class Command {
     public String getCommand() {
         return command;
     }
+
     public String getUsage() {
         return commandPrefix + command;
     }
 
-    public void sendFail(String message) {
+    public void sendCommandError(String message) {
         ChatUtil.sendMessage("&c" + message);
     }
+
     public void sendUsage() {
-        sendFail("Usage: " + getUsage());
+        ChatUtil.sendMultiLineMessage(getUsage());
     }
 }

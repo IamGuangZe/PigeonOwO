@@ -3,7 +3,7 @@ package owo.pigeon.commands.impl;
 import net.minecraft.block.Block;
 import net.minecraft.util.BlockPos;
 import owo.pigeon.commands.Command;
-import owo.pigeon.utils.ChatUtil;
+import owo.pigeon.utils.CommandUtil;
 import owo.pigeon.utils.WorldUtil;
 
 import static owo.pigeon.commands.CommandManager.commandPrefix;
@@ -17,13 +17,21 @@ public class SetBlockCommand extends Command {
     @Override
     public void execute(String[] args) {
         if (args.length < 4) {
-            sendUsage();
+            CommandUtil.sendCommandError(CommandUtil.errorReason.ExpectedInteger,
+                    this.getCommand(),
+                    args,
+                    args.length
+            );
             return;
         }
 
         Block block = Block.getBlockFromName(args[3]);
         if (block == null) {
-            ChatUtil.sendMessage("&cThere is no such block with name " + args[3]);
+            CommandUtil.sendCommandError(CommandUtil.errorReason.UnknownBlock,
+                    this.getCommand(),
+                    args,
+                    3
+            );
             return;
         }
 
@@ -32,15 +40,27 @@ public class SetBlockCommand extends Command {
         Double posZ = WorldUtil.parseCoordinate(args[2], mc.thePlayer.posZ);
 
         if (posX == null) {
-            ChatUtil.sendMessage("&c" + args[0] + " is not a valid number");
+            CommandUtil.sendCommandError(CommandUtil.errorReason.ExpectedInteger,
+                    this.getCommand(),
+                    args,
+                    0
+            );
             return;
         }
         if (posY == null) {
-            ChatUtil.sendMessage("&c" + args[1] + " is not a valid number");
+            CommandUtil.sendCommandError(CommandUtil.errorReason.ExpectedInteger,
+                    this.getCommand(),
+                    args,
+                    1
+            );
             return;
         }
         if (posZ == null) {
-            ChatUtil.sendMessage("&c" + args[2] + " is not a valid number");
+            CommandUtil.sendCommandError(CommandUtil.errorReason.ExpectedInteger,
+                    this.getCommand(),
+                    args,
+                    2
+            );
             return;
         }
 
@@ -51,6 +71,6 @@ public class SetBlockCommand extends Command {
 
     @Override
     public String getUsage() {
-        return commandPrefix + "setblock <x> <y> <z> <tilename>";
+        return commandPrefix + "setblock <pos> <block>";
     }
 }

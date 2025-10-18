@@ -3,7 +3,7 @@ package owo.pigeon.commands.impl;
 import net.minecraft.block.Block;
 import net.minecraft.util.BlockPos;
 import owo.pigeon.commands.Command;
-import owo.pigeon.utils.ChatUtil;
+import owo.pigeon.utils.CommandUtil;
 import owo.pigeon.utils.WorldUtil;
 
 import static owo.pigeon.commands.CommandManager.commandPrefix;
@@ -17,13 +17,21 @@ public class FillCommand extends Command {
     @Override
     public void execute(String[] args) {
         if (args.length < 7) {
-            sendUsage();
+            CommandUtil.sendCommandError(CommandUtil.errorReason.UnknownOrIncompleteCommand,
+                    this.getCommand(),
+                    args,
+                    args.length
+            );
             return;
         }
 
         Block block = Block.getBlockFromName(args[6]);
         if (block == null) {
-            ChatUtil.sendMessage("&cThere is no such block with name " + args[6]);
+            CommandUtil.sendCommandError(CommandUtil.errorReason.UnknownBlock,
+                    this.getCommand(),
+                    args,
+                    6
+            );
             return;
         }
 
@@ -35,27 +43,51 @@ public class FillCommand extends Command {
         Double endPosZ   = WorldUtil.parseCoordinate(args[5], mc.thePlayer.posZ);
 
         if (startPosX == null) {
-            ChatUtil.sendMessage("&c" + args[0] + " is not a valid number");
+            CommandUtil.sendCommandError(CommandUtil.errorReason.ExpectedInteger,
+                    this.getCommand(),
+                    args,
+                    0
+            );
             return;
         }
         if (startPosY == null) {
-            ChatUtil.sendMessage("&c" + args[1] + " is not a valid number");
+            CommandUtil.sendCommandError(CommandUtil.errorReason.ExpectedInteger,
+                    this.getCommand(),
+                    args,
+                    1
+            );
             return;
         }
         if (startPosZ == null) {
-            ChatUtil.sendMessage("&c" + args[2] + " is not a valid number");
+            CommandUtil.sendCommandError(CommandUtil.errorReason.ExpectedInteger,
+                    this.getCommand(),
+                    args,
+                    2
+            );
             return;
         }
         if (endPosX == null) {
-            ChatUtil.sendMessage("&c" + args[3] + " is not a valid number");
+            CommandUtil.sendCommandError(CommandUtil.errorReason.ExpectedInteger,
+                    this.getCommand(),
+                    args,
+                    3
+            );
             return;
         }
         if (endPosY == null) {
-            ChatUtil.sendMessage("&c" + args[4] + " is not a valid number");
+            CommandUtil.sendCommandError(CommandUtil.errorReason.ExpectedInteger,
+                    this.getCommand(),
+                    args,
+                    4
+            );
             return;
         }
         if (endPosZ == null) {
-            ChatUtil.sendMessage("&c" + args[5] + " is not a valid number");
+            CommandUtil.sendCommandError(CommandUtil.errorReason.ExpectedInteger,
+                    this.getCommand(),
+                    args,
+                    5
+            );
             return;
         }
 
@@ -67,6 +99,6 @@ public class FillCommand extends Command {
 
     @Override
     public String getUsage() {
-        return commandPrefix + "fill <x1> <y1> <z1> <x2> <y2> <z2> <tilename>";
+        return commandPrefix + "fill <from> <to> <block>";
     }
 }

@@ -6,6 +6,7 @@ import owo.pigeon.commands.Command;
 import owo.pigeon.features.modules.Module;
 import owo.pigeon.settings.*;
 import owo.pigeon.utils.ChatUtil;
+import owo.pigeon.utils.CommandUtil;
 import owo.pigeon.utils.ModuleUtil;
 
 import static owo.pigeon.commands.CommandManager.commandPrefix;
@@ -18,7 +19,11 @@ public class SettingCommand extends Command {
     @Override
     public void execute(String[] args) {
         if (args.length < 3) {
-            sendUsage();
+            CommandUtil.sendCommandError(CommandUtil.errorReason.ExpectedInteger,
+                    this.getCommand(),
+                    args,
+                    args.length
+            );
             return;
         }
 
@@ -27,7 +32,11 @@ public class SettingCommand extends Command {
         String value = args[2];
 
         if (!ModuleUtil.isModuleExist(modulename)) {
-            ChatUtil.sendMessage("&cModule not found!");
+            CommandUtil.sendCommandError(CommandUtil.errorReason.UnknownMoudle,
+                    this.getCommand(),
+                    args,
+                    0
+            );
             return;
         }
 
@@ -42,7 +51,11 @@ public class SettingCommand extends Command {
                 if (setting instanceof BlockSetting) {
                     Block block = Block.getBlockFromName(value);
                     if (block == null) {
-                        ChatUtil.sendMessage("&cBlock not found!");
+                        CommandUtil.sendCommandError(CommandUtil.errorReason.UnknownBlock,
+                                this.getCommand(),
+                                args,
+                                2
+                        );
                         return;
                     }
                     ((BlockSetting)setting).setValue(block);
@@ -54,7 +67,11 @@ public class SettingCommand extends Command {
                     } else if (value.equalsIgnoreCase("false") || value.equalsIgnoreCase("disable")) {
                         b = false;
                     } else {
-                        ChatUtil.sendMessage("&cInvalid value!");
+                        CommandUtil.sendCommandError(CommandUtil.errorReason.InvalidBoolean,
+                                this.getCommand(),
+                                args,
+                                2
+                        );
                         return;
                     }
                     ((EnableSetting)setting).setValue(b);
@@ -73,7 +90,11 @@ public class SettingCommand extends Command {
                         ((FloatSetting)setting).setValue(f);
                         value = String.valueOf(f);
                     } catch (NumberFormatException e) {
-                        ChatUtil.sendMessage("&cInvalid value!");
+                        CommandUtil.sendCommandError(CommandUtil.errorReason.ExpectedFloat,
+                                this.getCommand(),
+                                args,
+                                2
+                        );
                         return;
                     }
                 } else if (setting instanceof IntSetting) {
@@ -90,7 +111,11 @@ public class SettingCommand extends Command {
                         ((IntSetting)setting).setValue(i);
                         value = String.valueOf(i);
                     } catch (NumberFormatException e) {
-                        ChatUtil.sendMessage("&cInvalid value!");
+                        CommandUtil.sendCommandError(CommandUtil.errorReason.ExpectedInteger,
+                                this.getCommand(),
+                                args,
+                                2
+                        );
                         return;
                     }
                 } else if (setting instanceof KeySetting) {
@@ -109,13 +134,17 @@ public class SettingCommand extends Command {
                         ((ModeSetting)setting).setValue(e);
                         value = e.toString().toUpperCase();
                     } catch (IllegalArgumentException e) {
-                        ChatUtil.sendMessage("&cInvalid value!");
+                        CommandUtil.sendCommandError(CommandUtil.errorReason.IncorrectArgument,
+                                this.getCommand(),
+                                args,
+                                2
+                        );
                         return;
                     }
                 } else if (setting instanceof StringSetting) {
                     ((StringSetting)setting).setValue(value);
                 } else {
-                    ChatUtil.sendMessage("&cUnknown setting type!");
+                    this.sendCommandError("Unknown setting type!");
                     return;
                 }
 
@@ -123,7 +152,11 @@ public class SettingCommand extends Command {
             }
         }
         if (!found) {
-            ChatUtil.sendMessage("&cSetting not found!");
+            CommandUtil.sendCommandError(CommandUtil.errorReason.UnknownSetting,
+                    this.getCommand(),
+                    args,
+                    1
+            );
         }
     }
 

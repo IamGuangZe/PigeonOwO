@@ -51,11 +51,11 @@ public class HelpCommand extends Command {
             ChatUtil.sendMessage("&7" + commandPrefix + " " + CommandManager.commands.get(i).getCommand().toLowerCase());
         }
 
-        ChatUtil.sendMessage("&8Use \"" + commandPrefix + " help page\" to view other commands.");
+        ChatUtil.sendMessage("&8Use \"" + commandPrefix + " help <page>\" to view other commands.");
     }
 
     @Override
     public String getUsage() {
-        return commandPrefix + "help [page|command]";
+        return commandPrefix + "help [<page|command>]";
     }
 }
