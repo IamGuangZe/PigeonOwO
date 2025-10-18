@@ -19,7 +19,7 @@ public class SettingCommand extends Command {
     @Override
     public void execute(String[] args) {
         if (args.length < 3) {
-            CommandUtil.sendCommandError(CommandUtil.errorReason.ExpectedInteger,
+            CommandUtil.sendCommandError(CommandUtil.errorReason.UnknownOrIncompleteCommand,
                     this.getCommand(),
                     args,
                     args.length
