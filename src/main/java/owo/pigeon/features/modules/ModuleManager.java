@@ -116,6 +116,7 @@ public class ModuleManager {
         modules.add(new MessageRetrieval());
         modules.add(new PacketReceive());
         modules.add(new SkullInformation());
+        modules.add(new TimeDisplay());
     }
     public void addSkyblockModules() {
         modules.add(new GhostBlock());
@@ -158,7 +159,9 @@ public class ModuleManager {
 
     @SubscribeEvent
     public void onUpdate(TickEvent.ClientTickEvent event) {
-        modules.stream().filter(Module::isEnable).forEach(Module::onUpdate);
+        if (event.phase == TickEvent.Phase.START) {
+            modules.stream().filter(Module::isEnable).forEach(Module::onUpdate);
+        }
     }
 
     @SubscribeEvent
