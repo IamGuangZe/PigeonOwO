@@ -27,10 +27,7 @@ import owo.pigeon.features.modules.hypixel.Skyblock.Nether.DojoSolver;
 import owo.pigeon.features.modules.hypixel.Skyblock.RotateNotice;
 import owo.pigeon.features.modules.movement.LegitSpeed;
 import owo.pigeon.features.modules.movement.Sprint;
-import owo.pigeon.features.modules.player.AutoTool;
-import owo.pigeon.features.modules.player.DelayRemover;
-import owo.pigeon.features.modules.player.Eagle;
-import owo.pigeon.features.modules.player.NoRotateSet;
+import owo.pigeon.features.modules.player.*;
 import owo.pigeon.features.modules.render.*;
 import owo.pigeon.features.modules.world.GhostBlock;
 import owo.pigeon.features.modules.world.LightningTracker;
@@ -87,7 +84,7 @@ public class ModuleManager {
     }
     public void addPlayerModules() {
         modules.add(new AutoTool());
-        // modules.add(new ChestStealer());
+        modules.add(new ChestStealer());
         modules.add(new DelayRemover());
         modules.add(new Eagle());
         modules.add(new NoRotateSet());

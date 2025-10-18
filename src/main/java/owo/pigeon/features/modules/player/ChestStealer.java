@@ -5,13 +5,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import owo.pigeon.events.playerevent.WindowClickEvent;
 import owo.pigeon.features.modules.Category;
 import owo.pigeon.features.modules.Module;
 import owo.pigeon.settings.EnableSetting;
 import owo.pigeon.settings.IntSetting;
-import owo.pigeon.utils.ChatUtil;
+import owo.pigeon.utils.PlayerUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,9 +24,9 @@ public class ChestStealer extends Module {
         super("ChestStealer", Category.PLAYER, -1);
     }
 
-    public IntSetting startDelay = setting("startdelay",1,0,20,"",v->true);
-    public IntSetting minDelay = setting("mindelay",2,0,20,"", v -> true);
-    public IntSetting maxDelay = setting("maxdelay",3,0,20,"", v -> true);
+    public IntSetting startDelay = setting("startdelay",1,1,20,"",v->true);
+    public IntSetting minDelay = setting("mindelay",2,1,20,"", v -> true);
+    public IntSetting maxDelay = setting("maxdelay",3,1,20,"", v -> true);
     public EnableSetting checkTitle = setting("checktitle", true, "", v -> true);
     public EnableSetting smartPick = setting("smartpick",true,"",v->true);
 
@@ -46,8 +44,8 @@ public class ChestStealer extends Module {
             if (!(mc.thePlayer.openContainer instanceof ContainerChest)) {
                 isFetched = false;
                 fullWarning = false;
-                s_delay = startDelay.getValue() + 1;
-                p_delay = intRandom(minDelay.getValue() + 1, maxDelay.getValue() + 1);
+                s_delay = startDelay.getValue();
+                p_delay = intRandom(minDelay.getValue(), maxDelay.getValue());
                 slotList.clear();
                 return;
             }
@@ -155,33 +153,25 @@ public class ChestStealer extends Module {
                     }
                 }
 
-                sendCustomPrefixMessage("DEBUG " + this.name,"Slots Ready");
-                s_delay++;
+                // sendCustomPrefixMessage("DEBUG " + this.name,"Slots Ready");
                 isFetched = true;
             } else {
 
-                ChatUtil.sendCustomPrefixMessage("DEBUG " + this.name,"Action - " + ++debug_action + "; s_delay - " + s_delay + "; p_delay - " + p_delay);
+                // sendCustomPrefixMessage("DEBUG " + this.name,"Action - " + ++debug_action + "; s_delay - " + s_delay + "; p_delay - " + p_delay);
 
                 if (!slotList.isEmpty() && s_delay <= 0 && p_delay <= 0) {
                     int randomIndex = intRandom(0, slotList.size() - 1);
                     int windowId = chest.windowId;
                     int slotid = slotList.get(randomIndex);
-                    shiftClick(windowId, slotid);
 
-                    ChatUtil.sendCustomPrefixMessage("DEBUG " + this.name,"Action - " + debug_action + "; Click");
+                    PlayerUtil.ClickWindow(windowId, slotid, 0, 1);
+                    p_delay = intRandom(minDelay.getValue(), maxDelay.getValue());
+
+                    // sendCustomPrefixMessage("DEBUG " + this.name,"Action - " + debug_action + "; Click");
 
                     slotList.remove(randomIndex);
                 }
             }
         }
-    }
-
-    private void shiftClick(int windowId, int slotId) {
-        mc.playerController.windowClick(windowId, slotId, 0, 1, mc.thePlayer);
-    }
-
-    @SubscribeEvent
-    public void onWindowClick(WindowClickEvent event) {
-        p_delay = intRandom(minDelay.getValue() + 1, maxDelay.getValue() + 1);
     }
 }
