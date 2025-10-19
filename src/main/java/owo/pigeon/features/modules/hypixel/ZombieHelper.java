@@ -7,6 +7,7 @@ import net.minecraft.init.Items;
 import owo.pigeon.features.modules.Category;
 import owo.pigeon.features.modules.Module;
 import owo.pigeon.settings.EnableSetting;
+import owo.pigeon.settings.FloatSetting;
 import owo.pigeon.utils.FontUtil;
 import owo.pigeon.utils.OtherUtil;
 import owo.pigeon.utils.PlayerUtil;
@@ -25,6 +26,7 @@ public class ZombieHelper extends Module {
     public EnableSetting cyclicSwitch = setting("cyclic",true,"Auto cyclic switch weapons to reduce the impact of gun CD time.",v->true);
     public EnableSetting thirdGun = setting("3rd",false,"Switch includes the third gun.",v->true);
     public EnableSetting smartThirdGun = setting("smart3rd",true,"(For AA)Use the third gun when Giant and The Old One spawning.",v->true);
+    public FloatSetting health = setting("health", 10F, 1F, 20F,"", v->true);
 
     private int round = -1;
     private boolean third = false;
@@ -94,7 +96,7 @@ public class ZombieHelper extends Module {
     }
 
     public boolean smartThirdGun () {
-        boolean third_ = false;
+        boolean smartThird = false;
 
         if (!smartThirdGun.getValue()) {
             return false;
@@ -103,18 +105,22 @@ public class ZombieHelper extends Module {
         for (Entity entity : mc.theWorld.loadedEntityList) {
             // Giant
             if (entity instanceof EntityGiantZombie) {
-                third_ = true;
+                smartThird = true;
             }
 
             // The old one (Code sourced from ZombieCat-https://github.com/iM4dCat/ZombieCat)
             if (entity instanceof EntityZombie && ((EntityZombie) entity).isChild() && entity.getInventory() != null && entity.getInventory()[0] != null && entity.getInventory()[0].getItem() == Items.diamond_sword) {
-                third_ = true;
+                smartThird = true;
             }
         }
 
-        if (round > 52) {
-            third_ = true;
+        if (mc.thePlayer.getHealth() <= health.getValue()) {
+            smartThird = true;
         }
-        return third_;
+
+        if (round == 36 || round > 52) {
+            smartThird = true;
+        }
+        return smartThird;
     }
 }
