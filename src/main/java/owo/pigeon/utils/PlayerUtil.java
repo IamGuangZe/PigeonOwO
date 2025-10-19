@@ -6,8 +6,8 @@ import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemStack;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.*;
 import net.minecraft.network.play.client.C0EPacketClickWindow;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MovingObjectPosition;
@@ -183,7 +183,7 @@ public class PlayerUtil {
             ItemStack itemStack = mc.thePlayer.inventory.getStackInSlot(i);
             if (itemStack == null || itemStack.getItem() == null) continue;
 
-            double damage = getItemDamage(itemStack);
+            double damage = getItemDamage(itemStack) + (double) EnchantmentHelper.getEnchantmentLevel(Enchantment.fireAspect.effectId, itemStack);
             if (damage > highestDamage) {
                 highestDamage = (float) damage;
                 bestWeapon = itemStack;
@@ -193,6 +193,9 @@ public class PlayerUtil {
         return bestWeapon;
     }
 
+    public enum ToolType {
+        PICKAXE, AXE, SHOVEL
+    }
     // 获取物品上的效率等级
     public static int getEfficiencyLevel(ItemStack itemStack) {
         if (itemStack == null) return 0;
@@ -207,6 +210,7 @@ public class PlayerUtil {
     }
     // 获取工具的基础挖掘速度
     public static float getToolBaseMiningSpeed(ItemStack itemStack , Block block) {
+        if (itemStack == null) return 1.0F;
         return itemStack.getStrVsBlock(block);
     }
     // 获取工具的挖掘速度
@@ -231,10 +235,9 @@ public class PlayerUtil {
         }
     }
     // 获取玩家快捷栏中挖掘速度最快的工具
-    public static ItemStack getBestTool(Block block) {
+    public static ItemStack getBestToolFromHotbar(Block block) {
         float fastestSpeed = 1;
         ItemStack besttool = null;
-        // 遍历玩家快捷栏（包含1~9格物品栏）
         for (int i = 0; i < 9; i++) {
             ItemStack itemStack = mc.thePlayer.inventory.getStackInSlot(i);
             if (itemStack == null || itemStack.getItem() == null) continue;
@@ -248,8 +251,48 @@ public class PlayerUtil {
 //        ChatUtil.sendMessage(String.valueOf(besttool));
         return besttool;
     }
+    // 获取指定挖掘速度最好的工具
+    public static ItemStack getBestTool(ToolType toolType) {
+        float fastestSpeed = 1;
+        ItemStack bestTool = null;
+
+        for (int i = 0; i < mc.thePlayer.inventory.mainInventory.length; i++) {
+            ItemStack itemStack = mc.thePlayer.inventory.getStackInSlot(i);
+            if (itemStack == null || itemStack.getItem() == null) continue;
+
+            // 根据工具类型筛选
+            boolean isTargetTool = false;
+            Block block = null;
+            switch (toolType) {
+                case PICKAXE:
+                    isTargetTool = itemStack.getItem() instanceof ItemPickaxe;
+                    block = Blocks.stone;
+                    break;
+                case AXE:
+                    isTargetTool = itemStack.getItem() instanceof ItemAxe;
+                    block = Blocks.planks;
+                    break;
+                case SHOVEL:
+                    isTargetTool = itemStack.getItem() instanceof ItemSpade;
+                    block = Blocks.dirt;
+                    break;
+            }
+
+            if (!isTargetTool) continue;
+
+            float speed = getToolMiningSpeed(itemStack, block);
+            if (speed > fastestSpeed) {
+                fastestSpeed = speed;
+                bestTool = itemStack;
+            }
+        }
+        return bestTool;
+    }
 
     // !![Armor/Old](https://minecraft.wiki/w/Armor/Old)
+    public enum ArmorType {
+        HELMET, CHESTPLATE, LEGGINGS, BOOTS
+    }
     // 获取物品的基础护甲减伤
     public static double getArmorBaseReduction(ItemStack itemStack) {
         if (itemStack == null || !(itemStack.getItem() instanceof ItemArmor)) return 0;
@@ -398,7 +441,6 @@ public class PlayerUtil {
 
         return bestBoots;
     }
-
 
     public static boolean isBreakingBlock(){
         return mc.thePlayer.isSwingInProgress &&

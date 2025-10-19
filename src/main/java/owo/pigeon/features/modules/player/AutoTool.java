@@ -25,7 +25,7 @@ public class AutoTool extends Module {
             if (PlayerUtil.isBreakingBlock()) {
                 BlockPos blockPos = mc.objectMouseOver.getBlockPos();
                 Block block = mc.theWorld.getBlockState(blockPos).getBlock();
-                ItemStack tool = PlayerUtil.getBestTool(block);
+                ItemStack tool = PlayerUtil.getBestToolFromHotbar(block);
                 if (tool != null) {
                     PlayerUtil.switchItemSlot(PlayerUtil.getSlotfromItemStackEx(tool,true));
                     israwslot = false;

@@ -1,10 +1,8 @@
 package owo.pigeon.features.modules.player;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.ContainerChest;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
+import net.minecraft.item.*;
 import owo.pigeon.features.modules.Category;
 import owo.pigeon.features.modules.Module;
 import owo.pigeon.settings.EnableSetting;
@@ -90,7 +88,16 @@ public class ChestStealer extends Module {
                     double bestLeggingsValue = getTotalArmorReduction(getBestLeggings());
 
                     int bestBootsSlot = -1;
-                    double bestBootsValue = getArmorBaseReduction(getBestBoots());
+                    double bestBootsValue = getTotalArmorReduction(getBestBoots());
+
+                    int bestPickaxeSlot = -1;
+                    double bestPickaxeSpeed = getToolMiningSpeed(getBestTool(ToolType.PICKAXE), Blocks.stone);
+
+                    int bestAxeSlot = -1;
+                    double bestAxeSpeed = getToolMiningSpeed(getBestTool(ToolType.AXE), Blocks.planks);
+
+                    int bestShovelSlot = -1;
+                    double bestShovelSpeed = getToolMiningSpeed(getBestTool(ToolType.SHOVEL), Blocks.dirt);
 
                     for (int i = 0; i < chestSize; i++) {
                         ItemStack itemStack = chest.getLowerChestInventory().getStackInSlot(i);
@@ -132,17 +139,37 @@ public class ChestStealer extends Module {
                                     }
                                     break;
                             }
+                        } else if (item instanceof ItemPickaxe) {
+                            double speed = getToolMiningSpeed(itemStack, Blocks.stone);
+                            if (speed > bestPickaxeSpeed) {
+                                bestPickaxeSpeed = speed;
+                                bestPickaxeSlot = i;
+                            }
+                        } else if (item instanceof ItemAxe) {
+                            double speed = getToolMiningSpeed(itemStack, Blocks.planks);
+                            if (speed > bestAxeSpeed) {
+                                bestAxeSpeed = speed;
+                                bestAxeSlot = i;
+                            }
+                        } else if (item instanceof ItemSpade) {
+                            double speed = getToolMiningSpeed(itemStack, Blocks.dirt);
+                            if (speed > bestShovelSpeed) {
+                                bestShovelSpeed = speed;
+                                bestShovelSlot = i;
+                            }
                         } else {
-                            slotList.add(i); // 非装备直接加入
+                            slotList.add(i);
                         }
                     }
 
-                    // 最优装备加入slotList
                     if (bestWeaponSlot != -1) slotList.add(bestWeaponSlot);
                     if (bestHelmetSlot != -1) slotList.add(bestHelmetSlot);
                     if (bestChestSlot != -1) slotList.add(bestChestSlot);
                     if (bestLeggingsSlot != -1) slotList.add(bestLeggingsSlot);
                     if (bestBootsSlot != -1) slotList.add(bestBootsSlot);
+                    if (bestPickaxeSlot != -1) slotList.add(bestPickaxeSlot);
+                    if (bestAxeSlot != -1) slotList.add(bestAxeSlot);
+                    if (bestShovelSlot != -1) slotList.add(bestShovelSlot);
 
                 } else {
                     for (int i = 0; i < chestSize; i++) {

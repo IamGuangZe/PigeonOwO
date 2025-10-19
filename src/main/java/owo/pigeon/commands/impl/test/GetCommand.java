@@ -88,7 +88,7 @@ public class GetCommand extends Command {
 
             case "tool":
             case "t":
-                ItemStack tool = PlayerUtil.getBestTool(mc.theWorld.getBlockState(mc.objectMouseOver.getBlockPos()).getBlock());
+                ItemStack tool = PlayerUtil.getBestToolFromHotbar(mc.theWorld.getBlockState(mc.objectMouseOver.getBlockPos()).getBlock());
                 ChatUtil.sendMessage("BestToolAt : " + PlayerUtil.getSlotfromItemStackEx(tool,true));
 
                 break;
