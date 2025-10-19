@@ -2,7 +2,8 @@
 
 ## About This Project
 This project is created by me as a personal learning experience for developing a Minecraft client. It is intended for entertainment and educational purposes only.  
-I only have some basic experience in other programming languages and am not proficient in Java or related technologies. This project was made on a whim and contains some of my learning notes and experiments in the folders.
+I only have some basic experience in other programming languages and am not proficient in Java or related technologies. This project was made on a whim and contains some of my learning notes and experiments in the folders.  
+(I do not and cannot make features that bypass anti-cheat. This project is only for entertainment and to learn some Java. If you use content from this project, I am not responsible for any account bans.)
 
 ## Functionality
 Some features of this project are designed for use in Hypixel minigames and Skyblock.  
