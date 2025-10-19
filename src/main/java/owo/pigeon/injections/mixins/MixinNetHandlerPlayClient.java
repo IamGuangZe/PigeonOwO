@@ -10,7 +10,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import owo.pigeon.events.networkevent.PacketReceiveEvent;
 import owo.pigeon.events.networkevent.S08PacketPlayerPosLookEvent;
-import owo.pigeon.events.networkevent.S08PacketPlayerPosLookEventEnd;
 import owo.pigeon.events.networkevent.addToSendQueueEvent;
 
 @Mixin(NetHandlerPlayClient.class)
@@ -54,12 +53,12 @@ public class MixinNetHandlerPlayClient {
     @Inject(method = "handlePlayerPosLook" , at = @At("HEAD"))
     public void PacketReceive(S08PacketPlayerPosLook packetIn, CallbackInfo ci) {
         MinecraftForge.EVENT_BUS.post(new PacketReceiveEvent(packetIn));
-        MinecraftForge.EVENT_BUS.post(new S08PacketPlayerPosLookEvent(packetIn.getX(), packetIn.getY(), packetIn.getZ(), packetIn.getYaw(), packetIn.getPitch()));
+        MinecraftForge.EVENT_BUS.post(new S08PacketPlayerPosLookEvent(packetIn.getX(), packetIn.getY(), packetIn.getZ(), packetIn.getYaw(), packetIn.getPitch(), S08PacketPlayerPosLookEvent.Phase.START));
     }
 
     @Inject(method = "handlePlayerPosLook" , at = @At("RETURN"))
     public void PacketReceiveEnd(S08PacketPlayerPosLook packetIn, CallbackInfo ci) {
-        MinecraftForge.EVENT_BUS.post(new S08PacketPlayerPosLookEventEnd(packetIn.getX(), packetIn.getY(), packetIn.getZ(), packetIn.getYaw(), packetIn.getPitch()));
+        MinecraftForge.EVENT_BUS.post(new S08PacketPlayerPosLookEvent(packetIn.getX(), packetIn.getY(), packetIn.getZ(), packetIn.getYaw(), packetIn.getPitch(), S08PacketPlayerPosLookEvent.Phase.END));
     }
 
 
