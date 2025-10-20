@@ -20,7 +20,7 @@ public class PlayerESP extends Module {
         for (Entity entity : mc.theWorld.loadedEntityList) {
             if (entity instanceof EntityPlayer && !(entity instanceof EntityPlayerSP)) {
                 if (!HypixelUtil.isNPC(entity)) {
-                    RenderUtil.drawFullBoxEsp(entity,new Color(255,255,255, 95));
+                    RenderUtil.drawSmoothFullBoxEsp(entity,new Color(255,255,255, 95));
                 }
             }
         }

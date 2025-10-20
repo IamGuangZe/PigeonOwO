@@ -79,7 +79,7 @@ public class FarmhuntHelper extends Module {
     public void onRender3D() {
         for (Entity entity : mc.theWorld.loadedEntityList) {
             if (entity instanceof EntityAnimal && movedAnimals.contains(entity.getEntityId())) {
-                RenderUtil.drawOutlinedBoxEsp(entity, animalColor);
+                RenderUtil.drawSmoothOutlinedBoxEsp(entity, animalColor);
             }
         }
     }

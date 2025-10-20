@@ -81,7 +81,7 @@ public class ProphuntHelper extends Module {
     public void onRender3D() {
         for (Entity entity : mc.theWorld.loadedEntityList) {
             if (entity instanceof EntityArmorStand && movedStands.contains(entity.getEntityId())) {
-                RenderUtil.drawOutlinedBoxEsp(entity, standColor);
+                RenderUtil.drawSmoothOutlinedBoxEsp(entity, standColor);
             }
         }
     }

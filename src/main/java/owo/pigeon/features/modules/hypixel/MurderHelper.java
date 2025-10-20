@@ -160,11 +160,11 @@ public class MurderHelper extends Module {
                     if (!HypixelUtil.isNPC(entity)) {
                         String playername = entity.getName();
                         if (MurderersName.contains(playername)) {
-                            RenderUtil.drawOutlinedBoxEsp(entity, new Color(255, 0, 0));
+                            RenderUtil.drawSmoothOutlinedBoxEsp(entity, new Color(255, 0, 0));
                         } else if (Playerwithbow.contains(playername)) {
-                            RenderUtil.drawOutlinedBoxEsp(entity, new Color(0, 255, 0));
+                            RenderUtil.drawSmoothOutlinedBoxEsp(entity, new Color(0, 255, 0));
                         } else {
-                            RenderUtil.drawOutlinedBoxEsp(entity, new Color(255, 255, 255));
+                            RenderUtil.drawSmoothOutlinedBoxEsp(entity, new Color(255, 255, 255));
                         }
                     }
                 }
@@ -173,7 +173,7 @@ public class MurderHelper extends Module {
             if (itemEsp.getValue()) {
                 if (entity instanceof EntityItem) {
                     if (entity.getName().equals("item.item.ingotGold")) {
-                        RenderUtil.drawOutlinedBoxEsp(entity, new Color(255, 255, 0));
+                        RenderUtil.drawSmoothOutlinedBoxEsp(entity, new Color(255, 255, 0));
                     }
                 }
             }

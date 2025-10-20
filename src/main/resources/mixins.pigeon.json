@@ -12,6 +12,7 @@
   ],
   "client": [
     "IAccessorEntityLivingBase",
+    "IAccessorMinecraft",
     "MixinBlockRendererDispatcher",
     "MixinEntityRenderer",
     "MixinItemRenderer",
