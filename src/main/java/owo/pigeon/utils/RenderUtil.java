@@ -389,4 +389,40 @@ public class RenderUtil {
         drawFullBox(box, color);
         wallrender(false, color.getAlpha());
     }
+
+    public static void drawSmoothCustomBoxEsp(Entity entity, AxisAlignedBB customBox, Color color) {
+        // 使用访问器获取 timer
+        net.minecraft.util.Timer timer = ((IAccessorMinecraft) mc).getTimer();
+        float renderPartialTicks = timer.renderPartialTicks;
+
+        // 位置插值计算
+        double x = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * renderPartialTicks;
+        double y = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * renderPartialTicks;
+        double z = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * renderPartialTicks;
+
+        // 直接计算偏移量并应用到插值位置
+        double minXOffset = customBox.minX - entity.posX;
+        double minYOffset = customBox.minY - entity.posY;
+        double minZOffset = customBox.minZ - entity.posZ;
+        double maxXOffset = customBox.maxX - entity.posX;
+        double maxYOffset = customBox.maxY - entity.posY;
+        double maxZOffset = customBox.maxZ - entity.posZ;
+
+        // 创建插值后的边界框
+        AxisAlignedBB interpolatedBox = new AxisAlignedBB(
+                x + minXOffset, y + minYOffset, z + minZOffset,
+                x + maxXOffset, y + maxYOffset, z + maxZOffset
+        );
+
+        // 应用视角偏移
+        AxisAlignedBB finalBox = interpolatedBox.offset(
+                -renderManager.viewerPosX,
+                -renderManager.viewerPosY,
+                -renderManager.viewerPosZ
+        );
+
+        wallrender(true, color.getAlpha());
+        drawOutlinedBox(finalBox, color);
+        wallrender(false, color.getAlpha());
+    }
 }

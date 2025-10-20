@@ -21,8 +21,14 @@ public class StarMobEsp extends Module {
             if (entity instanceof EntityArmorStand && entity.hasCustomName()) {
                 EntityArmorStand e = (EntityArmorStand) entity;
                 if (e.hasCustomName()) {
-                    if (e.getCustomNameTag().contains("✯") && e.getCustomNameTag().contains("❤"))
-                        RenderUtil.drawOutlinedBoxEsp(new AxisAlignedBB(entity.posX - 0.5D, entity.posY - 2.0D, entity.posZ - 0.5D, entity.posX + 0.5D, entity.posY, entity.posZ + 0.5D), new Color(255, 0, 0));
+                    if (e.getCustomNameTag().contains("✯") && e.getCustomNameTag().contains("❤")) {
+                        AxisAlignedBB customBox = new AxisAlignedBB(
+                                entity.posX - 0.5D, entity.posY - 2.0D, entity.posZ - 0.5D,
+                                entity.posX + 0.5D, entity.posY, entity.posZ + 0.5D
+                        );
+
+                        RenderUtil.drawSmoothCustomBoxEsp(entity,customBox,new Color(255, 0, 0));
+                    }
                 }
             }
         }

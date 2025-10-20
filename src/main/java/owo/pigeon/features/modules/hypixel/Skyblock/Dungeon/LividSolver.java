@@ -95,7 +95,11 @@ public class LividSolver extends Module {
                     EntityArmorStand e = (EntityArmorStand) entity;
                     if (e.hasCustomName()) {
                         if (OtherUtil.removeColorA(e.getCustomNameTag()).contains(lividColor + "&l")) {
-                            RenderUtil.drawOutlinedBoxEsp(new AxisAlignedBB(entity.posX - 0.5D, entity.posY - 2.0D, entity.posZ - 0.5D, entity.posX + 0.5D, entity.posY, entity.posZ + 0.5D), new Color(255, 0, 0));
+                            AxisAlignedBB customBox = new AxisAlignedBB(
+                                    entity.posX - 0.5D, entity.posY - 2.0D, entity.posZ - 0.5D,
+                                    entity.posX + 0.5D, entity.posY, entity.posZ + 0.5D);
+
+                            RenderUtil.drawSmoothCustomBoxEsp(entity,customBox,new Color(255,0,0));
                         }
                     }
                 }
