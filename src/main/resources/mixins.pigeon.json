@@ -4,6 +4,7 @@
   "refmap": "mixins.pigeon.refmap.json",
   "package": "owo.pigeon.injections.mixins",
   "mixins": [
+    "IAccessorEntityPlayer",
     "MixinEntity",
     "MixinEntityLivingBase",
     "MixinEntityPlayer",

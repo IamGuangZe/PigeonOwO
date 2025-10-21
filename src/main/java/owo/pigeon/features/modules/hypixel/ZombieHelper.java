@@ -12,6 +12,7 @@ import net.minecraft.init.Items;
 import net.minecraft.util.AxisAlignedBB;
 import owo.pigeon.features.modules.Category;
 import owo.pigeon.features.modules.Module;
+import owo.pigeon.injections.mixins.IAccessorEntityPlayer;
 import owo.pigeon.settings.EnableSetting;
 import owo.pigeon.settings.FloatSetting;
 import owo.pigeon.settings.ModeSetting;
@@ -33,6 +34,7 @@ public class ZombieHelper extends Module {
     }
 
     public EnableSetting hud = setting("hud",true,"",v->true);
+    public EnableSetting easyRevive = setting("easyrevive",true,"",v->true);
     public EnableSetting cyclicSwitch = setting("cyclic",true,"Auto cyclic switch weapons to reduce the impact of gun CD time.",v->true);
     public EnableSetting thirdGun = setting("3rd",false,"Switch includes the third gun.",v->true);
     public EnableSetting smartThirdGun = setting("smart3rd",true,"(For AA)Use the third gun when Giant and The Old One spawning.",v->true);
@@ -53,6 +55,24 @@ public class ZombieHelper extends Module {
                 String sidebarLine = WorldUtil.getSidebarLineTopDown(3);
                 if (sidebarLine != null) {
                     round = OtherUtil.regexGetPartInteger("Round (\\d+)", OtherUtil.removeColor(sidebarLine), 1);
+                }
+
+                if (easyRevive.getValue()) {
+                    for (Entity entity : mc.theWorld.loadedEntityList) {
+                        if (entity instanceof EntityPlayer) {
+                            EntityPlayer player = (EntityPlayer) entity;
+                            if (((IAccessorEntityPlayer) player).getSleeping()) {
+                                player.setEntityBoundingBox(new AxisAlignedBB(
+                                        player.posX - 0.3,
+                                        player.posY,
+                                        player.posZ - 0.3,
+                                        player.posX + 0.3,
+                                        player.posY + 1.8,
+                                        player.posZ + 0.3
+                                ));
+                            }
+                        }
+                    }
                 }
             }
         }
