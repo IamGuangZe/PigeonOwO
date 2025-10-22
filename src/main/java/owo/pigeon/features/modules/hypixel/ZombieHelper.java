@@ -1,5 +1,6 @@
 package owo.pigeon.features.modules.hypixel;
 
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.EntityWither;
@@ -33,15 +34,18 @@ public class ZombieHelper extends Module {
         FULL, EYE, BOTH
     }
 
-    public EnableSetting hud = setting("hud",true,"",v->true);
-    public EnableSetting easyRevive = setting("easyrevive",true,"",v->true);
-    public EnableSetting cyclicSwitch = setting("cyclic",true,"Auto cyclic switch weapons to reduce the impact of gun CD time.",v->true);
-    public EnableSetting thirdGun = setting("3rd",false,"Switch includes the third gun.",v->true);
-    public EnableSetting smartThirdGun = setting("smart3rd",true,"(For AA)Use the third gun when Giant and The Old One spawning.",v->true);
-    public FloatSetting health = setting("health", 10F, 1F, 20F,"", v->true);
+    public EnableSetting hud = setting("hud", true, "", v -> true);
+    public EnableSetting easyRevive = setting("easyrevive", true, "", v -> true);
+    public EnableSetting cyclicSwitch = setting("cyclic", true, "Auto cyclic switch weapons to reduce the impact of gun CD time.", v -> true);
+    public EnableSetting thirdGun = setting("3rd", false, "Switch includes the third gun.", v -> true);
+    public EnableSetting smartThirdGun = setting("smart3rd", true, "(For AA)Use the third gun when Giant and The Old One spawning.", v -> true);
+    public FloatSetting health = setting("health", 10F, 1F, 20F, "", v -> true);
 
-    public EnableSetting esp = setting("esp",true,"",v->true);
-    public ModeSetting<espModeEnum> espMode = setting("espmode",espModeEnum.EYE,"",v->true);
+    public EnableSetting esp = setting("esp", true, "", v -> true);
+    public ModeSetting<espModeEnum> espMode = setting("espmode", espModeEnum.EYE, "", v -> true);
+
+    public EnableSetting hidePlayer = setting("hideplayer", true, "", v -> true);
+    public FloatSetting distance = setting("distance", 2.5F, 0F, 10F, "", v -> true);
 
     private int round = -1;
     private boolean third = false;
@@ -123,7 +127,7 @@ public class ZombieHelper extends Module {
                     setting += "&c&lFalse";
                 }
 
-                FontUtil.drawStringWithShadow(setting,5,5 + h * 5);
+                FontUtil.drawStringWithShadow(setting, 5, 5 + h * 5);
             }
         }
     }
@@ -135,16 +139,16 @@ public class ZombieHelper extends Module {
                 for (Entity entity : mc.theWorld.loadedEntityList) {
                     if (entity instanceof EntityLivingBase &&
                             !(entity instanceof EntityChicken) &&
-                            !(entity instanceof EntityCow && ((EntityCow)entity).isChild()) &&
-                            !(entity instanceof EntityPig && ((EntityPig)entity).isChild()) &&
-                            !(entity instanceof EntityWolf && ((EntityWolf)entity).isChild()) &&
-                            !(entity instanceof EntitySheep && ((EntitySheep)entity).isChild()) &&
+                            !(entity instanceof EntityCow && ((EntityCow) entity).isChild()) &&
+                            !(entity instanceof EntityPig && ((EntityPig) entity).isChild()) &&
+                            !(entity instanceof EntityWolf && ((EntityWolf) entity).isChild()) &&
+                            !(entity instanceof EntitySheep && ((EntitySheep) entity).isChild()) &&
                             !(entity instanceof EntityPlayer) &&
                             !(entity instanceof EntityWither) &&
                             !(entity instanceof EntityArmorStand) &&
                             entity.isEntityAlive()
                     ) {
-                        Color color = new Color(0,255,255);
+                        Color color = new Color(0, 255, 255);
                         if (entity instanceof EntityGiantZombie) {
                             color = new Color(102, 51, 153);
                         } else if (entity instanceof EntityZombie && ((EntityZombie) entity).isChild() && entity.getInventory() != null && entity.getInventory()[0] != null && entity.getInventory()[0].getItem() == Items.diamond_sword) {
@@ -169,12 +173,27 @@ public class ZombieHelper extends Module {
                             RenderUtil.drawSmoothOutlinedBoxEsp(entity, color);
                         }
                     }
+
+                    if (entity instanceof EntityPlayer && !(entity instanceof EntityPlayerSP)) {
+                        EntityPlayer player = (EntityPlayer) entity;
+                        if (hidePlayer.getValue()) {
+                            double dx = mc.thePlayer.posX - player.posX;
+                            double dy = mc.thePlayer.posY - player.posY;
+                            double dz = mc.thePlayer.posZ - player.posZ;
+                            double dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+
+                            // 小于设定距离则设为隐身，否则显示
+                            player.setInvisible(dist < distance.getValue());
+                        } else {
+                            player.setInvisible(false);
+                        }
+                    }
                 }
             }
         }
     }
 
-    private boolean smartThirdGun () {
+    private boolean smartThirdGun() {
         boolean smartThird = false;
 
         if (!smartThirdGun.getValue()) {
@@ -219,7 +238,7 @@ public class ZombieHelper extends Module {
         return (2 * eyeToHead) <= entity.height;
     }
 
-    private AxisAlignedBB getEyeBoundingBox (EntityLivingBase entity) {
+    private AxisAlignedBB getEyeBoundingBox(EntityLivingBase entity) {
         double eyeHeight = entity.getEyeHeight();
         double headTop = entity.posY + entity.height;
         double eyeLevel = entity.posY + eyeHeight;
