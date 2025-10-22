@@ -11,8 +11,6 @@ public class ConfigManager {
     // 超级史山代码 -- 2025.10.15
     // 将超级史山拆分了 -- 2025.10.15
 
-    public static String currentConfig = "default";
-
     public static final Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
     public static final File baseDir = new File("config/pigeonowo/");
     public static final File settingDir = new File(baseDir, "setting/");
@@ -27,14 +25,11 @@ public class ConfigManager {
             settingDir.mkdirs();
         }
         if (!pigeonowo_f.exists()) {
-            // PigeonowoConfig.setCurrentConfig("default");
             PigeonowoConfig.setPrefix('>');
         }
 
-        // currentConfig = PigeonowoConfig.getCurrentConfig();
         CommandManager.commandPrefix = PigeonowoConfig.getPrefix();
 
-        // PigeonowoConfig.setCurrentConfig(currentConfig);
         PigeonowoConfig.setPrefix(CommandManager.commandPrefix);
 
         SettingConfig.load("default");

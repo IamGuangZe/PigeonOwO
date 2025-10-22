@@ -35,22 +35,6 @@ public class PigeonowoConfig {
         }
     }
 
-    /*public static String getCurrentConfig() {
-        Map<String, Object> map = read();
-        if (map != null && map.containsKey("config")) {
-            return map.get("config").toString();
-        }
-        return "default";
-    }
-
-    public static void setCurrentConfig(String name) {
-        Map<String, Object> map = read();
-        if (map == null) map = new HashMap<>();
-        map.put("config", name);
-        write(map);
-        ConfigManager.currentConfig = name;
-    }*/
-
     public static char getPrefix() {
         Map<String, Object> map = read();
         if (map != null && map.containsKey("prefix")) {
