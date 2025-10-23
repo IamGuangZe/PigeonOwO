@@ -3,6 +3,7 @@ package owo.pigeon.gui.panels;
 import net.minecraft.client.gui.Gui;
 import owo.pigeon.features.modules.Category;
 import owo.pigeon.features.modules.Module;
+import owo.pigeon.features.modules.client.ClickGui;
 import owo.pigeon.gui.AbstractDisplableItem;
 import owo.pigeon.utils.ModuleUtil;
 
@@ -39,11 +40,34 @@ public class CategoryPanel extends AbstractDisplableItem {
         }
 
         Gui.drawRect(x,y,x + width,y + height, new Color(0, 0, 0, 255).getRGB());
-        fontRenderer.drawStringWithShadow(
-                category.name(),
-                (x + ((float) width / 2)) - ((float) fontRenderer.getStringWidth(category.name()) / 2),
-                (float) (y + (height / 2)) - (float) fontRenderer.FONT_HEIGHT / 2,
-                Color.WHITE.getRGB());
+
+        switch (((ClickGui) ModuleUtil.getModule(ClickGui.class)).style.getValue()) {
+            case OLD:
+                fontRenderer.drawStringWithShadow(
+                        category.name(),
+                        (x + ((float) width / 2)) - ((float) fontRenderer.getStringWidth(category.name()) / 2),
+                        (float) (y + (height / 2)) - (float) fontRenderer.FONT_HEIGHT / 2,
+                        Color.WHITE.getRGB());
+                break;
+
+            case NEW:
+            default:
+                fontRenderer.drawStringWithShadow(
+                        category.name().substring(0, 1).toUpperCase() + category.name().substring(1).toLowerCase(),
+                        x + 5,
+                        (float) (y + (height / 2)) - (float) fontRenderer.FONT_HEIGHT / 2 + 1,
+                        Color.WHITE.getRGB());
+
+                String symbol = displaymodule ? "-" : "+";
+                int color = displaymodule ? Color.RED.getRGB() : Color.GREEN.getRGB();
+                fontRenderer.drawStringWithShadow(
+                        symbol,
+                        x + width - fontRenderer.getStringWidth(symbol) - 4,
+                        (float) (y + (height / 2)) - (float) fontRenderer.FONT_HEIGHT / 2 + 1,
+                        color
+                );
+
+        }
 
         modulePanels.clear();
         if (displaymodule) {
