@@ -15,6 +15,7 @@ public class ConfigManager {
     public static final File baseDir = new File("config/pigeonowo/");
     public static final File settingDir = new File(baseDir, "setting/");
 
+    public static final File clickgui_f = new File(baseDir, "clickgui.json");
     public static final File pigeonowo_f = new File(baseDir, "pigeonowo.json");
 
     public void init() {
@@ -27,12 +28,19 @@ public class ConfigManager {
         if (!pigeonowo_f.exists()) {
             PigeonowoConfig.setPrefix('>');
         }
+        if (!clickgui_f.exists()) {
+            ClickguiConfig.save();
+        }
 
         CommandManager.commandPrefix = PigeonowoConfig.getPrefix();
 
+        ClickguiConfig.load();
         PigeonowoConfig.setPrefix(CommandManager.commandPrefix);
 
         SettingConfig.load("default");
+
+        Runtime.getRuntime().addShutdownHook(new Thread(ClickguiConfig::save));
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {SettingConfig.save("default");}));
     }
 }
     /*public void init() {

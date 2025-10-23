@@ -83,4 +83,13 @@ public class CategoryPanel extends AbstractDisplableItem {
             movepanel = false;
         }
     }
+
+    public boolean getDisplayModule() {
+        return displaymodule;
+    }
+
+    public void setDisplayModule(boolean value) {
+        displaymodule = value;
+    }
+
 }

@@ -11,10 +11,6 @@ import static owo.pigeon.utils.FontUtil.fontRenderer;
 public class ModulePanel extends AbstractDisplableItem {
 
     private Module module;
-    private int x;
-    private int y;
-    private int width;
-    private int height;
 
     private boolean hovered;
 
@@ -30,8 +26,8 @@ public class ModulePanel extends AbstractDisplableItem {
     protected void drawScreen(int mouseX, int mouseY, float partialTicks) {
         hovered = isHovered(mouseX, mouseY, x, y, width, height);
         int color = module.isEnable() ?
-                new Color(23, 23, 23, 204).getRGB() :
-                new Color(57, 57, 57, 204).getRGB();
+                new Color(20, 20, 20, 186).getRGB() :
+                new Color(50, 50, 50, 186).getRGB();
         Gui.drawRect(x,y,x + width,y + height, color);
         fontRenderer.drawStringWithShadow(
                 module.name,

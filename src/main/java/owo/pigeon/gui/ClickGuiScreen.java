@@ -12,13 +12,17 @@ import java.util.ArrayList;
 
 public class ClickGuiScreen extends GuiScreen {
 
-    private final ArrayList<CategoryPanel> categoryPanels = new ArrayList<>();
+    public final ArrayList<CategoryPanel> categoryPanels = new ArrayList<>();
 
     public ClickGuiScreen() {
-        int startX = 10;
+        int x = 5;
+        int y = 5;
+        int width = 90;
+        int height = 19;
         for (Category category : Category.values()) {
-            categoryPanels.add(new CategoryPanel(category,startX,10,85,20));
-            startX += 85 + 3;
+            categoryPanels.add(new CategoryPanel(category,x,y,width,height));
+            x += width + 2;
+            //y += height + 5;
         }
     }
 
@@ -33,8 +37,8 @@ public class ClickGuiScreen extends GuiScreen {
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         drawDefaultBackground();
-        for (CategoryPanel panel : categoryPanels) {
-            panel.drawScreen(mouseX, mouseY, partialTicks);
+        for (CategoryPanel categorypanel : categoryPanels) {
+            categorypanel.drawScreen(mouseX, mouseY, partialTicks);
         }
     }
 
