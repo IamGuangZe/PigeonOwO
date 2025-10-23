@@ -1,9 +1,9 @@
 package owo.pigeon.utils.hypixel;
 
-import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
@@ -47,7 +47,7 @@ public class HypixelUtil {
     }
 
     public static boolean isNPC(Entity entity) {
-        if (entity instanceof EntityOtherPlayerMP) {
+        if (entity instanceof EntityPlayer) {
 
             EntityLivingBase entityLivingBase = (EntityLivingBase) entity;
 

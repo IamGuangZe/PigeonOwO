@@ -2,7 +2,6 @@ package owo.pigeon.commands.impl.test;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.boss.BossStatus;
@@ -165,7 +164,7 @@ public class GetCommand extends Command {
                 List<String> playerlist = new ArrayList<>();
 
                 for (Entity entity : mc.theWorld.loadedEntityList) {
-                    if (entity instanceof EntityPlayer && !(entity instanceof EntityPlayerSP)) {
+                    if (entity instanceof EntityPlayer) {
                         if (!HypixelUtil.isNPC(entity)) {
                             String playername = entity.getName();
                             playerlist.add(playername);
@@ -173,7 +172,7 @@ public class GetCommand extends Command {
                     }
                 }
 
-                ChatUtil.sendRawMessage("Players : " + String.join(", ",playerlist));
+                ChatUtil.sendMessage("Players : " + String.join("&r, ",playerlist));
 
                 break;
 

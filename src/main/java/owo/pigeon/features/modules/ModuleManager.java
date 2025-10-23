@@ -58,7 +58,7 @@ public class ModuleManager {
     }
 
     public void addClientModules() {
-        addTestModules();
+        // addTestModules();
 
         modules.add(new ModifyChat());
         modules.add(new ClickGui());
@@ -72,6 +72,7 @@ public class ModuleManager {
         modules.add(new FarmhuntHelper());
         modules.add(new GTBHelper());
         modules.add(new MurderHelper());
+        modules.add(new PartyNotify());
         modules.add(new PixelHelper());
         modules.add(new ProphuntHelper());
         modules.add(new ZombieHelper());
