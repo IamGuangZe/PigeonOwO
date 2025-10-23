@@ -22,11 +22,11 @@ public class ChestStealer extends Module {
         super("ChestStealer", Category.PLAYER, -1);
     }
 
-    public IntSetting startDelay = setting("startdelay",1,1,20,"",v->true);
-    public IntSetting minDelay = setting("mindelay",2,1,20,"", v -> true);
-    public IntSetting maxDelay = setting("maxdelay",3,1,20,"", v -> true);
+    public IntSetting startDelay = setting("startdelay", 1, 0, 20, "", v -> true);
+    public IntSetting minDelay = setting("mindelay", 2, 0, 20, "", v -> true);
+    public IntSetting maxDelay = setting("maxdelay", 3, 0, 20, "", v -> true);
     public EnableSetting checkTitle = setting("checktitle", true, "", v -> true);
-    public EnableSetting smartPick = setting("smartpick",true,"",v->true);
+    public EnableSetting smartPick = setting("smartpick", true, "", v -> true);
 
     private int s_delay = 0;
     private int p_delay = 0;
@@ -65,7 +65,7 @@ public class ChestStealer extends Module {
 
             if (mc.thePlayer.inventory.getFirstEmptyStack() == -1) {
                 if (!fullWarning) {
-                    sendCustomPrefixMessage(this.name,"&cYour inventory is full!");
+                    sendCustomPrefixMessage(this.name, "&cYour inventory is full!");
                     fullWarning = true;
                 }
                 return;
