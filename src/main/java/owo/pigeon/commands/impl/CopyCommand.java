@@ -16,7 +16,7 @@ public class CopyCommand extends Command {
 
     @Override
     public void execute(String[] args) {
-        if(args.length == 0) {
+        if (args.length == 0) {
             CommandUtil.sendCommandError(CommandUtil.errorReason.UnknownOrIncompleteCommand,
                     this.getCommand(),
                     args,

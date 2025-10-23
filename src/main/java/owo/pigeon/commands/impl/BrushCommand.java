@@ -13,7 +13,7 @@ public class BrushCommand extends Command {
 
     @Override
     public void execute(String[] args) {
-        if(args.length == 0) {
+        if (args.length == 0) {
             ModuleUtil.moduleToggle(DungeonBrush.class);
             return;
         }
@@ -33,7 +33,7 @@ public class BrushCommand extends Command {
                     return;
                 }
 
-                ((DungeonBrush)ModuleUtil.getModule(DungeonBrush.class)).block.setValue(temp);
+                ((DungeonBrush) ModuleUtil.getModule(DungeonBrush.class)).block.setValue(temp);
                 ChatUtil.sendMessage(String.valueOf(temp));
             }
 

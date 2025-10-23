@@ -42,7 +42,7 @@ public class Ping {
                 if (invokedCommand) {
                     invokedCommand = false;
                     String color = getPingColorCode(diff);
-                    ChatUtil.sendMessage(color + (int)diff + " &7ms");
+                    ChatUtil.sendMessage(color + (int) diff + " &7ms");
                 }
             }
         }

@@ -6,10 +6,10 @@ import owo.pigeon.settings.EnableSetting;
 
 public class DelayRemover extends Module {
     public DelayRemover() {
-        super("DelayRemover", Category.PLAYER,-1);
+        super("DelayRemover", Category.PLAYER, -1);
     }
 
-    public EnableSetting noClickDelay = setting("noclickdealy",true,"Remove leftClickCounter",v->true);
-    public EnableSetting noRightClickDelay = setting("norightclickdealy",true,"Remove rightClickDelayTimer",v->true);
-    public EnableSetting noJumpDelay = setting("nojumpdealy",true,"Remove leftClickCounter",v->true);
+    public EnableSetting noClickDelay = setting("no-clickdealy", true, v -> true);
+    public EnableSetting noRightClickDelay = setting("no-rightclickdealy", true, v -> true);
+    public EnableSetting noJumpDelay = setting("no-jumpdealy", true, v -> true);
 }

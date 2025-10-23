@@ -35,7 +35,6 @@ public class ModifyChat extends Module {
     public static boolean copychat = true;
 
 
-
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onChatReceive(ClientChatReceivedEvent event) {
         String rawmessage = getFormattedText(event);
@@ -44,11 +43,11 @@ public class ModifyChat extends Module {
         if ((event.type == 0 || event.type == 1)) {
 
             if (hidemessage &&
-                    (!joinlobby && OtherUtil.isContainsRegex(HypixelData.JOINLOBBY,message)) ||
-                    (!zombiesgold && OtherUtil.isContainsRegex(HypixelData.GOLD,message)) ||
-                    (!zombierepair && OtherUtil.isContainsRegex(HypixelData.REPAIREDWINDOW,message)) ||
-                    (!coins && OtherUtil.isContainsRegex(HypixelData.COIN,message)) ||
-                    (!reward && OtherUtil.isContainsRegex(HypixelData.REWARD,message)) ||
+                    (!joinlobby && OtherUtil.isContainsRegex(HypixelData.JOINLOBBY, message)) ||
+                    (!zombiesgold && OtherUtil.isContainsRegex(HypixelData.GOLD, message)) ||
+                    (!zombierepair && OtherUtil.isContainsRegex(HypixelData.REPAIREDWINDOW, message)) ||
+                    (!coins && OtherUtil.isContainsRegex(HypixelData.COIN, message)) ||
+                    (!reward && OtherUtil.isContainsRegex(HypixelData.REWARD, message)) ||
                     (!emptymessage && OtherUtil.OnlyWhitespace(message))
             ) {
                 event.setCanceled(true);
@@ -74,7 +73,7 @@ public class ModifyChat extends Module {
 
                 ChatComponentText component = new ChatComponentText(OtherUtil.parseColor(" &7[C]"));
                 component.setChatStyle(new ChatStyle()
-                        .setChatClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,CommandManager.commandPrefix + "copy " + copyText))
+                        .setChatClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, CommandManager.commandPrefix + "copy " + copyText))
                         .setChatHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
                                 new ChatComponentText("Click to Copy this message\n" + copyText)))
                 );

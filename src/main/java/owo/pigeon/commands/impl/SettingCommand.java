@@ -58,7 +58,7 @@ public class SettingCommand extends Command {
                         );
                         return;
                     }
-                    ((BlockSetting)setting).setValue(block);
+                    ((BlockSetting) setting).setValue(block);
                     value = block.getLocalizedName() + "(" + block.getRegistryName() + ")";
                 } else if (setting instanceof EnableSetting) {
                     boolean b;
@@ -74,7 +74,7 @@ public class SettingCommand extends Command {
                         );
                         return;
                     }
-                    ((EnableSetting)setting).setValue(b);
+                    ((EnableSetting) setting).setValue(b);
                     value = String.valueOf(b);
                 } else if (setting instanceof FloatSetting) {
                     try {
@@ -87,7 +87,7 @@ public class SettingCommand extends Command {
                             f = floatSetting.getMaxValue();
                         }
 
-                        ((FloatSetting)setting).setValue(f);
+                        ((FloatSetting) setting).setValue(f);
                         value = String.valueOf(f);
                     } catch (NumberFormatException e) {
                         CommandUtil.sendCommandError(CommandUtil.errorReason.ExpectedFloat,
@@ -99,7 +99,7 @@ public class SettingCommand extends Command {
                     }
                 } else if (setting instanceof IntSetting) {
                     try {
-                        IntSetting intSetting = (IntSetting)setting;
+                        IntSetting intSetting = (IntSetting) setting;
                         Integer i = Integer.parseInt(value);
 
                         if (i < intSetting.getMinValue()) {
@@ -108,7 +108,7 @@ public class SettingCommand extends Command {
                             i = intSetting.getMaxValue();
                         }
 
-                        ((IntSetting)setting).setValue(i);
+                        ((IntSetting) setting).setValue(i);
                         value = String.valueOf(i);
                     } catch (NumberFormatException e) {
                         CommandUtil.sendCommandError(CommandUtil.errorReason.ExpectedInteger,
@@ -131,7 +131,7 @@ public class SettingCommand extends Command {
                     try {
                         ModeSetting<?> modeSetting = (ModeSetting<?>) setting;
                         Enum<?> e = Enum.valueOf((Class<Enum>) modeSetting.getValue().getClass(), value.toUpperCase());
-                        ((ModeSetting)setting).setValue(e);
+                        ((ModeSetting) setting).setValue(e);
                         value = e.toString().toUpperCase();
                     } catch (IllegalArgumentException e) {
                         CommandUtil.sendCommandError(CommandUtil.errorReason.IncorrectArgument,
@@ -142,7 +142,7 @@ public class SettingCommand extends Command {
                         return;
                     }
                 } else if (setting instanceof StringSetting) {
-                    ((StringSetting)setting).setValue(value);
+                    ((StringSetting) setting).setValue(value);
                 } else {
                     this.sendCommandError("Unknown setting type!");
                     return;

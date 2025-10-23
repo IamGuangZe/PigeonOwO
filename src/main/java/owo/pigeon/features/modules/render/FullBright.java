@@ -5,7 +5,7 @@ import owo.pigeon.features.modules.Module;
 
 public class FullBright extends Module {
     public FullBright() {
-        super("FullBright", Category.RENDER,-1);
+        super("FullBright", Category.RENDER, -1);
     }
 
     private float rawgamma;
@@ -19,7 +19,7 @@ public class FullBright extends Module {
     }
 
     public void onDisable() {
-        if (rawgamma > 1){
+        if (rawgamma > 1) {
             mc.gameSettings.gammaSetting = 1;
         } else {
             mc.gameSettings.gammaSetting = rawgamma;

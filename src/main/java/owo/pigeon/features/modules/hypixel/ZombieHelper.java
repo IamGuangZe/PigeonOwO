@@ -34,18 +34,18 @@ public class ZombieHelper extends Module {
         FULL, EYE, BOTH
     }
 
-    public EnableSetting hud = setting("hud", true, "", v -> true);
-    public EnableSetting easyRevive = setting("easyrevive", true, "", v -> true);
-    public EnableSetting cyclicSwitch = setting("cyclic", true, "Auto cyclic switch weapons to reduce the impact of gun CD time.", v -> true);
-    public EnableSetting thirdGun = setting("3rd", false, "Switch includes the third gun.", v -> true);
-    public EnableSetting smartThirdGun = setting("smart3rd", true, "(For AA)Use the third gun when Giant and The Old One spawning.", v -> true);
-    public FloatSetting health = setting("health", 10F, 1F, 20F, "", v -> true);
+    public EnableSetting hud = setting("hud", true, v -> true);
+    public EnableSetting easyRevive = setting("easy-revive", true, v -> true);
+    public EnableSetting cyclicSwitch = setting("cyclic-switch", true, v -> true);
+    public EnableSetting thirdGun = setting("3rd", false, v -> true);
+    public EnableSetting smartThirdGun = setting("smart-3rd", true, v -> true);
+    public FloatSetting health = setting("health", 10F, 1F, 20F, v -> true);
 
-    public EnableSetting esp = setting("esp", true, "", v -> true);
-    public ModeSetting<espModeEnum> espMode = setting("espmode", espModeEnum.EYE, "", v -> true);
+    public EnableSetting esp = setting("esp", true, v -> true);
+    public ModeSetting<espModeEnum> espMode = setting("esp-mode", espModeEnum.EYE, v -> true);
 
-    public EnableSetting hidePlayer = setting("hideplayer", true, "", v -> true);
-    public FloatSetting distance = setting("distance", 2.5F, 0F, 10F, "", v -> true);
+    public EnableSetting hidePlayer = setting("hide-player", true, v -> true);
+    public FloatSetting distance = setting("distance", 2.5F, 0F, 10F, v -> true);
 
     private int round = -1;
     private boolean third = false;

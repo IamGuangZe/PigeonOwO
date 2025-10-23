@@ -18,8 +18,9 @@ public class DojoSolver extends Module {
     public DojoSolver() {
         super("DojoSolver", Category.HYPIXEL, -1);
     }
-    public EnableSetting Force = setting("force",true,"Hide bad Zombie",v->true);
-    public EnableSetting Discipline = setting("discipline",true,"Auto switch sword in discipline.",v->true);
+
+    public EnableSetting Force = setting("force", true, v -> true);
+    public EnableSetting Discipline = setting("discipline", true, v -> true);
 
     @Override
     public void onTick() {
@@ -61,12 +62,12 @@ public class DojoSolver extends Module {
     @Override
     public void onRender3D() {
         if (SkyblockUtil.isIsland(Island.CrimsonIsle)) {
-            if (Force.getValue()){
+            if (Force.getValue()) {
                 if (SkyblockUtil.isDojo(Dojo.Force)) {
                     for (Entity entity : mc.theWorld.loadedEntityList) {
                         if (entity instanceof EntityZombie) {
                             EntityZombie zombie = (EntityZombie) entity;
-                            if (zombie.getCurrentArmor(3)!=null) {
+                            if (zombie.getCurrentArmor(3) != null) {
                                 ItemArmor helmet = (ItemArmor) zombie.getCurrentArmor(3).getItem();
 
                                 if (helmet.getArmorMaterial() == ItemArmor.ArmorMaterial.LEATHER) {

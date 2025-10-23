@@ -69,12 +69,12 @@ public class HypixelUtil {
             return !String.valueOf(itemStack).contains("item.deyPowder") &&   // 物品不为染料
                     !itemStack.getDisplayName().contains("#") &&  // 物品名称不包含# (Gun #2 / Gun #3)
                     (
-                     itemStack.getItem() instanceof ItemTool ||
-                     itemStack.getItem() instanceof ItemSword ||
-                     itemStack.getItem() instanceof ItemHoe ||
-                     itemStack.getItem() == Items.flint ||              // black hole gun
-                     itemStack.getItem() == Items.flint_and_steel ||    // double barrel shotgun
-                     itemStack.getItem() == Items.shears               // elder gun
+                            itemStack.getItem() instanceof ItemTool ||
+                                    itemStack.getItem() instanceof ItemSword ||
+                                    itemStack.getItem() instanceof ItemHoe ||
+                                    itemStack.getItem() == Items.flint ||              // black hole gun
+                                    itemStack.getItem() == Items.flint_and_steel ||    // double barrel shotgun
+                                    itemStack.getItem() == Items.shears               // elder gun
                     );
         }
     }

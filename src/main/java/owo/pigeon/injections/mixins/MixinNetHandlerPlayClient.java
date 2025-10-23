@@ -15,51 +15,49 @@ import owo.pigeon.events.networkevent.addToSendQueueEvent;
 @Mixin(NetHandlerPlayClient.class)
 public class MixinNetHandlerPlayClient {
 
-    @Inject(method = "addToSendQueue" , at = @At("HEAD"))
+    @Inject(method = "addToSendQueue", at = @At("HEAD"))
     public void addToSendQueue(Packet p_147297_1_, CallbackInfo ci) {
         MinecraftForge.EVENT_BUS.post(new addToSendQueueEvent(p_147297_1_));
     }
 
-    @Inject(method = "handleJoinGame" , at = @At("HEAD"))
-    public void PacketReceive (S01PacketJoinGame p_handleJoinGame_1_, CallbackInfo ci) {
+    @Inject(method = "handleJoinGame", at = @At("HEAD"))
+    public void PacketReceive(S01PacketJoinGame p_handleJoinGame_1_, CallbackInfo ci) {
         MinecraftForge.EVENT_BUS.post(new PacketReceiveEvent(p_handleJoinGame_1_));
     }
 
-    @Inject(method = "handleStatistics" , at = @At("HEAD"))
+    @Inject(method = "handleStatistics", at = @At("HEAD"))
     public void PacketReceive(S37PacketStatistics p_handleStatistics_1_, CallbackInfo ci) {
         MinecraftForge.EVENT_BUS.post(new PacketReceiveEvent(p_handleStatistics_1_));
     }
 
-    @Inject(method = "handleBlockChange" , at = @At("HEAD"))
-    public void PacketReceive (S23PacketBlockChange packetIn, CallbackInfo ci) {
+    @Inject(method = "handleBlockChange", at = @At("HEAD"))
+    public void PacketReceive(S23PacketBlockChange packetIn, CallbackInfo ci) {
         MinecraftForge.EVENT_BUS.post(new PacketReceiveEvent(packetIn));
     }
 
-    @Inject(method = "handleMultiBlockChange" , at = @At("HEAD"))
-    public void PacketReceive (S22PacketMultiBlockChange packetIn, CallbackInfo ci) {
+    @Inject(method = "handleMultiBlockChange", at = @At("HEAD"))
+    public void PacketReceive(S22PacketMultiBlockChange packetIn, CallbackInfo ci) {
         MinecraftForge.EVENT_BUS.post(new PacketReceiveEvent(packetIn));
     }
 
-    @Inject(method = "handleMaps" , at = @At("HEAD"))
+    @Inject(method = "handleMaps", at = @At("HEAD"))
     public void PacketReceive(S34PacketMaps packetIn, CallbackInfo ci) {
         MinecraftForge.EVENT_BUS.post(new PacketReceiveEvent(packetIn));
     }
 
-    @Inject(method = "handleSpawnGlobalEntity" , at = @At("HEAD"))
+    @Inject(method = "handleSpawnGlobalEntity", at = @At("HEAD"))
     public void PacketReceive(S2CPacketSpawnGlobalEntity packetIn, CallbackInfo ci) {
         MinecraftForge.EVENT_BUS.post(new PacketReceiveEvent(packetIn));
     }
 
-    @Inject(method = "handlePlayerPosLook" , at = @At("HEAD"))
+    @Inject(method = "handlePlayerPosLook", at = @At("HEAD"))
     public void PacketReceive(S08PacketPlayerPosLook packetIn, CallbackInfo ci) {
         MinecraftForge.EVENT_BUS.post(new PacketReceiveEvent(packetIn));
         MinecraftForge.EVENT_BUS.post(new S08PacketPlayerPosLookEvent(packetIn.getX(), packetIn.getY(), packetIn.getZ(), packetIn.getYaw(), packetIn.getPitch(), S08PacketPlayerPosLookEvent.Phase.START));
     }
 
-    @Inject(method = "handlePlayerPosLook" , at = @At("RETURN"))
+    @Inject(method = "handlePlayerPosLook", at = @At("RETURN"))
     public void PacketReceiveEnd(S08PacketPlayerPosLook packetIn, CallbackInfo ci) {
         MinecraftForge.EVENT_BUS.post(new S08PacketPlayerPosLookEvent(packetIn.getX(), packetIn.getY(), packetIn.getZ(), packetIn.getYaw(), packetIn.getPitch(), S08PacketPlayerPosLookEvent.Phase.END));
     }
-
-
 }

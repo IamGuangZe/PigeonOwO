@@ -25,10 +25,10 @@ public class MurderHelper extends Module {
         super("MurderHelper", Category.HYPIXEL, -1); // 模块名称和键位绑定
     }
 
-    public EnableSetting hud = setting("hud",true,"",v->true);
-    public EnableSetting playerEsp = setting("playeresp",true,"",v->true);
-    public EnableSetting itemEsp = setting("itemesp", true, "", v -> true);
-    public EnableSetting hideSpamCurse = setting("hidespamcurse", true, "Hide Spamcurse message.", v -> true);
+    public EnableSetting hud = setting("hud", true, v -> true);
+    public EnableSetting playerEsp = setting("player-esp", true, v -> true);
+    public EnableSetting itemEsp = setting("item-esp", true, v -> true);
+    public EnableSetting hideSpamCurse = setting("hide-spamcurse", true, v -> true);
 
     private static List<String> AllPlayer = new ArrayList<>();
     private static List<String> Aliveplayer = new ArrayList<>();
@@ -47,8 +47,8 @@ public class MurderHelper extends Module {
     ));
 
     static {
-        Integer[] musicdisc = { 2256, 2257, 2258, 2259, 2260, 2261,
-                                2262, 2263, 2264, 2265, 2266, 2267};
+        Integer[] musicdisc = {2256, 2257, 2258, 2259, 2260, 2261,
+                2262, 2263, 2264, 2265, 2266, 2267};
         Weapons.addAll(Arrays.asList(musicdisc));
     }
 
@@ -94,8 +94,8 @@ public class MurderHelper extends Module {
                             int itemId = Item.getIdFromItem(helditem.getItem());
 
                             if (Weapons.contains(itemId) && helditem.getDisplayName().contains("§a") && !MurderersName.contains(playerName)) {
-                                ChatUtil.sendCustomPrefixMessage(this.name,"&c" + playerName + " &ris Murderer!");
-                                ChatUtil.sendCustomPrefixMessage(this.name,helditem.getDisplayName());
+                                ChatUtil.sendCustomPrefixMessage(this.name, "&c" + playerName + " &ris Murderer!");
+                                ChatUtil.sendCustomPrefixMessage(this.name, helditem.getDisplayName());
                                 MurderersName.add(playerName);
                                 Playerwithbow.remove(playerName);
                             }
@@ -117,18 +117,18 @@ public class MurderHelper extends Module {
                 }*/
 
                 while (!AllPlayer.isEmpty()) {
-                        String playername = AllPlayer.get(0);
-                        String color;
-                        if (MurderersName.contains(playername)) {
-                            color = "&c";
-                        } else if (Playerwithbow.contains(playername)) {
-                            color = "&a";
-                        } else {
-                            color = "&7";
-                        }
-                        ChatUtil.sendCustomPrefixMessage(this.name,color + playername + " &rhas died.");
-                        playerDied(playername);
-                        AllPlayer.remove(playername);
+                    String playername = AllPlayer.get(0);
+                    String color;
+                    if (MurderersName.contains(playername)) {
+                        color = "&c";
+                    } else if (Playerwithbow.contains(playername)) {
+                        color = "&a";
+                    } else {
+                        color = "&7";
+                    }
+                    ChatUtil.sendCustomPrefixMessage(this.name, color + playername + " &rhas died.");
+                    playerDied(playername);
+                    AllPlayer.remove(playername);
                 }
 
                 AllPlayer = new ArrayList<>(Aliveplayer);
@@ -238,5 +238,4 @@ public class MurderHelper extends Module {
             MurderersName.set(index, "&m" + playername + "&r");
         }
     }
-
 }

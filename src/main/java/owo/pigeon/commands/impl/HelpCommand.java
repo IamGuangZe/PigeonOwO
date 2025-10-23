@@ -10,7 +10,7 @@ public class HelpCommand extends Command {
     public HelpCommand() {
         super("help");
     }
-    
+
     @Override
     public void execute(String[] args) {
 
@@ -28,7 +28,7 @@ public class HelpCommand extends Command {
             if (found) return;
         }
 
-        int maxpage = (int) Math.ceil((double)CommandManager.commands.size() / 7);
+        int maxpage = (int) Math.ceil((double) CommandManager.commands.size() / 7);
         int page = 1;
         try {
             if (args.length > 0) {

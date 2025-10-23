@@ -49,11 +49,11 @@ public class PixelHelper extends Module {
         if (HypixelUtil.isInGame(HypixelGames.PIXELPARTY)) {
             if (color != null) {
                 for (int x = -32; x <= 32; x++) {
-                    for (int z = -32; z<=32; z++) {
-                        BlockPos pos = new BlockPos(x,0,z);
+                    for (int z = -32; z <= 32; z++) {
+                        BlockPos pos = new BlockPos(x, 0, z);
                         IBlockState state = mc.theWorld.getBlockState(pos);
                         if (Objects.equals(WorldUtil.getBlockColor(state), color)) {
-                            RenderUtil.drawOutlinedBoxEsp(pos,espColor);
+                            RenderUtil.drawOutlinedBoxEsp(pos, espColor);
                         }
                     }
                 }

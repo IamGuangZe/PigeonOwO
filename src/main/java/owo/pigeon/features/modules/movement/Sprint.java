@@ -17,8 +17,8 @@ public class Sprint extends Module {
 
     @Override
     public void onTick() {
-        if (WorldUtil.isNotNull()){
-                KeyBinding.setKeyBindState(mc.gameSettings.keyBindSprint.getKeyCode(), true);
+        if (WorldUtil.isNotNull()) {
+            KeyBinding.setKeyBindState(mc.gameSettings.keyBindSprint.getKeyCode(), true);
 
             /*            if (sprintToggleTimer > 0) {
                 --sprintToggleTimer;
@@ -71,9 +71,8 @@ public class Sprint extends Module {
 
     @Override
     public void onDisable() {
-        if (!Keyboard.isKeyDown(mc.gameSettings.keyBindSprint.getKeyCode())){
+        if (!Keyboard.isKeyDown(mc.gameSettings.keyBindSprint.getKeyCode())) {
             KeyBinding.setKeyBindState(mc.gameSettings.keyBindSprint.getKeyCode(), false);
         }
     }
 }
-

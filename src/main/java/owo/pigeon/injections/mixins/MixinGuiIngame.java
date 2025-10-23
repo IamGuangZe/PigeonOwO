@@ -13,7 +13,7 @@ import owo.pigeon.events.renderevent.Render2DEvent;
 public class MixinGuiIngame {
 
     @Inject(method = "renderTooltip", at = @At(value = "RETURN"))
-    public void onRenderTooltip(ScaledResolution p_renderTooltip_1_, float partialTicks, CallbackInfo ci){
+    public void onRenderTooltip(ScaledResolution p_renderTooltip_1_, float partialTicks, CallbackInfo ci) {
         MinecraftForge.EVENT_BUS.post(new Render2DEvent());  // 发送事件
     }
 }

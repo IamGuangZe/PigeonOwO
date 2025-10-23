@@ -14,7 +14,7 @@ public class AutoTool extends Module {
         super("AutoTool", Category.PLAYER, -1);
     }
 
-    public EnableSetting switchBack = setting("switchback",true,"Switch back to the original slot after mining.",v->true);
+    public EnableSetting switchBack = setting("switch-back", true, v -> true);
 
     private boolean israwslot = true;
     private int rawslot = 0;
@@ -27,7 +27,7 @@ public class AutoTool extends Module {
                 Block block = mc.theWorld.getBlockState(blockPos).getBlock();
                 ItemStack tool = PlayerUtil.getBestToolFromHotbar(block);
                 if (tool != null) {
-                    PlayerUtil.switchItemSlot(PlayerUtil.getSlotfromItemStackEx(tool,true));
+                    PlayerUtil.switchItemSlot(PlayerUtil.getSlotfromItemStackEx(tool, true));
                     israwslot = false;
                 } else {
                     PlayerUtil.switchItemSlot(rawslot);

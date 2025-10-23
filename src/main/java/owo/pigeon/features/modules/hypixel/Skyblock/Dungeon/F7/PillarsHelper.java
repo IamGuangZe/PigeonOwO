@@ -21,7 +21,7 @@ public class PillarsHelper extends Module {
     public PillarsHelper() {
         super("PillarsHelper", Category.HYPIXEL, -1);
 
-        for (int i = 0; i < 4; i++){
+        for (int i = 0; i < 4; i++) {
             BlockPos pillar = pillars[i];
             coordinates[i] = new HashSet<>();
             for (int dx = pillar.getX() - 3; dx <= pillar.getX() + 3; dx++) {
@@ -33,6 +33,7 @@ public class PillarsHelper extends Module {
             }
         }
     }
+
     private final Set<BlockPos>[] coordinates = new Set[4];
 
     private final BlockPos[] pillars = {
@@ -41,7 +42,7 @@ public class PillarsHelper extends Module {
             new BlockPos(100, 169, 65), //purple
             new BlockPos(100, 169, 41) //red
     };
-    private final int[] pillarscolor = {5,4,10,14};
+    private final int[] pillarscolor = {5, 4, 10, 14};
 
     @Override
     public void onTick() {
@@ -55,7 +56,7 @@ public class PillarsHelper extends Module {
     }
 
     private void replaceDiorite() {
-        for (Set<BlockPos> coordinate :coordinates) {
+        for (Set<BlockPos> coordinate : coordinates) {
             for (BlockPos pos : coordinate) {
                 if (mc.theWorld.getBlockState(pos).getBlock() instanceof BlockStone) {
                     replaceglass(pos, coordinate);
@@ -78,5 +79,4 @@ public class PillarsHelper extends Module {
         }
         return -1; // 如果找不到，返回 -1
     }
-
 }

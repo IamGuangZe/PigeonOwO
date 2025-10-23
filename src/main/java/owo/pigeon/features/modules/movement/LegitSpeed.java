@@ -29,7 +29,7 @@ public class LegitSpeed extends Module {
 
     @Override
     public void onDisable() {
-        if (!Keyboard.isKeyDown(mc.gameSettings.keyBindJump.getKeyCode())){
+        if (!Keyboard.isKeyDown(mc.gameSettings.keyBindJump.getKeyCode())) {
             KeyBinding.setKeyBindState(mc.gameSettings.keyBindJump.getKeyCode(), false);
         }
     }

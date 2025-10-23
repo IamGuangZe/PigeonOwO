@@ -12,7 +12,7 @@ import owo.pigeon.utils.WorldUtil;
 public class BlockBreaking extends Module {
 
     public BlockBreaking() {
-        super("BlockBreaking", Category.CLIENT,-1);
+        super("BlockBreaking", Category.CLIENT, -1);
     }
 
     @Override

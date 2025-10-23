@@ -14,7 +14,7 @@ public class Rejoin {
     }
 
     @SubscribeEvent
-    public void onWorldLoad(WorldEvent.Load event){
+    public void onWorldLoad(WorldEvent.Load event) {
         if (isRejoin) {
             mc.thePlayer.sendChatMessage("/rej");
             isRejoin = false;

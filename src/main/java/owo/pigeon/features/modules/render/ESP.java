@@ -11,16 +11,16 @@ import java.awt.*;
 
 public class ESP extends Module {
     public ESP() {
-        super("ESP", Category.RENDER,-1);
+        super("ESP", Category.RENDER, -1);
     }
 
     public enum modeEnum {
         BOX, OUTLINE, MINECRAFT
     }
 
-    public ModeSetting<modeEnum> mode = setting("mode",modeEnum.OUTLINE,"",v->true);
+    public ModeSetting<modeEnum> mode = setting("mode", modeEnum.OUTLINE, v -> true);
 
-    public Color color = new Color(255,255,255,95);
+    public Color color = new Color(255, 255, 255, 95);
 
     @Override
     public void onRender3D() {
@@ -32,11 +32,11 @@ public class ESP extends Module {
                         break;
 
                     case OUTLINE:
-                        RenderUtil.drawSmoothOutlinedBoxEsp(entity,color);
+                        RenderUtil.drawSmoothOutlinedBoxEsp(entity, color);
                         break;
 
                     case MINECRAFT:
-                        RenderUtil.drawEntityBox(entity,color,2.0F,false);
+                        RenderUtil.drawEntityBox(entity, color, 2.0F, false);
                         break;
                 }
             }

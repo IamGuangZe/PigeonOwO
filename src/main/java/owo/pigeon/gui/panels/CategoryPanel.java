@@ -39,7 +39,7 @@ public class CategoryPanel extends AbstractDisplableItem {
             y = my + mouseY;
         }
 
-        Gui.drawRect(x,y,x + width,y + height, new Color(0, 0, 0, 255).getRGB());
+        Gui.drawRect(x, y, x + width, y + height, new Color(0, 0, 0, 255).getRGB());
 
         switch (((ClickGui) ModuleUtil.getModule(ClickGui.class)).style.getValue()) {
             case OLD:
@@ -71,7 +71,7 @@ public class CategoryPanel extends AbstractDisplableItem {
 
         modulePanels.clear();
         if (displaymodule) {
-            ArrayList<Module> modules = new ArrayList<>( ModuleUtil.getAllModulesFromCategory(category) );
+            ArrayList<Module> modules = new ArrayList<>(ModuleUtil.getAllModulesFromCategory(category));
             int startY = y + height;
             for (Module m : modules) {
                 modulePanels.add(new ModulePanel(m, x, startY, width, height));
@@ -103,7 +103,7 @@ public class CategoryPanel extends AbstractDisplableItem {
     }
 
     public void mouseReleased(int mouseX, int mouseY, int state) {
-        if (state == 0){
+        if (state == 0) {
             movepanel = false;
         }
     }
@@ -115,5 +115,4 @@ public class CategoryPanel extends AbstractDisplableItem {
     public void setDisplayModule(boolean value) {
         displaymodule = value;
     }
-
 }

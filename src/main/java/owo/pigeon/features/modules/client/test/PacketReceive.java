@@ -16,7 +16,7 @@ public class PacketReceive extends Module {
     }
 
     @SubscribeEvent
-    public void onAddToSendQueue (addToSendQueueEvent event) {
+    public void onAddToSendQueue(addToSendQueueEvent event) {
         if (!(event.getPacket() instanceof C03PacketPlayer)) {
             ChatUtil.sendMessage("");
             ChatUtil.sendMessage("Send Packet : " + event.getPacket());
@@ -24,7 +24,7 @@ public class PacketReceive extends Module {
     }
 
     @SubscribeEvent
-    public void onPacketReceive (PacketReceiveEvent event) {
+    public void onPacketReceive(PacketReceiveEvent event) {
         ChatUtil.sendMessage("");
         ChatUtil.sendMessage("Get Packet : " + event.getPacket());
     }
@@ -36,8 +36,8 @@ public class PacketReceive extends Module {
     }
 
     @SubscribeEvent
-    public void S08PacketPlayerPosLookPacketReceive (S08PacketPlayerPosLookEvent event) {
+    public void S08PacketPlayerPosLookPacketReceive(S08PacketPlayerPosLookEvent event) {
         ChatUtil.sendMessage("");
-        ChatUtil.sendMessage("S08PacketPlayerPosLook : " + event.getPosX() + "||" + event.getPosY() + "||" + event.getPosZ() + "||" +event.getYaw() + "||" + event.getPitch());
+        ChatUtil.sendMessage("S08PacketPlayerPosLook : " + event.getPosX() + "||" + event.getPosY() + "||" + event.getPosZ() + "||" + event.getYaw() + "||" + event.getPitch());
     }
 }

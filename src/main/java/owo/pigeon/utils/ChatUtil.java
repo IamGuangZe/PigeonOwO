@@ -26,12 +26,12 @@ public class ChatUtil {
     }
 
     // 发送带客户端前缀且不可上色的消息
-    public static void sendUncoloredMessage(String message){
+    public static void sendUncoloredMessage(String message) {
         sendRawMessage(OtherUtil.parseColor("&8[&3" + Pigeon.MOD_NAME + "&8]&r ") + message);
     }
 
     // 发送自定义前缀且可上色的消息
-    public static void sendCustomPrefixMessage(String prefix,String message) {
+    public static void sendCustomPrefixMessage(String prefix, String message) {
         sendRawMessage(OtherUtil.parseColor("&8[&3" + prefix + "&8]&r " + message));
     }
 

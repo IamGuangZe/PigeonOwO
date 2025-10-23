@@ -16,18 +16,20 @@ import java.util.Map;
 
 @Mixin(EntityLivingBase.class)
 public class MixinEntityLivingBase {
-    @Shadow private int jumpTicks;
+    @Shadow
+    private int jumpTicks;
 
-    @Shadow @Final private Map<Integer, PotionEffect> activePotionsMap;
+    @Shadow
+    @Final
+    private Map<Integer, PotionEffect> activePotionsMap;
 
     @Inject(method = "onLivingUpdate", at = @At("HEAD"))
     public void noJumpDelay(CallbackInfo ci) {
         if (ModuleUtil.isEnable(LegitSpeed.class) ||
-                (ModuleUtil.isEnable(DelayRemover.class) && ((DelayRemover)ModuleUtil.getModule(DelayRemover.class)).noJumpDelay.getValue())){
+                (ModuleUtil.isEnable(DelayRemover.class) && ((DelayRemover) ModuleUtil.getModule(DelayRemover.class)).noJumpDelay.getValue())) {
             jumpTicks = 0;
         }
     }
-
     /*@Inject(method = "isPotionActive(Lnet/minecraft/potion/Potion;)Z", at = @At("HEAD"), cancellable = true)
     public void noblindness (Potion p_isPotionActive_1_, CallbackInfoReturnable<Boolean> cir) {
         if (p_isPotionActive_1_ == Potion.blindness) {

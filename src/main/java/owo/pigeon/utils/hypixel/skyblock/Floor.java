@@ -26,6 +26,4 @@ public enum Floor {
     public String getFloorID() {
         return floorID;
     }
-
-
 }

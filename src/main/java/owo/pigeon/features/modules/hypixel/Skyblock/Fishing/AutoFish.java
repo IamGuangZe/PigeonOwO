@@ -33,16 +33,17 @@ public class AutoFish extends Module {
     public enum checkModeEnum {
         SPLASHSOUND, NOTESOUND, ARMORSTANDNAME
     }
+
     public enum fishModeEnum {
         PACKET, RIGHTCLICK
     }
 
-    public ModeSetting<checkModeEnum> checkMode = setting("check-mode", checkModeEnum.ARMORSTANDNAME,"Hook detection mode.", v->true);
-    public ModeSetting<fishModeEnum> FishMode = setting("fish-mode",fishModeEnum.PACKET,"", v->true);
-    public EnableSetting reThrow = setting("rethrow",true,"Rethrow hook when reel.",v->true);
-    public IntSetting reThrowTick = setting("rethrowtick",10,0,20,"Rethrow hook time.",v->true);
-    public EnableSetting rotate = setting("autorotate", true,"", v->true);
-    public EnableSetting move = setting("automove", true,"", v->true);
+    public ModeSetting<checkModeEnum> checkMode = setting("check-mode", checkModeEnum.ARMORSTANDNAME, v -> true);
+    public ModeSetting<fishModeEnum> FishMode = setting("fish-mode", fishModeEnum.PACKET, v -> true);
+    public EnableSetting reThrow = setting("re-throw", true, v -> true);
+    public IntSetting reThrowTick = setting("re-throw-tick", 10, 0, 20, v -> true);
+    public EnableSetting rotate = setting("rotate", true, v -> true);
+    public EnableSetting move = setting("move", true, v -> true);
 
     private int tick = 999;
 
@@ -61,7 +62,7 @@ public class AutoFish extends Module {
 
     @Override
     public void onDisable() {
-        if (!Keyboard.isKeyDown(mc.gameSettings.keyBindSneak.getKeyCode())){
+        if (!Keyboard.isKeyDown(mc.gameSettings.keyBindSneak.getKeyCode())) {
             KeyBinding.setKeyBindState(mc.gameSettings.keyBindSneak.getKeyCode(), false);
         }
     }
@@ -113,7 +114,7 @@ public class AutoFish extends Module {
             }
         }
 
-        tick ++;
+        tick++;
         if (isThrow) {
             throwTick++;
         } else {
@@ -190,9 +191,9 @@ public class AutoFish extends Module {
         }
     }
 
-    private void useRod () {
+    private void useRod() {
         if (FishMode.getValue() == fishModeEnum.PACKET) {
-            mc.playerController.sendUseItem(mc.thePlayer,mc.theWorld,mc.thePlayer.getHeldItem());
+            mc.playerController.sendUseItem(mc.thePlayer, mc.theWorld, mc.thePlayer.getHeldItem());
         } else if (FishMode.getValue() == fishModeEnum.RIGHTCLICK) {
             PlayerUtil.rightClick();
         }
@@ -209,7 +210,7 @@ public class AutoFish extends Module {
         return false;
     }
 
-    private boolean isHeldRod () {
+    private boolean isHeldRod() {
         if (mc.thePlayer.getHeldItem() == null) {
             return false;
         }

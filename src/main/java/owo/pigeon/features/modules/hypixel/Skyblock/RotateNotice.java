@@ -18,14 +18,14 @@ public class RotateNotice extends Module {
         super("RotateNotice", Category.HYPIXEL, -1);
     }
 
-    public EnableSetting disableMacro = setting("autodisable",true,"",v->true);
+    public EnableSetting disableMacro = setting("auto-disable", true, v -> true);
 
     private int tick = 0;
-    private float yaw,pitch;
+    private float yaw, pitch;
     private boolean isRotate = false;
 
     @SubscribeEvent
-    public void S08PacketPlayerPosLookPacketReceive (S08PacketPlayerPosLookEvent event) {
+    public void S08PacketPlayerPosLookPacketReceive(S08PacketPlayerPosLookEvent event) {
         if (isNotNull()) {
             if (event.getPacketPhase() == S08PacketPlayerPosLookEvent.Phase.START) {
                 yaw = mc.thePlayer.rotationYaw;
@@ -55,7 +55,7 @@ public class RotateNotice extends Module {
                     pitch = 1F;
                     repeat = false;
                     repeatDelay = 0;
-                    attenuationType =AttenuationType.NONE;
+                    attenuationType = AttenuationType.NONE;
                 }});
             } else {
                 tick = 0;

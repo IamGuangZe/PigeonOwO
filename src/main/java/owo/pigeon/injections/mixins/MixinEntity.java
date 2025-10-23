@@ -12,7 +12,7 @@ import owo.pigeon.utils.ModuleUtil;
 public class MixinEntity {
     @ModifyVariable(method = "moveEntity", at = @At("STORE"), ordinal = 0)
     private boolean modifyFlag(boolean originalFlag) {
-        Entity self = (Entity)(Object)this; // 强制转换为目标类
+        Entity self = (Entity) (Object) this; // 强制转换为目标类
         return self.onGround
                 && (ModuleUtil.isEnable(SafeWalk.class) || self.isSneaking())
                 && self instanceof EntityPlayer;

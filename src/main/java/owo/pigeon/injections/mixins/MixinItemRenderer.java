@@ -10,9 +10,9 @@ import owo.pigeon.utils.ModuleUtil;
 
 @Mixin(ItemRenderer.class)
 public class MixinItemRenderer {
-    @Inject(method = "renderFireInFirstPerson" , at = @At("HEAD") , cancellable = true)
+    @Inject(method = "renderFireInFirstPerson", at = @At("HEAD"), cancellable = true)
     public void noFireInFirstPerson(float p_renderFireInFirstPerson_1_, CallbackInfo ci) {
-        if (ModuleUtil.isEnable(Camera.class) && ((Camera)ModuleUtil.getModule(Camera.class)).noFire.getValue()) {
+        if (ModuleUtil.isEnable(Camera.class) && ((Camera) ModuleUtil.getModule(Camera.class)).noFire.getValue()) {
             ci.cancel();
         }
     }

@@ -20,6 +20,7 @@ public class PlayerChatEvent extends Event {
 
     /**
      * Get the message being sent
+     *
      * @return The chat message as a string.
      */
     public String getMessage() {
@@ -28,6 +29,7 @@ public class PlayerChatEvent extends Event {
 
     /**
      * Set the message to send
+     *
      * @param message The chat message as a string.
      */
     public void setMessage(String message) {
@@ -36,6 +38,7 @@ public class PlayerChatEvent extends Event {
 
     /**
      * Get the player who is sending the message.
+     *
      * @return The player's instance.
      */
     public EntityPlayerSP getPlayer() {

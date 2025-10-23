@@ -20,7 +20,7 @@ public class DungeonBrush extends Module {
         super("[WIP]DungeonBrush", Category.HYPIXEL, -1);
     }
 
-    public BlockSetting block = setting("block", Blocks.stained_glass, "" ,v->false);
+    public BlockSetting block = setting("block", Blocks.stained_glass, v -> false);
 
     private boolean isFirstUse = true;
 
@@ -63,14 +63,14 @@ public class DungeonBrush extends Module {
     }
 
     public static void usageMessage() {
-        ChatUtil.sendCustomPrefixMessage("DungeonBrush","&b===Brush===");
-        ChatUtil.sendCustomPrefixMessage("DungeonBrush","&b.brush -> Toggle brush.");
-        ChatUtil.sendCustomPrefixMessage("DungeonBrush","&b.brush help -> Show this Message.");
-        ChatUtil.sendCustomPrefixMessage("DungeonBrush","&b.brush setblock <Block> -> Switch the created block.");
-        ChatUtil.sendCustomPrefixMessage("DungeonBrush","&b==How to use===");
-        ChatUtil.sendCustomPrefixMessage("DungeonBrush","&bHolding a stick");
-        ChatUtil.sendCustomPrefixMessage("DungeonBrush","&bLeft Click -> Remove block(set air)");
-        ChatUtil.sendCustomPrefixMessage("DungeonBrush","&bRight Click -> Create Block");
-        ChatUtil.sendCustomPrefixMessage("DungeonBrush","&bSneak + Right Click -> Replace Block");
+        ChatUtil.sendCustomPrefixMessage("DungeonBrush", "&b===Brush===");
+        ChatUtil.sendCustomPrefixMessage("DungeonBrush", "&b.brush -> Toggle brush.");
+        ChatUtil.sendCustomPrefixMessage("DungeonBrush", "&b.brush help -> Show this Message.");
+        ChatUtil.sendCustomPrefixMessage("DungeonBrush", "&b.brush setblock <Block> -> Switch the created block.");
+        ChatUtil.sendCustomPrefixMessage("DungeonBrush", "&b==How to use===");
+        ChatUtil.sendCustomPrefixMessage("DungeonBrush", "&bHolding a stick");
+        ChatUtil.sendCustomPrefixMessage("DungeonBrush", "&bLeft Click -> Remove block(set air)");
+        ChatUtil.sendCustomPrefixMessage("DungeonBrush", "&bRight Click -> Create Block");
+        ChatUtil.sendCustomPrefixMessage("DungeonBrush", "&bSneak + Right Click -> Replace Block");
     }
 }

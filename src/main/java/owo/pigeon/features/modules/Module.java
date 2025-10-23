@@ -20,15 +20,32 @@ public class Module extends SettingDesigner {
         Key = key;
     }
 
-    public void onTick() { }
-    public void onEnable() { }
-    public void onDisable() { }
-    public void onRender2D() { }
-    public void onRender3D() { }
-    public void onWorldLoad() { }
-    public void onLeftClick() { }
-    public void onRightClick() { }
-    public void onRightClickEnd() { }
+    public void onTick() {
+    }
+
+    public void onEnable() {
+    }
+
+    public void onDisable() {
+    }
+
+    public void onRender2D() {
+    }
+
+    public void onRender3D() {
+    }
+
+    public void onWorldLoad() {
+    }
+
+    public void onLeftClick() {
+    }
+
+    public void onRightClick() {
+    }
+
+    public void onRightClickEnd() {
+    }
 
     public boolean isEnable() {
         return Enable;
@@ -49,9 +66,9 @@ public class Module extends SettingDesigner {
     }
 
     public void toggle() {
-        if (Enable){
+        if (Enable) {
             disable();
-        }else {
+        } else {
             enable();
         }
     }
@@ -59,7 +76,4 @@ public class Module extends SettingDesigner {
     public void setKey(int key) {
         this.Key = key;
     }
-
-
-
 }

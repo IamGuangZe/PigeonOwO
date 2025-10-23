@@ -22,14 +22,14 @@ public class GhostBlock extends Module {
         super("GhostBlock", Category.WORLD, -1);
     }
 
-    public EnableSetting onlyInSkyblock = setting("onlyinskyblock", true, "Only create in Skyblock.", v -> true);
-    public EnableSetting onlyinDungeon = setting("onlyindungeon", true, "Only create in Dungeon.", v -> true);
+    public EnableSetting onlySkyblock = setting("only-skyblock", true, v -> true);
+    public EnableSetting onlyDungeon = setting("only-dungeon", true, v -> true);
 
-    public EnableSetting createWithPickaxe = setting("createwithpickaxe", true, "Right click to create while holding a pickaxe.", v -> true);
-    public EnableSetting onlyHoldPickaxe = setting("onlyholdpickaxe", false, "", v -> true);
+    public EnableSetting createWithPickaxe = setting("create-with-pickaxe", true, v -> true);
+    public EnableSetting onlyHoldPickaxe = setting("only-hold-pickaxe", false, v -> true);
 
-    public EnableSetting createWithKeyDown = setting("createwithkeydown", true, "", v -> true);
-    public KeySetting key = setting("create-key",Keyboard.KEY_G,"Create GhostBlock when this key down",v->true);
+    public EnableSetting createWithKeyDown = setting("create-with-keydown", true, v -> true);
+    public KeySetting key = setting("create-key", Keyboard.KEY_G, v -> true);
 
     private final Set<Block> blackListBlock = Sets.newHashSet(
             Blocks.stone_button,
@@ -67,7 +67,7 @@ public class GhostBlock extends Module {
             isPickaxe = false;
         }
         boolean condition = (createWithPickaxe.getValue() && Mouse.isButtonDown(1) && isPickaxe) || (createWithKeyDown.getValue() && Keyboard.isKeyDown(key.getValue()));
-        boolean isInSkyblock = onlyInSkyblock.getValue() && HypixelUtil.isInGame(HypixelGames.SKYBLOCK);
+        boolean isInSkyblock = onlySkyblock.getValue() && HypixelUtil.isInGame(HypixelGames.SKYBLOCK);
         return (!onlyHoldPickaxe.getValue() || isPickaxe) && condition;
     }
 }

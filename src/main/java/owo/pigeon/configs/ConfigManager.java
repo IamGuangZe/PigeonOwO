@@ -40,7 +40,9 @@ public class ConfigManager {
         SettingConfig.load("default");
 
         Runtime.getRuntime().addShutdownHook(new Thread(ClickguiConfig::save));
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {SettingConfig.save("default");}));
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            SettingConfig.save("default");
+        }));
     }
 }
     /*public void init() {

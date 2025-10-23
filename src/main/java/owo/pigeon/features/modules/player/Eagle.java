@@ -11,10 +11,10 @@ import owo.pigeon.utils.WorldUtil;
 
 public class Eagle extends Module {
     public Eagle() {
-        super("Eagle", Category.PLAYER,-1);
+        super("Eagle", Category.PLAYER, -1);
     }
 
-    public EnableSetting onlyBackward = setting("onlybackward",true,"Only trigger when moving backward.",v->true);
+    public EnableSetting onlyBackward = setting("only-backward", true, v -> true);
 
     @Override
     public void onTick() {
@@ -35,7 +35,7 @@ public class Eagle extends Module {
 
     @Override
     public void onDisable() {
-        if (!Keyboard.isKeyDown(mc.gameSettings.keyBindSneak.getKeyCode())){
+        if (!Keyboard.isKeyDown(mc.gameSettings.keyBindSneak.getKeyCode())) {
             KeyBinding.setKeyBindState(mc.gameSettings.keyBindSneak.getKeyCode(), false);
         }
     }

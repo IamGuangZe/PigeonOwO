@@ -15,7 +15,7 @@ public class ClickGui extends Module {
         OLD, NEW
     }
 
-    public ModeSetting<styleEnum> style = setting("style", styleEnum.NEW, "", v -> true);
+    public ModeSetting<styleEnum> style = setting("style", styleEnum.NEW, v -> true);
 
     @Override
     public void onEnable() {

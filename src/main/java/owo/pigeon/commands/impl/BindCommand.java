@@ -44,10 +44,10 @@ public class BindCommand extends Command {
             int key = Keyboard.getKeyIndex(args[1].toUpperCase());
 
             if (key == 0) {
-                ModuleUtil.moduleSetKey(input,-1);
+                ModuleUtil.moduleSetKey(input, -1);
                 ChatUtil.sendMessage("&a" + modulename + " has been unbound!");
             } else {
-                ModuleUtil.moduleSetKey(input,key);
+                ModuleUtil.moduleSetKey(input, key);
                 ChatUtil.sendMessage("&a" + modulename + " has been bound to " + args[1].toUpperCase() + " (keycode : " + key + ") !");
             }
 

@@ -22,11 +22,11 @@ public class ChestStealer extends Module {
         super("ChestStealer", Category.PLAYER, -1);
     }
 
-    public IntSetting startDelay = setting("startdelay", 1, 0, 20, "", v -> true);
-    public IntSetting minDelay = setting("mindelay", 2, 0, 20, "", v -> true);
-    public IntSetting maxDelay = setting("maxdelay", 3, 0, 20, "", v -> true);
-    public EnableSetting checkTitle = setting("checktitle", true, "", v -> true);
-    public EnableSetting smartPick = setting("smartpick", true, "", v -> true);
+    public IntSetting startDelay = setting("start-delay", 1, 0, 20, v -> true);
+    public IntSetting minDelay = setting("min-delay", 2, 0, 20, v -> true);
+    public IntSetting maxDelay = setting("max-delay", 3, 0, 20, v -> true);
+    public EnableSetting checkTitle = setting("check-title", true, v -> true);
+    public EnableSetting smartPick = setting("smart-pick", true, v -> true);
 
     private int s_delay = 0;
     private int p_delay = 0;

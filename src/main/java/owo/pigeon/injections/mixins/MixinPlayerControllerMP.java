@@ -14,7 +14,7 @@ import owo.pigeon.events.playerevent.WindowClickEvent;
 public class MixinPlayerControllerMP {
 
     @Inject(method = "windowClick", at = @At("HEAD"), cancellable = true)
-    public void windowClick (int windowId, int slotId, int mouseButtonClicked, int mode, EntityPlayer playerIn, CallbackInfoReturnable<ItemStack> cir) {
+    public void windowClick(int windowId, int slotId, int mouseButtonClicked, int mode, EntityPlayer playerIn, CallbackInfoReturnable<ItemStack> cir) {
         MinecraftForge.EVENT_BUS.post(new WindowClickEvent());
     }
 }

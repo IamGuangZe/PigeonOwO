@@ -17,6 +17,7 @@ public class EntityInformation extends Module {
     }
 
     private Entity temp;
+
     @Override
     public void onTick() {
         if (WorldUtil.isNotNull()) {

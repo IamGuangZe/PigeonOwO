@@ -50,7 +50,7 @@ public class CommandManager {
             mc.ingameGUI.getChatGUI().addToSentMessages(event.message);
             String command = event.message.substring(1);
             if (command.isEmpty()) {
-                CommandUtil.sendCommandError(CommandUtil.errorReason.UnknownOrIncompleteCommand,"","");
+                CommandUtil.sendCommandError(CommandUtil.errorReason.UnknownOrIncompleteCommand, "", "");
                 return;
             }
             String[] parts = command.split(" ");
@@ -63,7 +63,7 @@ public class CommandManager {
                 }
             }
             if (!executed) {
-                CommandUtil.sendCommandError(CommandUtil.errorReason.UnknownOrIncompleteCommand,"",parts[0]);
+                CommandUtil.sendCommandError(CommandUtil.errorReason.UnknownOrIncompleteCommand, "", parts[0]);
             }
         }
     }

@@ -21,20 +21,20 @@ public class MixinEntityRenderer {
 
     @Inject(method = "hurtCameraEffect", at = @At("HEAD"), cancellable = true)
     public void noHurtCam(float effect, CallbackInfo ci) {
-        if (ModuleUtil.isEnable(Camera.class) && ((Camera)ModuleUtil.getModule(Camera.class)).noHurtCam.getValue()) {
+        if (ModuleUtil.isEnable(Camera.class) && ((Camera) ModuleUtil.getModule(Camera.class)).noHurtCam.getValue()) {
             ci.cancel();
         }
     }
 
     @ModifyConstant(method = "orientCamera", constant = @Constant(intValue = 8))
     public int cameraClip(int constant) {
-        return (ModuleUtil.isEnable(Camera.class) && ((Camera)ModuleUtil.getModule(Camera.class)).camNoClip.getValue()) ? 0: constant;
+        return (ModuleUtil.isEnable(Camera.class) && ((Camera) ModuleUtil.getModule(Camera.class)).camNoClip.getValue()) ? 0 : constant;
     }
 
     @Redirect(method = "updateFogColor", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/EntityLivingBase;isPotionActive(Lnet/minecraft/potion/Potion;)Z"))
     private boolean noBlindness_UFC(EntityLivingBase entityLivingBase, Potion potion) {
         if (potion == Potion.blindness) {
-            if (ModuleUtil.isEnable(Camera.class) && ((Camera)ModuleUtil.getModule(Camera.class)).noBlindness.getValue()) {
+            if (ModuleUtil.isEnable(Camera.class) && ((Camera) ModuleUtil.getModule(Camera.class)).noBlindness.getValue()) {
                 return false;
             }
         }
@@ -44,7 +44,7 @@ public class MixinEntityRenderer {
     @Redirect(method = "setupFog", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/EntityLivingBase;isPotionActive(Lnet/minecraft/potion/Potion;)Z"))
     private boolean noBlindness_SF(EntityLivingBase entityLivingBase, Potion potion) {
         if (potion == Potion.blindness) {
-            if (ModuleUtil.isEnable(Camera.class) && ((Camera)ModuleUtil.getModule(Camera.class)).noBlindness.getValue()) {
+            if (ModuleUtil.isEnable(Camera.class) && ((Camera) ModuleUtil.getModule(Camera.class)).noBlindness.getValue()) {
                 return false;
             }
         }

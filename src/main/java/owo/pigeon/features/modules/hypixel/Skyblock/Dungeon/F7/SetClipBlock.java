@@ -15,6 +15,7 @@ public class SetClipBlock extends Module {
     public SetClipBlock() {
         super("SetClipBlock", Category.HYPIXEL, -1);
     }
+
     private final Block air = Blocks.air;
     private final Block rail = Blocks.rail;
     private final Block glass = Blocks.glass;

@@ -20,10 +20,13 @@ import owo.pigeon.utils.ModuleUtil;
 @Mixin(Minecraft.class)
 public class MixinMinecraft {
 
-    @Shadow private int leftClickCounter;
-    @Shadow private int rightClickDelayTimer;
+    @Shadow
+    private int leftClickCounter;
+    @Shadow
+    private int rightClickDelayTimer;
 
-    @Shadow public GameSettings gameSettings;
+    @Shadow
+    public GameSettings gameSettings;
 
     @Inject(method = "clickMouse", at = @At("HEAD"), cancellable = true)
     private void clickMouse(CallbackInfo ci) {
@@ -34,7 +37,7 @@ public class MixinMinecraft {
         }
 
         if ((ModuleUtil.isEnable(AutoClicker.class) && ((AutoClicker) ModuleUtil.getModule(AutoClicker.class)).leftClick.getValue()) ||
-                (ModuleUtil.isEnable(DelayRemover.class) && ((DelayRemover)ModuleUtil.getModule(DelayRemover.class)).noClickDelay.getValue())) {
+                (ModuleUtil.isEnable(DelayRemover.class) && ((DelayRemover) ModuleUtil.getModule(DelayRemover.class)).noClickDelay.getValue())) {
             this.leftClickCounter = 0;
         }
     }
@@ -52,12 +55,12 @@ public class MixinMinecraft {
     @Inject(method = "rightClickMouse", at = @At("RETURN"))
     private void rightClickMousereturn(CallbackInfo ci) {
         MinecraftForge.EVENT_BUS.post(new RightClickEndEvent());
-        if (ModuleUtil.isEnable(DelayRemover.class) && ((DelayRemover)ModuleUtil.getModule(DelayRemover.class)).noRightClickDelay.getValue()) {
+        if (ModuleUtil.isEnable(DelayRemover.class) && ((DelayRemover) ModuleUtil.getModule(DelayRemover.class)).noRightClickDelay.getValue()) {
             rightClickDelayTimer = 0;
         }
     }
 
-    @Inject(method = "sendClickBlockToController",at = @At("HEAD"), cancellable = true)
+    @Inject(method = "sendClickBlockToController", at = @At("HEAD"), cancellable = true)
     private void noswinghand(boolean leftClick, CallbackInfo ci) {
         if (ModuleUtil.isEnable(DungeonBrush.class)) {
             ci.cancel();

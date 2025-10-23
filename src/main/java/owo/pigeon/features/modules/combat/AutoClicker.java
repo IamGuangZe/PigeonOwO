@@ -20,11 +20,11 @@ public class AutoClicker extends Module {
     // 写个AutoClicker能写2天也是神人了 - 2024.11.22
     // 历经11个月才发现有一处拼写错误 - 2025.10.9
 
-    public IntSetting minCPS = setting("mincps",12,1,20,"",v -> true);
-    public IntSetting maxCPS = setting("maxcps",18,1,20,"",v -> true);
-    public EnableSetting leftClick = setting("leftclick",true,"Enable Left Click", v -> true);
-    public EnableSetting rightClick = setting("rightclick",true,"Enable Right Click", v -> true);
-    public EnableSetting onlySword = setting("onlysword",false,"",v->true);
+    public IntSetting minCPS = setting("min-cps", 12, 1, 20, v -> true);
+    public IntSetting maxCPS = setting("max-cps", 18, 1, 20, v -> true);
+    public EnableSetting leftClick = setting("left-click", true, v -> true);
+    public EnableSetting rightClick = setting("right-click", true, v -> true);
+    public EnableSetting onlySword = setting("only-sword", false, v -> true);
 
     private boolean firstLeftClick = true;
     private boolean firstRightClick = true;
@@ -34,12 +34,12 @@ public class AutoClicker extends Module {
     @Override
     public void onTick() {
 
-        long clickInterval = 1000 / intRandom(minCPS.getValue(),maxCPS.getValue()); // 每次点击间隔时间（毫秒）
+        long clickInterval = 1000 / intRandom(minCPS.getValue(), maxCPS.getValue()); // 每次点击间隔时间（毫秒）
         long currentTime = System.currentTimeMillis(); // 当前时间
 
         if (Mouse.isButtonDown(0) && leftClick.getValue()) {
             if (canClick() &&
-                !PlayerUtil.isBreakingBlock() &&
+                    !PlayerUtil.isBreakingBlock() &&
                     onlySwordCheck() &&
                     currentTime - lastLeftClickTime >= clickInterval
             ) {
@@ -65,7 +65,7 @@ public class AutoClicker extends Module {
                 }
                 lastRightClickTime = currentTime;
             }
-        }else {
+        } else {
             firstRightClick = true;
         }
     }
@@ -87,4 +87,3 @@ public class AutoClicker extends Module {
         return (itemStack.getItem() instanceof ItemSword);
     }
 }
-

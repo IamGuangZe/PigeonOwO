@@ -33,7 +33,7 @@ public class ModulePanel extends AbstractDisplableItem {
                 int color_old = module.isEnable() ?
                         new Color(20, 20, 20, 186).getRGB() :
                         new Color(50, 50, 50, 186).getRGB();
-                Gui.drawRect(x,y,x + width,y + height, color_old);
+                Gui.drawRect(x, y, x + width, y + height, color_old);
                 fontRenderer.drawStringWithShadow(
                         module.name,
                         (x + ((float) width / 2)) - ((float) fontRenderer.getStringWidth(module.name) / 2),

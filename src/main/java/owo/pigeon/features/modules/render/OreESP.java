@@ -24,8 +24,8 @@ public class OreESP extends Module {
 
     public enum modeenum {NORAML, UHC}
 
-    public ModeSetting<modeenum> mode = setting ("mode",modeenum.UHC,"", v->true);
-    public IntSetting range = setting("range", 16, 0, 64, "Display range (X/Z)", v -> true);
+    public ModeSetting<modeenum> mode = setting("mode", modeenum.UHC, v -> true);
+    public IntSetting range = setting("range", 16, 0, 64, v -> true);
 
     public Color coalColor = new Color(0, 0, 0);
     public Color ironColor = new Color(228, 163, 134);
@@ -44,7 +44,7 @@ public class OreESP extends Module {
     @Override
     public void onWorldLoad() {
         clearAll();
-        ChatUtil.sendCustomPrefixMessage(this.name,"World loaded, cleared ore cache.");
+        ChatUtil.sendCustomPrefixMessage(this.name, "World loaded, cleared ore cache.");
     }
 
     @SubscribeEvent
@@ -103,21 +103,45 @@ public class OreESP extends Module {
     }
 
     private void removeFromAll(BlockPos pos) {
-        synchronized (coal) { coal.remove(pos); }
-        synchronized (iron) { iron.remove(pos); }
-        synchronized (gold) { gold.remove(pos); }
-        synchronized (diamond) { diamond.remove(pos); }
-        synchronized (redstone) { redstone.remove(pos); }
-        synchronized (lapis) { lapis.remove(pos); }
+        synchronized (coal) {
+            coal.remove(pos);
+        }
+        synchronized (iron) {
+            iron.remove(pos);
+        }
+        synchronized (gold) {
+            gold.remove(pos);
+        }
+        synchronized (diamond) {
+            diamond.remove(pos);
+        }
+        synchronized (redstone) {
+            redstone.remove(pos);
+        }
+        synchronized (lapis) {
+            lapis.remove(pos);
+        }
     }
 
     private void clearAll() {
-        synchronized (coal) { coal.clear(); }
-        synchronized (iron) { iron.clear(); }
-        synchronized (gold) { gold.clear(); }
-        synchronized (diamond) { diamond.clear(); }
-        synchronized (redstone) { redstone.clear(); }
-        synchronized (lapis) { lapis.clear(); }
+        synchronized (coal) {
+            coal.clear();
+        }
+        synchronized (iron) {
+            iron.clear();
+        }
+        synchronized (gold) {
+            gold.clear();
+        }
+        synchronized (diamond) {
+            diamond.clear();
+        }
+        synchronized (redstone) {
+            redstone.clear();
+        }
+        synchronized (lapis) {
+            lapis.clear();
+        }
     }
 
     @Override
@@ -127,12 +151,26 @@ public class OreESP extends Module {
         BlockPos playerPos = mc.thePlayer.getPosition();
         int r = range.getValue();
 
-        synchronized (coal) { for (BlockPos pos : coal) if (isInRange(playerPos, pos, r)) RenderUtil.drawOutlinedBoxEsp(pos, coalColor); }
-        synchronized (iron) { for (BlockPos pos : iron) if (isInRange(playerPos, pos, r)) RenderUtil.drawOutlinedBoxEsp(pos, ironColor); }
-        synchronized (gold) { for (BlockPos pos : gold) if (isInRange(playerPos, pos, r)) RenderUtil.drawOutlinedBoxEsp(pos, goldColor); }
-        synchronized (diamond) { for (BlockPos pos : diamond) if (isInRange(playerPos, pos, r)) RenderUtil.drawOutlinedBoxEsp(pos, diamondColor); }
-        synchronized (redstone) { for (BlockPos pos : redstone) if (isInRange(playerPos, pos, r)) RenderUtil.drawOutlinedBoxEsp(pos, redstoneColor); }
-        synchronized (lapis) { for (BlockPos pos : lapis) if (isInRange(playerPos, pos, r)) RenderUtil.drawOutlinedBoxEsp(pos, lapisColor); }
+        synchronized (coal) {
+            for (BlockPos pos : coal) if (isInRange(playerPos, pos, r)) RenderUtil.drawOutlinedBoxEsp(pos, coalColor);
+        }
+        synchronized (iron) {
+            for (BlockPos pos : iron) if (isInRange(playerPos, pos, r)) RenderUtil.drawOutlinedBoxEsp(pos, ironColor);
+        }
+        synchronized (gold) {
+            for (BlockPos pos : gold) if (isInRange(playerPos, pos, r)) RenderUtil.drawOutlinedBoxEsp(pos, goldColor);
+        }
+        synchronized (diamond) {
+            for (BlockPos pos : diamond)
+                if (isInRange(playerPos, pos, r)) RenderUtil.drawOutlinedBoxEsp(pos, diamondColor);
+        }
+        synchronized (redstone) {
+            for (BlockPos pos : redstone)
+                if (isInRange(playerPos, pos, r)) RenderUtil.drawOutlinedBoxEsp(pos, redstoneColor);
+        }
+        synchronized (lapis) {
+            for (BlockPos pos : lapis) if (isInRange(playerPos, pos, r)) RenderUtil.drawOutlinedBoxEsp(pos, lapisColor);
+        }
     }
 
     // 判断XZ平面是否在范围内

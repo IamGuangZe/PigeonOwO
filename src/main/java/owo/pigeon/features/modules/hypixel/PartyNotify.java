@@ -25,7 +25,7 @@ public class PartyNotify extends Module {
         CHAT, ENTITYLIST;
     }
 
-    public ModeSetting<detectionModeEnum> detectionMode = setting("detection-mode", detectionModeEnum.CHAT, "", v -> true);
+    public ModeSetting<detectionModeEnum> detectionMode = setting("detection-mode", detectionModeEnum.CHAT, v -> true);
 
     private Set<String> previousPlayers = new HashSet<>();
     private Set<String> newPlayersOnTick = new HashSet<>();
@@ -96,4 +96,3 @@ public class PartyNotify extends Module {
         newPlayersOnTick.clear();
     }
 }
-

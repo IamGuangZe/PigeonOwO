@@ -23,7 +23,7 @@ public class LightningTracker extends Module {
                 double z = (double) packet.func_149049_f() / 32.0;
                 double distance = mc.thePlayer.getDistance(x, y, z);
 
-                ChatUtil.sendCustomPrefixMessage(this.name,"&r&7X: &6&l" + (int)x + " &r&7Y: &6&l" + (int)y + " &r&7Z: &6&l" + (int)z + " &r&7Distance: &6&l" + (int)distance);
+                ChatUtil.sendCustomPrefixMessage(this.name, "&r&7X: &6&l" + (int) x + " &r&7Y: &6&l" + (int) y + " &r&7Z: &6&l" + (int) z + " &r&7Distance: &6&l" + (int) distance);
             }
         }
     }

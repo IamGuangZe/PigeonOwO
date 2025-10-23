@@ -62,7 +62,7 @@ public class SkyblockUtil {
         for (String s : WorldUtil.getSidebarLines()) {
             String f = OtherUtil.removeColor(s);
             // ⏣ The Catac.*ombs \\((.*)\\)
-            String floorName = OtherUtil.regexGetPart(" ⏣ The Catacombs \\((.*)\\)",f,1);
+            String floorName = OtherUtil.regexGetPart(" ⏣ The Catacombs \\((.*)\\)", f, 1);
             if (floorName != null) {
                 return Floor.valueOf(floorName);
             }
@@ -72,15 +72,31 @@ public class SkyblockUtil {
 
     public static int getFloorNumber(Floor floor) {
         switch (floor) {
-            case E:return 0;
-            case F1: case M1:return 1;
-            case F2: case M2:return 2;
-            case F3: case M3:return 3;
-            case F4: case M4:return 4;
-            case F5: case M5:return 5;
-            case F6: case M6:return 6;
-            case F7: case M7:return 7;
-            default: return -1;
+            case E:
+                return 0;
+            case F1:
+            case M1:
+                return 1;
+            case F2:
+            case M2:
+                return 2;
+            case F3:
+            case M3:
+                return 3;
+            case F4:
+            case M4:
+                return 4;
+            case F5:
+            case M5:
+                return 5;
+            case F6:
+            case M6:
+                return 6;
+            case F7:
+            case M7:
+                return 7;
+            default:
+                return -1;
         }
     }
 
@@ -124,6 +140,7 @@ public class SkyblockUtil {
 
         return false;
     }
+
     public static boolean isInBoss(int floor) {
 
         double posX = mc.thePlayer.posX;
@@ -144,7 +161,7 @@ public class SkyblockUtil {
 
     // Crimson
     public static boolean isInDojo() {
-        if (isIsland(Island.CrimsonIsle)){
+        if (isIsland(Island.CrimsonIsle)) {
             double posX = mc.thePlayer.posX;
             double posY = mc.thePlayer.posY;
             double posZ = mc.thePlayer.posZ;
@@ -152,17 +169,19 @@ public class SkyblockUtil {
         }
         return false;
     }
+
     public static Dojo getDojo() {
         for (String s : WorldUtil.getSidebarLines()) {
             String f = OtherUtil.removeColor(s);
             //Challenge: .*
-            String dojoName = OtherUtil.regexGetPart("Challenge: (.*)",f,1);
+            String dojoName = OtherUtil.regexGetPart("Challenge: (.*)", f, 1);
             if (dojoName != null) {
                 return Dojo.valueOf(dojoName);
             }
         }
         return null;
     }
+
     public static boolean isDojo(Dojo dojo) {
         return getDojo() == dojo;
     }

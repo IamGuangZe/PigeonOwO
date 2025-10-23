@@ -22,16 +22,16 @@ import java.util.Objects;
 
 public class GTBHelper extends Module {
     public GTBHelper() {
-        super("GTBHelper", Category.HYPIXEL,-1);
+        super("GTBHelper", Category.HYPIXEL, -1);
 
         for (String word : HypixelData.BTGLIST) {
             preprocessedList.add(new WordData(word));
         }
     }
 
-    public EnableSetting autoSkip = setting("autoskip",false,"Automatically skip while you are building.",v->true);
-    public EnableSetting autoAnswer = setting("autoanswer",false,"Automatically respond only when there is just one remaining result.",v->true);
-    public EnableSetting secondAnswer = setting("secondanswer",true,"Only automatically respond after others have finished guessing.",v->true);
+    public EnableSetting autoSkip = setting("auto-skip", false, v -> true);
+    public EnableSetting autoAnswer = setting("auto-answer", false, v -> true);
+    public EnableSetting secondAnswer = setting("second-answer", true, v -> true);
 
     private String theme = "&mUnknown";
     private boolean clicked = false;
@@ -95,7 +95,7 @@ public class GTBHelper extends Module {
 
                 String[] guesses = guess();
                 String output = String.join("&r, &6", guesses);
-                ChatUtil.sendCustomPrefixMessage(this.name,"&aGuess (" + guesses.length + "): &6" + output);
+                ChatUtil.sendCustomPrefixMessage(this.name, "&aGuess (" + guesses.length + "): &6" + output);
 
                 if (autoAnswer.getValue() && guesses.length == 1 && !guesses[0].contains("Not Found")) {
                     mc.thePlayer.sendChatMessage(guesses[0]);

@@ -38,9 +38,9 @@ public class FillCommand extends Command {
         Double startPosX = WorldUtil.parseCoordinate(args[0], mc.thePlayer.posX);
         Double startPosY = WorldUtil.parseCoordinate(args[1], mc.thePlayer.posY);
         Double startPosZ = WorldUtil.parseCoordinate(args[2], mc.thePlayer.posZ);
-        Double endPosX   = WorldUtil.parseCoordinate(args[3], mc.thePlayer.posX);
-        Double endPosY   = WorldUtil.parseCoordinate(args[4], mc.thePlayer.posY);
-        Double endPosZ   = WorldUtil.parseCoordinate(args[5], mc.thePlayer.posZ);
+        Double endPosX = WorldUtil.parseCoordinate(args[3], mc.thePlayer.posX);
+        Double endPosY = WorldUtil.parseCoordinate(args[4], mc.thePlayer.posY);
+        Double endPosZ = WorldUtil.parseCoordinate(args[5], mc.thePlayer.posZ);
 
         if (startPosX == null) {
             CommandUtil.sendCommandError(CommandUtil.errorReason.ExpectedInteger,
@@ -94,7 +94,7 @@ public class FillCommand extends Command {
         BlockPos startPos = new BlockPos((int) Math.floor(startPosX), (int) Math.floor(startPosY), (int) Math.floor(startPosZ));
         BlockPos endPos = new BlockPos((int) Math.floor(endPosX), (int) Math.floor(endPosY), (int) Math.floor(endPosZ));
 
-        WorldUtil.fillBlock(startPos,endPos,block);
+        WorldUtil.fillBlock(startPos, endPos, block);
     }
 
     @Override

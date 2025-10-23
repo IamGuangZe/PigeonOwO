@@ -88,14 +88,14 @@ public class GetCommand extends Command {
             case "tool":
             case "t":
                 ItemStack tool = PlayerUtil.getBestToolFromHotbar(mc.theWorld.getBlockState(mc.objectMouseOver.getBlockPos()).getBlock());
-                ChatUtil.sendMessage("BestToolAt : " + PlayerUtil.getSlotfromItemStackEx(tool,true));
+                ChatUtil.sendMessage("BestToolAt : " + PlayerUtil.getSlotfromItemStackEx(tool, true));
 
                 break;
 
             case "weapon":
             case "w":
                 ItemStack weapon = PlayerUtil.getBestWeapon();
-                ChatUtil.sendMessage("BestWeaponAt : " + PlayerUtil.getSlotfromItemStackEx(weapon,false));
+                ChatUtil.sendMessage("BestWeaponAt : " + PlayerUtil.getSlotfromItemStackEx(weapon, false));
 
                 break;
 
@@ -106,10 +106,10 @@ public class GetCommand extends Command {
                 ItemStack Leggings = PlayerUtil.getBestLeggings();
                 ItemStack Boots = PlayerUtil.getBestBoots();
                 ChatUtil.sendMessage("BestArmorAT : " +
-                        PlayerUtil.getSlotfromItemStackEx(Helmet,false) + "; " +
-                        PlayerUtil.getSlotfromItemStackEx(Chestplate,false) + "; " +
-                        PlayerUtil.getSlotfromItemStackEx(Leggings,false) + "; " +
-                        PlayerUtil.getSlotfromItemStackEx(Boots,false)
+                        PlayerUtil.getSlotfromItemStackEx(Helmet, false) + "; " +
+                        PlayerUtil.getSlotfromItemStackEx(Chestplate, false) + "; " +
+                        PlayerUtil.getSlotfromItemStackEx(Leggings, false) + "; " +
+                        PlayerUtil.getSlotfromItemStackEx(Boots, false)
                 );
 
                 break;
@@ -118,7 +118,7 @@ public class GetCommand extends Command {
             case "i":
                 int solt;
 
-                if(args.length == 1) {
+                if (args.length == 1) {
                     solt = mc.thePlayer.inventory.currentItem;
                 } else {
                     solt = Integer.parseInt(args[1]);
@@ -172,7 +172,7 @@ public class GetCommand extends Command {
                     }
                 }
 
-                ChatUtil.sendMessage("Players : " + String.join("&r, ",playerlist));
+                ChatUtil.sendMessage("Players : " + String.join("&r, ", playerlist));
 
                 break;
 

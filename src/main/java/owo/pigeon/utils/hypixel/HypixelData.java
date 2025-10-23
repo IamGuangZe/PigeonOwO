@@ -17,7 +17,7 @@ public class HypixelData {
             "MURDER MYSTERY", "密室杀手"
     );
     public static final Set<String> PIXELPARTY = Sets.newHashSet(
-      "PIXEL PARTY", "像素派对", "跳色舞會"
+            "PIXEL PARTY", "像素派对", "跳色舞會"
     );
 
     // 消息

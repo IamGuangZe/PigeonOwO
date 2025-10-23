@@ -14,7 +14,7 @@ public class SkullESP extends Module {
         super("SkullESP", Category.RENDER, -1);
     }
 
-    public Color color = new Color(255, 85, 85,65);
+    public Color color = new Color(255, 85, 85, 65);
     public static CopyOnWriteArraySet<BlockPos> giftskull = new CopyOnWriteArraySet<>();
 
     @Override
@@ -27,6 +27,4 @@ public class SkullESP extends Module {
             }
         }
     }
-
-
 }

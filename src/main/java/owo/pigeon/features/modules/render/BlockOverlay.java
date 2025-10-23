@@ -17,10 +17,10 @@ public class BlockOverlay extends Module {
     }
 
     public enum modeEnum {
-            OUTLINE, FULL
+        OUTLINE, FULL
     }
 
-    public ModeSetting<modeEnum> mode = setting("mode",modeEnum.FULL,"", v->true);
+    public ModeSetting<modeEnum> mode = setting("mode", modeEnum.FULL, v -> true);
     public Color color = new Color(0, 0, 0, 66);
 
     @SubscribeEvent

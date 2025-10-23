@@ -2,7 +2,7 @@ package owo.pigeon.gui;
 
 public abstract class AbstractDisplableItem {
 
-    public int x,y,width,height = 0;
+    public int x, y, width, height = 0;
 
     protected abstract void drawScreen(int mouseX, int mouseY, float partialTicks);
 

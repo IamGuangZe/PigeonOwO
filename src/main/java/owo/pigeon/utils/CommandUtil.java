@@ -60,16 +60,26 @@ public class CommandUtil {
 
     public static String getReason(errorReason reason) {
         switch (reason) {
-            case ExpectedFloat: return "Expected float";
-            case ExpectedInteger: return "Expected integer";
-            case InvalidBoolean: return "Invalid boolean: expected 'true' or 'false'";
-            case IncorrectArgument: return "Incorrect argument for command";
-            case UnknownOrIncompleteCommand: return "Unknown or incomplete command. See below for error";
-            case UnknownBlock: return "Unknown block type";
-            case UnknownItem: return "Unknown item";
-            case UnknownMoudle: return "Unknown Moudle";
-            case UnknownSetting: return "Unknown Setting";
-            default: return "Unknown error";
+            case ExpectedFloat:
+                return "Expected float";
+            case ExpectedInteger:
+                return "Expected integer";
+            case InvalidBoolean:
+                return "Invalid boolean: expected 'true' or 'false'";
+            case IncorrectArgument:
+                return "Incorrect argument for command";
+            case UnknownOrIncompleteCommand:
+                return "Unknown or incomplete command. See below for error";
+            case UnknownBlock:
+                return "Unknown block type";
+            case UnknownItem:
+                return "Unknown item";
+            case UnknownMoudle:
+                return "Unknown Moudle";
+            case UnknownSetting:
+                return "Unknown Setting";
+            default:
+                return "Unknown error";
         }
     }
 }

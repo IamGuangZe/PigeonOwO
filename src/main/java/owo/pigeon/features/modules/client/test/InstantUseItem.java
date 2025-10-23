@@ -25,7 +25,7 @@ public class InstantUseItem extends Module {
                 if (iskeyup) {
                     int slot = PlayerUtil.getSlotfromItemname(itemname);
                     if (slot == -1) {
-                        ChatUtil.sendCustomPrefixMessage(this.name,"Item not found");
+                        ChatUtil.sendCustomPrefixMessage(this.name, "Item not found");
                     } else {
                         PlayerUtil.instantUseItem(slot);
                     }
@@ -36,5 +36,4 @@ public class InstantUseItem extends Module {
             }
         }
     }
-
 }

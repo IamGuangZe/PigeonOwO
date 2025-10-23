@@ -8,8 +8,13 @@ import static owo.pigeon.features.modules.Module.mc;
 public class FontUtil {
     public static final FontRenderer fontRenderer = mc.fontRendererObj;
 
-    private static String parseColor(String text) { return text.replaceAll("&","§").replaceAll("§§","&"); }
-    private static String removeColor(String text) { return text.replaceAll("§.", ""); }
+    private static String parseColor(String text) {
+        return text.replaceAll("&", "§").replaceAll("§§", "&");
+    }
+
+    private static String removeColor(String text) {
+        return text.replaceAll("§.", "");
+    }
 
     public static int getStringWidth(String text) {
         return fontRenderer.getStringWidth(StringUtils.stripControlCodes(text));
@@ -28,11 +33,11 @@ public class FontUtil {
     }
 
     public static void drawStringWithShadow(String text, double x, double y, int color) {
-        fontRenderer.drawStringWithShadow(text, (float)x, (float)y, color);
+        fontRenderer.drawStringWithShadow(text, (float) x, (float) y, color);
     }
 
     public static void drawStringWithShadow(String text, double x, double y) {
-        fontRenderer.drawStringWithShadow(parseColor(text), (float)x, (float)y, 0xFFFFFF);
+        fontRenderer.drawStringWithShadow(parseColor(text), (float) x, (float) y, 0xFFFFFF);
     }
 
     public static void drawCenteredString(String text, int x, int y, int color) {
@@ -40,7 +45,7 @@ public class FontUtil {
     }
 
     public static void drawCenteredStringWithShadow(String text, double x, double y, int color) {
-        drawStringWithShadow(text, x - (double)(fontRenderer.getStringWidth(text) / 2), y, color);
+        drawStringWithShadow(text, x - (double) (fontRenderer.getStringWidth(text) / 2), y, color);
     }
 
     public static void drawTotalCenteredString(String text, int x, int y, int color) {
@@ -48,6 +53,6 @@ public class FontUtil {
     }
 
     public static void drawTotalCenteredStringWithShadow(String text, double x, double y, int color) {
-        drawStringWithShadow(text, x - (double)(fontRenderer.getStringWidth(text) / 2), y - (double)((float)fontRenderer.FONT_HEIGHT / 2.0f), color);
+        drawStringWithShadow(text, x - (double) (fontRenderer.getStringWidth(text) / 2), y - (double) ((float) fontRenderer.FONT_HEIGHT / 2.0f), color);
     }
 }

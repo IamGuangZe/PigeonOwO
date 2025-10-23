@@ -8,19 +8,19 @@ import owo.pigeon.settings.ModeSetting;
 
 public class NoRotateSet extends Module {
     public NoRotateSet() {
-        super("NoRotateSet",Category.PLAYER,-1);
+        super("NoRotateSet", Category.PLAYER, -1);
     }
 
     public enum modeEnum {
         RESET, CANCEL
     }
 
-    public ModeSetting<modeEnum> mode = setting("mode",modeEnum.RESET,"",v->true);
+    public ModeSetting<modeEnum> mode = setting("mode", modeEnum.RESET, v -> true);
 
-    private float yaw,pitch;
+    private float yaw, pitch;
 
     @SubscribeEvent
-    public void S08PacketPlayerPosLookPacketReceive (S08PacketPlayerPosLookEvent event) {
+    public void S08PacketPlayerPosLookPacketReceive(S08PacketPlayerPosLookEvent event) {
         if (event.getPacketPhase() == S08PacketPlayerPosLookEvent.Phase.START) {
             yaw = mc.thePlayer.rotationYaw;
             pitch = mc.thePlayer.rotationPitch;

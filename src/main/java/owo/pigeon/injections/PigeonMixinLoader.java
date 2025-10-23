@@ -17,8 +17,8 @@ public class PigeonMixinLoader implements IFMLLoadingPlugin {
             MixinBootstrap.init();
             Mixins.addConfiguration("mixins.pigeon.json");
             MixinEnvironment.getDefaultEnvironment().setSide(MixinEnvironment.Side.CLIENT);
-        } catch(Exception | Error e){
-            Logger.getLogger("PigeonMixinLoader").log(Level.OFF,"Mixin cannot load successfully,some function may not available now.");
+        } catch (Exception | Error e) {
+            Logger.getLogger("PigeonMixinLoader").log(Level.OFF, "Mixin cannot load successfully,some function may not available now.");
         }
     }
 

@@ -15,7 +15,7 @@ public class BedESP extends Module {
     }
 
     public static CopyOnWriteArraySet<BlockPos> beds = new CopyOnWriteArraySet<>();
-    public Color color = new Color(255, 255, 255,65);
+    public Color color = new Color(255, 255, 255, 65);
 
     @Override
     public void onEnable() {

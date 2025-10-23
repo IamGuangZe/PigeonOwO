@@ -26,7 +26,7 @@ public class LividSolver extends Module {
         super("LividSolver", Category.HYPIXEL, -1);
     }
 
-    public EnableSetting hideFakeLivid = setting("hidefake", true, "", v -> true);
+    public EnableSetting hideFakeLivid = setting("hide-fake", true, v -> true);
 
     private boolean isBlindness = false;
     private boolean isGotLivid = false;
@@ -52,7 +52,7 @@ public class LividSolver extends Module {
                                 isGotLivid = true;
                                 lividName = getLividName();
                                 lividColor = getLividColor().substring(0, 2);
-                                ChatUtil.sendCustomPrefixMessage(this.name,"Livid Color was " + getLividColor());
+                                ChatUtil.sendCustomPrefixMessage(this.name, "Livid Color was " + getLividColor());
                             }
                         }
 
@@ -72,7 +72,7 @@ public class LividSolver extends Module {
                     }*/
                     }
                 }
-            }else {
+            } else {
                 reload();
             }
         }
@@ -99,7 +99,7 @@ public class LividSolver extends Module {
                                     entity.posX - 0.5D, entity.posY - 2.0D, entity.posZ - 0.5D,
                                     entity.posX + 0.5D, entity.posY, entity.posZ + 0.5D);
 
-                            RenderUtil.drawSmoothCustomBoxEsp(entity,customBox,new Color(255,0,0));
+                            RenderUtil.drawSmoothCustomBoxEsp(entity, customBox, new Color(255, 0, 0));
                         }
                     }
                 }

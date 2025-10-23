@@ -27,27 +27,29 @@ public class WorldUtil {
 
     // 创建方块
     public static void setBlock(int posX, int posY, int posZ, Block block) {
-        mc.theWorld.setBlockState(new BlockPos(posX,posY,posZ), block.getDefaultState());
+        mc.theWorld.setBlockState(new BlockPos(posX, posY, posZ), block.getDefaultState());
     }
+
     public static void setBlock(BlockPos pos, Block block) {
         mc.theWorld.setBlockState(pos, block.getDefaultState());
     }
+
     public static void setBlock(BlockPos pos, IBlockState iBlockState) {
         mc.theWorld.setBlockState(pos, iBlockState);
     }
 
-    public static void fillBlock(int startPosX,int startPosY,int startPosZ,int endPosX,int endPosY,int endPosZ,Block block) {
-        if (startPosX > endPosX){
+    public static void fillBlock(int startPosX, int startPosY, int startPosZ, int endPosX, int endPosY, int endPosZ, Block block) {
+        if (startPosX > endPosX) {
             int temp = startPosX;
-            startPosX  = endPosX;
+            startPosX = endPosX;
             endPosX = temp;
         }
-        if (startPosY > endPosY){
+        if (startPosY > endPosY) {
             int temp = startPosY;
             startPosY = endPosY;
             endPosY = temp;
         }
-        if (startPosZ > endPosZ){
+        if (startPosZ > endPosZ) {
             int temp = startPosZ;
             startPosZ = endPosZ;
             endPosZ = temp;
@@ -63,21 +65,22 @@ public class WorldUtil {
             }
         }
     }
+
     public static void fillBlock(BlockPos startPos, BlockPos endPos, Block block) {
-        if (startPos.getX() > endPos.getX()){
+        if (startPos.getX() > endPos.getX()) {
             int temp = startPos.getX();
-            startPos = new BlockPos(endPos.getX(),startPos.getY(),startPos.getZ());
-            endPos = new BlockPos(temp,endPos.getY(),endPos.getZ());
+            startPos = new BlockPos(endPos.getX(), startPos.getY(), startPos.getZ());
+            endPos = new BlockPos(temp, endPos.getY(), endPos.getZ());
         }
-        if (startPos.getY() > endPos.getY()){
+        if (startPos.getY() > endPos.getY()) {
             int temp = startPos.getY();
-            startPos = new BlockPos(startPos.getX(),endPos.getY(),startPos.getZ());
-            endPos = new BlockPos(endPos.getX(),temp,endPos.getZ());
+            startPos = new BlockPos(startPos.getX(), endPos.getY(), startPos.getZ());
+            endPos = new BlockPos(endPos.getX(), temp, endPos.getZ());
         }
-        if (startPos.getZ() > endPos.getZ()){
+        if (startPos.getZ() > endPos.getZ()) {
             int temp = startPos.getZ();
-            startPos = new BlockPos(startPos.getX(),startPos.getY(),endPos.getZ());
-            endPos = new BlockPos(endPos.getX(),endPos.getY(),temp);
+            startPos = new BlockPos(startPos.getX(), startPos.getY(), endPos.getZ());
+            endPos = new BlockPos(endPos.getX(), endPos.getY(), temp);
         }
 
 
@@ -90,21 +93,22 @@ public class WorldUtil {
             }
         }
     }
+
     public static void fillBlock(BlockPos startPos, BlockPos endPos, IBlockState iBlockState) {
-        if (startPos.getX() > endPos.getX()){
+        if (startPos.getX() > endPos.getX()) {
             int temp = startPos.getX();
-            startPos = new BlockPos(endPos.getX(),startPos.getY(),startPos.getZ());
-            endPos = new BlockPos(temp,endPos.getY(),endPos.getZ());
+            startPos = new BlockPos(endPos.getX(), startPos.getY(), startPos.getZ());
+            endPos = new BlockPos(temp, endPos.getY(), endPos.getZ());
         }
-        if (startPos.getY() > endPos.getY()){
+        if (startPos.getY() > endPos.getY()) {
             int temp = startPos.getY();
-            startPos = new BlockPos(startPos.getX(),endPos.getY(),startPos.getZ());
-            endPos = new BlockPos(endPos.getX(),temp,endPos.getZ());
+            startPos = new BlockPos(startPos.getX(), endPos.getY(), startPos.getZ());
+            endPos = new BlockPos(endPos.getX(), temp, endPos.getZ());
         }
-        if (startPos.getZ() > endPos.getZ()){
+        if (startPos.getZ() > endPos.getZ()) {
             int temp = startPos.getZ();
-            startPos = new BlockPos(startPos.getX(),startPos.getY(),endPos.getZ());
-            endPos = new BlockPos(endPos.getX(),endPos.getY(),temp);
+            startPos = new BlockPos(startPos.getX(), startPos.getY(), endPos.getZ());
+            endPos = new BlockPos(endPos.getX(), endPos.getY(), temp);
         }
 
 
@@ -130,6 +134,7 @@ public class WorldUtil {
         }
         return null;
     }
+
     public static Integer getBlockColorRGB(IBlockState state) {
         Block block = state.getBlock();
         EnumDyeColor color = null;
@@ -153,8 +158,9 @@ public class WorldUtil {
         }
         return null;
     }
+
     public static String getScoreboardDisplayNameWithoutColor() {
-        if (getScoreboardDisplayName() == null){
+        if (getScoreboardDisplayName() == null) {
             return null;
         }
         return OtherUtil.removeColor(getScoreboardDisplayName());
@@ -191,6 +197,7 @@ public class WorldUtil {
             return null; // 如果指定行不存在，返回 null
         }
     }
+
     public static String getSidebarLineTopDown(int line) {
         List<String> lines = getSidebarLines();
         if (line > 0 && line <= lines.size()) {
@@ -199,6 +206,7 @@ public class WorldUtil {
             return null;
         }
     }
+
     public static List<String> getSidebarLines() {
         Scoreboard scoreboard = mc.theWorld.getScoreboard();
         if (scoreboard == null) {
@@ -255,24 +263,26 @@ public class WorldUtil {
         }
         return null;
     }
+
     public static String getSkullUUID(TileEntity tileEntity) {
         if (tileEntity instanceof TileEntitySkull) {
-            return getSkullUUID((TileEntitySkull)tileEntity);
+            return getSkullUUID((TileEntitySkull) tileEntity);
         }
         return null;
     }
-    public static String getSkullUUID(TileEntitySkull tileEntitySkull){
-            // 获取NBT数据
-            NBTTagCompound nbt = new NBTTagCompound();
-            tileEntitySkull.writeToNBT(nbt);
 
-            // 检查是否有UUID
-            if (nbt.hasKey("Owner")) {
-                NBTTagCompound ownerTag = nbt.getCompoundTag("Owner");
-                if (ownerTag.hasKey("Id")) {
-                    return ownerTag.getString("Id");
-                }
+    public static String getSkullUUID(TileEntitySkull tileEntitySkull) {
+        // 获取NBT数据
+        NBTTagCompound nbt = new NBTTagCompound();
+        tileEntitySkull.writeToNBT(nbt);
+
+        // 检查是否有UUID
+        if (nbt.hasKey("Owner")) {
+            NBTTagCompound ownerTag = nbt.getCompoundTag("Owner");
+            if (ownerTag.hasKey("Id")) {
+                return ownerTag.getString("Id");
             }
+        }
         return null;
     }
 }

@@ -66,7 +66,7 @@ public class SetBlockCommand extends Command {
 
         BlockPos pos = new BlockPos((int) Math.floor(posX), (int) Math.floor(posY), (int) Math.floor(posZ));
 
-        WorldUtil.setBlock(pos,block);
+        WorldUtil.setBlock(pos, block);
     }
 
     @Override

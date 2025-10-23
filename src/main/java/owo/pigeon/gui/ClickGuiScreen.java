@@ -24,7 +24,7 @@ public class ClickGuiScreen extends GuiScreen {
         int width = 90;
         int height = 19;
         for (Category category : Category.values()) {
-            categoryPanels.add(new CategoryPanel(category,x,y,width,height));
+            categoryPanels.add(new CategoryPanel(category, x, y, width, height));
             x += width + 2;
             //y += height + 5;
         }

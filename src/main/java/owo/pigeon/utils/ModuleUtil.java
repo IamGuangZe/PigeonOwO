@@ -15,9 +15,10 @@ public class ModuleUtil {
 
     /**
      * <h5>filter 过滤</h5>
+     *
      * @param clazz lambda表达式(匿名函数) it表示参数名称 匹配与clazz相同的类
-     * <p>collect() 收集为List格式</p>
-     * <p>获取第一个元素(下标0)</p>
+     *              <p>collect() 收集为List格式</p>
+     *              <p>获取第一个元素(下标0)</p>
      */
     public static Module getModuleByClass(Class<? extends Module> clazz) {
         return modules.stream() //切换至 Steam 流处理
@@ -26,6 +27,7 @@ public class ModuleUtil {
                 .collect(Collectors.toList())
                 .get(0);
     }
+
     public static Module getModule(Class<? extends Module> clazz) {
         for (Module m : modules) {
             if (m.getClass() == clazz) {
@@ -34,6 +36,7 @@ public class ModuleUtil {
         }
         throw new RuntimeException();
     }
+
     public static Module getModule(String module) {
         for (Module m : modules) {
             if (m.name.equalsIgnoreCase(module)) {
@@ -51,6 +54,7 @@ public class ModuleUtil {
         }
         return false;
     }
+
     public static boolean isEnable(Class<? extends Module> clazz) {
         for (Module m : modules) {
             if (m.getClass() == clazz) {
@@ -68,6 +72,7 @@ public class ModuleUtil {
         }
         return false;
     }
+
     public static boolean isModuleExist(Class<? extends Module> clazz) {
         for (Module m : modules) {
             if (m.getClass() == clazz) {
@@ -85,6 +90,7 @@ public class ModuleUtil {
         }
         return null;
     }
+
     public static String getName(Class<? extends Module> clazz) {
         for (Module m : modules) {
             if (m.getClass() == clazz) {
@@ -93,7 +99,7 @@ public class ModuleUtil {
         }
         return null;
     }
-    
+
     public static void moduleEnable(String module) {
         for (Module m : modules) {
             if (m.name.equalsIgnoreCase(module)) {
@@ -109,6 +115,7 @@ public class ModuleUtil {
             }
         }
     }
+
     public static void moduleDisable(Class<? extends Module> clazz) {
         for (Module m : modules) {
             if (m.getClass() == clazz) {
@@ -116,7 +123,7 @@ public class ModuleUtil {
             }
         }
     }
-    
+
     public static void moduleToggle(String module) {
         for (Module m : modules) {
             if (m.name.equalsIgnoreCase(module)) {
@@ -124,6 +131,7 @@ public class ModuleUtil {
             }
         }
     }
+
     public static void moduleToggle(Class<? extends Module> clazz) {
         for (Module m : modules) {
             if (m.getClass() == clazz) {

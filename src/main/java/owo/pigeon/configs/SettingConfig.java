@@ -35,7 +35,7 @@ public class SettingConfig {
 
                 for (AbstractSetting<?> setting : module.getSettings()) {
                     if (setting instanceof BlockSetting) {
-                        module_m.put(setting.getName(), Block.getIdFromBlock(((BlockSetting)setting).getValue()));
+                        module_m.put(setting.getName(), Block.getIdFromBlock(((BlockSetting) setting).getValue()));
                     } else {
                         module_m.put(setting.getName(), setting.getValue());
                     }

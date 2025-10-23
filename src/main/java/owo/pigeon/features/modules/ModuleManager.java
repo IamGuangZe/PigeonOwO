@@ -63,9 +63,11 @@ public class ModuleManager {
         modules.add(new ModifyChat());
         modules.add(new ClickGui());
     }
+
     public void addCombatModules() {
         modules.add(new AutoClicker());
     }
+
     public void addHypixelModules() {
         // addSkyblockModules();
 
@@ -77,12 +79,14 @@ public class ModuleManager {
         modules.add(new ProphuntHelper());
         modules.add(new ZombieHelper());
     }
+
     public void addMovementModules() {
         modules.add(new LegitSpeed());
         // modules.add(new Parkour());
         // modules.add(new SafeWalk());
         modules.add(new Sprint());
     }
+
     public void addPlayerModules() {
         modules.add(new AutoTool());
         modules.add(new ChestStealer());
@@ -90,6 +94,7 @@ public class ModuleManager {
         modules.add(new Eagle());
         modules.add(new NoRotateSet());
     }
+
     public void addRenderModules() {
         modules.add(new BedESP());
         modules.add(new BlockOverlay());
@@ -100,6 +105,7 @@ public class ModuleManager {
         modules.add(new PlayerESP());
         modules.add(new SkullESP());
     }
+
     public void addworldModules() {
         modules.add(new GhostBlock());
         modules.add(new LightningTracker());
@@ -116,6 +122,7 @@ public class ModuleManager {
         modules.add(new SkullInformation());
         modules.add(new TimeDisplay());
     }
+
     public void addSkyblockModules() {
         modules.add(new GhostBlock());
         modules.add(new RotateNotice());
@@ -173,7 +180,7 @@ public class ModuleManager {
     }
 
     @SubscribeEvent
-    public void onWorldLoad(WorldEvent.Load event){
+    public void onWorldLoad(WorldEvent.Load event) {
         modules.stream().filter(Module::isEnable).forEach(Module::onWorldLoad);
     }
 

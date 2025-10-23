@@ -26,11 +26,13 @@ public class OtherUtil {
         }
         return false;  // 如果没有找到任何匹配
     }
+
     public static boolean isContainsRegex(String regex, String message) {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(message);
         return matcher.find();
     }
+
     public static String regexGetPart(String[] regex, String message, int part) {
         for (String r : regex) {
             Pattern pattern = Pattern.compile(r + "( \\[C])?");
@@ -43,6 +45,7 @@ public class OtherUtil {
         }
         return null;
     }
+
     public static String regexGetPart(String regex, String message, int part) {
         Pattern pattern = Pattern.compile(regex + "( \\[C])?");
         Matcher matcher = pattern.matcher(message);
@@ -53,6 +56,7 @@ public class OtherUtil {
         }
         return null;
     }
+
     public static int regexGetPartInteger(String regex, String message, int part) {
         String result = regexGetPart(regex, message, part);
         if (result != null) {
@@ -71,18 +75,20 @@ public class OtherUtil {
 
     // 颜色替换
     public static String parseColor(String msg) {
-        return msg.replaceAll("&","§")  //& -> §
-                .replaceAll("§§","&");  //&& -> §§ -> &
+        return msg.replaceAll("&", "§")  //& -> §
+                .replaceAll("§§", "&");  //&& -> §§ -> &
     }
+
     public static String removeColor(String msg) {
         return msg.replaceAll("§.", "");
     }
+
     public static String removeColorA(String msg) {
         return msg.replaceAll("§", "&");
     }
 
     public static String removeEmoji(String s) {
-        return s.replaceAll("[🎂🎉🎁👹🏀⚽🍭🌠👾🐍🔮👽💣🍫🔫]","");
+        return s.replaceAll("[🎂🎉🎁👹🏀⚽🍭🌠👾🐍🔮👽💣🍫🔫]", "");
     }
 
     // 我也忘了我为什么写这个了
@@ -110,6 +116,7 @@ public class OtherUtil {
         Random random = new Random();
         return min + random.nextInt(max - min + 1);
     }
+
     public static double doubleRandom(double min, double max) {
         if (min > max) {
             double temp = min;
@@ -123,6 +130,7 @@ public class OtherUtil {
 
     // json
     public static final Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+
     public static void updateJsonKey(File file, String key, Object value) {
         Map<String, Object> map = null;
 

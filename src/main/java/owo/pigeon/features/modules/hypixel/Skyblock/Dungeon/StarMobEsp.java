@@ -27,7 +27,7 @@ public class StarMobEsp extends Module {
                                 entity.posX + 0.5D, entity.posY, entity.posZ + 0.5D
                         );
 
-                        RenderUtil.drawSmoothCustomBoxEsp(entity,customBox,new Color(255, 0, 0));
+                        RenderUtil.drawSmoothCustomBoxEsp(entity, customBox, new Color(255, 0, 0));
                     }
                 }
             }
