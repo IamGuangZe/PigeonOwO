@@ -23,6 +23,8 @@ public class Pigeon {
     public static ConfigManager configManager;
     public static ClickGuiScreen clickGuiScreen;
 
+    public static final String watermark = Pigeon.MOD_NAME + " v" + Pigeon.MOD_VER + " by GuangZe233";
+
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {

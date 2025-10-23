@@ -7,8 +7,12 @@ import owo.pigeon.features.modules.client.ClickGui;
 import owo.pigeon.gui.panels.CategoryPanel;
 import owo.pigeon.utils.ModuleUtil;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import static owo.pigeon.Pigeon.watermark;
+import static owo.pigeon.utils.FontUtil.fontRenderer;
 
 public class ClickGuiScreen extends GuiScreen {
 
@@ -40,6 +44,13 @@ public class ClickGuiScreen extends GuiScreen {
         for (CategoryPanel categorypanel : categoryPanels) {
             categorypanel.drawScreen(mouseX, mouseY, partialTicks);
         }
+
+        fontRenderer.drawStringWithShadow(
+                watermark,
+                this.width - fontRenderer.getStringWidth(watermark) - 2,
+                this.height - fontRenderer.FONT_HEIGHT - 2,
+                Color.WHITE.getRGB()
+        );
     }
 
     @Override
