@@ -36,6 +36,7 @@ public class CommandManager {
         commands.add(new PrefixCommand());
         commands.add(new RejoinCommand());
         commands.add(new SayCommand());
+        commands.add(new ServerCommand());
         commands.add(new SetBlockCommand());
         commands.add(new SettingCommand());
         commands.add(new ToggleCommand());
