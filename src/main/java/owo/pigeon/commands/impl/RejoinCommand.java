@@ -2,7 +2,6 @@ package owo.pigeon.commands.impl;
 
 import owo.pigeon.commands.Command;
 import owo.pigeon.features.commands.Rejoin;
-import owo.pigeon.utils.ChatUtil;
 import owo.pigeon.utils.hypixel.HypixelUtil;
 
 public class RejoinCommand extends Command {
@@ -15,7 +14,7 @@ public class RejoinCommand extends Command {
         if (HypixelUtil.isInHypixel()) {
             Rejoin.rejoin();
         } else {
-            ChatUtil.sendMessage("&cYou must be on Hypixel to use this command!");
+            sendCommandError("You must be on Hypixel to use this command!");
         }
     }
 
