@@ -34,10 +34,10 @@ public class ConfigManager {
 
         CommandManager.commandPrefix = PigeonowoConfig.getPrefix();
 
-        ClickguiConfig.load();
         PigeonowoConfig.setPrefix(CommandManager.commandPrefix);
 
         SettingConfig.load("default");
+        ClickguiConfig.load();
 
         Runtime.getRuntime().addShutdownHook(new Thread(ClickguiConfig::save));
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
