@@ -11,12 +11,10 @@ import static owo.pigeon.features.modules.Module.mc;
 
 public class Ping {
 
+    private static int lastPing = -1;
+
     private static long lastPingAt = -1L;
     private static boolean invokedCommand = false;
-
-    public static void setInvokedCommand(boolean invokedCommand) {
-        Ping.invokedCommand = invokedCommand;
-    }
 
     public static void sengPing() {
         if (lastPingAt > 0) {
@@ -34,6 +32,7 @@ public class Ping {
         if (lastPingAt > 0) {
             Object packet = event.getPacket();
             if (packet instanceof S01PacketJoinGame) {
+                lastPing = -1;
                 lastPingAt = -1L;
                 invokedCommand = false;
             } else if (packet instanceof S37PacketStatistics) {
@@ -42,6 +41,7 @@ public class Ping {
                 if (invokedCommand) {
                     invokedCommand = false;
                     String color = getPingColorCode(diff);
+                    lastPing = (int) diff;
                     ChatUtil.sendMessage(color + (int) diff + " &7ms");
                 }
             }
@@ -60,5 +60,13 @@ public class Ping {
         } else {
             return "&c";
         }
+    }
+
+    public static void setInvokedCommand(boolean invokedCommand) {
+        Ping.invokedCommand = invokedCommand;
+    }
+
+    public static int getLastPing() {
+        return lastPing;
     }
 }
