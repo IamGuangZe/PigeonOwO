@@ -71,6 +71,7 @@ public class ModuleManager {
     public void addHypixelModules() {
         // addSkyblockModules();
 
+        modules.add(new ChatCommand());
         modules.add(new FarmhuntHelper());
         modules.add(new GTBHelper());
         modules.add(new MurderHelper());
