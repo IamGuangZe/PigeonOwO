@@ -11,6 +11,8 @@ import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import owo.pigeon.features.modules.Category;
 import owo.pigeon.features.modules.Module;
 import owo.pigeon.injections.mixins.IAccessorEntityPlayer;
@@ -173,23 +175,19 @@ public class ZombieHelper extends Module {
                             RenderUtil.drawSmoothOutlinedBoxEsp(entity, color);
                         }
                     }
-
-                    if (entity instanceof EntityPlayer && !(entity instanceof EntityPlayerSP)) {
-                        EntityPlayer player = (EntityPlayer) entity;
-                        if (hidePlayer.getValue()) {
-                            double dx = mc.thePlayer.posX - player.posX;
-                            double dy = mc.thePlayer.posY - player.posY;
-                            double dz = mc.thePlayer.posZ - player.posZ;
-                            double dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
-
-                            // 小于设定距离且玩家未倒地则设为隐身，否则显示
-                            player.setInvisible(dist < distance.getValue() && !((IAccessorEntityPlayer) player).getSleeping());
-                        } else {
-                            player.setInvisible(false);
-                        }
-                    }
                 }
             }
+        }
+    }
+
+    @SubscribeEvent
+    public void onRenderPlayer(RenderPlayerEvent.Pre event) {
+        if (!hidePlayer.getValue()) return;
+
+        EntityPlayer player = event.entityPlayer;
+
+        if (!(player instanceof EntityPlayerSP) && event.entityPlayer.getDistanceToEntity(mc.thePlayer) < distance.getValue() && !((IAccessorEntityPlayer) player).getSleeping()) {
+            event.setCanceled(true);
         }
     }
 
@@ -255,3 +253,20 @@ public class ZombieHelper extends Module {
         );
     }
 }
+
+/*
+                    if (entity instanceof EntityPlayer && !(entity instanceof EntityPlayerSP)) {
+                        EntityPlayer player = (EntityPlayer) entity;
+                        if (hidePlayer.getValue()) {
+                            double dx = mc.thePlayer.posX - player.posX;
+                            double dy = mc.thePlayer.posY - player.posY;
+                            double dz = mc.thePlayer.posZ - player.posZ;
+                            double dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+
+                            // 小于设定距离且玩家未倒地则设为隐身，否则显示
+                            player.setInvisible(dist < distance.getValue() && !((IAccessorEntityPlayer) player).getSleeping());
+                        } else {
+                            player.setInvisible(false);
+                        }
+                    }
+ */
