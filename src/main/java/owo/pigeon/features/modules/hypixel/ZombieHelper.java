@@ -182,8 +182,8 @@ public class ZombieHelper extends Module {
                             double dz = mc.thePlayer.posZ - player.posZ;
                             double dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
 
-                            // 小于设定距离则设为隐身，否则显示
-                            player.setInvisible(dist < distance.getValue());
+                            // 小于设定距离且玩家未倒地则设为隐身，否则显示
+                            player.setInvisible(dist < distance.getValue() && !((IAccessorEntityPlayer) player).getSleeping());
                         } else {
                             player.setInvisible(false);
                         }
@@ -202,12 +202,12 @@ public class ZombieHelper extends Module {
 
         for (Entity entity : mc.theWorld.loadedEntityList) {
             // Giant
-            if (entity instanceof EntityGiantZombie) {
+            if (entity instanceof EntityGiantZombie && entity.isEntityAlive()) {
                 smartThird = true;
             }
 
             // The old one (Code sourced from ZombieCat-https://github.com/iM4dCat/ZombieCat)
-            if (entity instanceof EntityZombie && ((EntityZombie) entity).isChild() && entity.getInventory() != null && entity.getInventory()[0] != null && entity.getInventory()[0].getItem() == Items.diamond_sword) {
+            if (entity instanceof EntityZombie && ((EntityZombie) entity).isChild() && entity.getInventory() != null && entity.getInventory()[0] != null && entity.getInventory()[0].getItem() == Items.diamond_sword && entity.isEntityAlive()) {
                 smartThird = true;
             }
         }
