@@ -105,6 +105,7 @@ public class ModuleManager {
         modules.add(new OreESP());
         modules.add(new PlayerESP());
         modules.add(new SkullESP());
+        modules.add(new Tracers());
     }
 
     public void addworldModules() {

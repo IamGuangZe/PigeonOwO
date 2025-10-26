@@ -9,7 +9,10 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.Timer;
+import net.minecraft.util.Vec3;
 import org.lwjgl.opengl.GL11;
+import owo.pigeon.injections.mixins.IAccessorEntityRenderer;
 import owo.pigeon.injections.mixins.IAccessorMinecraft;
 
 import java.awt.*;
@@ -440,5 +443,85 @@ public class RenderUtil {
         wallrender(true, color.getAlpha());
         drawOutlinedBox(finalBox, color);
         wallrender(false, color.getAlpha());
+    }
+
+    // TracerLine
+    public static Vec3 getCenter(AxisAlignedBB box) {
+        return new Vec3(
+                (box.minX + box.maxX) / 2.0,
+                (box.minY + box.maxY) / 2.0,
+                (box.minZ + box.maxZ) / 2.0
+        );
+    }
+
+    private static void drawLine3D(Vec3 end, Color color) {
+        if (mc.thePlayer == null || end == null) return;
+
+        GlStateManager.pushMatrix();
+        GlStateManager.disableTexture2D();
+        GlStateManager.enableBlend();
+        GlStateManager.disableDepth();
+        GlStateManager.depthMask(false);
+        GlStateManager.blendFunc(770, 771);
+
+        float alpha = color.getAlpha() / 255.0F;
+        float red = color.getRed() / 255.0F;
+        float green = color.getGreen() / 255.0F;
+        float blue = color.getBlue() / 255.0F;
+        GlStateManager.color(red, green, blue, alpha);
+
+        GL11.glLineWidth(1.5F);
+        GL11.glEnable(GL11.GL_LINE_SMOOTH);
+        GL11.glHint(GL11.GL_LINE_SMOOTH_HINT, GL11.GL_NICEST);
+
+        boolean oldBobbing = mc.gameSettings.viewBobbing;
+        mc.gameSettings.viewBobbing = false;
+
+        float partialTicks = ((IAccessorMinecraft) mc).getTimer().renderPartialTicks;
+        ((IAccessorEntityRenderer) mc.entityRenderer).callSetupCameraTransform(partialTicks, 2);
+
+        GL11.glBegin(GL11.GL_LINES);
+
+        double startX = mc.thePlayer.prevPosX + (mc.thePlayer.posX - mc.thePlayer.prevPosX) * partialTicks;
+        double startY = mc.thePlayer.prevPosY + (mc.thePlayer.posY - mc.thePlayer.prevPosY) * partialTicks + mc.thePlayer.getEyeHeight();
+        double startZ = mc.thePlayer.prevPosZ + (mc.thePlayer.posZ - mc.thePlayer.prevPosZ) * partialTicks;
+
+        GL11.glVertex3d(startX - renderManager.viewerPosX, startY - renderManager.viewerPosY, startZ - renderManager.viewerPosZ);
+
+        GL11.glVertex3d(end.xCoord - renderManager.viewerPosX, end.yCoord - renderManager.viewerPosY, end.zCoord - renderManager.viewerPosZ);
+
+        GL11.glEnd();
+
+        GL11.glDisable(GL11.GL_LINE_SMOOTH);
+        GlStateManager.enableDepth();
+        GlStateManager.depthMask(true);
+        GlStateManager.disableBlend();
+        GlStateManager.enableTexture2D();
+
+        mc.gameSettings.viewBobbing = oldBobbing;
+        GlStateManager.popMatrix();
+    }
+
+
+    public static void drawTracerLine(Entity target, Color color) {
+        if (target == null) return;
+
+        Timer timer = ((IAccessorMinecraft) mc).getTimer();
+        float partialTicks = timer.renderPartialTicks;
+
+        double x = target.lastTickPosX + (target.posX - target.lastTickPosX) * partialTicks;
+        double y = target.lastTickPosY + (target.posY - target.lastTickPosY) * partialTicks + target.height / 2.0;
+        double z = target.lastTickPosZ + (target.posZ - target.lastTickPosZ) * partialTicks;
+
+        drawLine3D(new Vec3(x, y, z), color);
+    }
+
+    public static void drawTracerLine(BlockPos pos, Color color) {
+        AxisAlignedBB box = mc.theWorld.getBlockState(pos).getBlock().getSelectedBoundingBox(mc.theWorld, pos);
+        drawLine3D(getCenter(box), color);
+    }
+
+    public static void drawTracerLine(AxisAlignedBB box, Color color) {
+        drawLine3D(getCenter(box), color);
     }
 }
