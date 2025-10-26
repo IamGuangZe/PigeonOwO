@@ -162,7 +162,10 @@ public class OreESP extends Module {
         }
         synchronized (diamond) {
             for (BlockPos pos : diamond)
-                if (isInRange(playerPos, pos, r)) RenderUtil.drawOutlinedBoxEsp(pos, diamondColor);
+                if (isInRange(playerPos, pos, r)) {
+                    RenderUtil.drawOutlinedBoxEsp(pos, diamondColor);
+                    RenderUtil.drawTracerLine(pos, diamondColor);
+                }
         }
         synchronized (redstone) {
             for (BlockPos pos : redstone)
