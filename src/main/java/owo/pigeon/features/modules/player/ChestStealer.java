@@ -7,6 +7,7 @@ import owo.pigeon.features.modules.Category;
 import owo.pigeon.features.modules.Module;
 import owo.pigeon.settings.EnableSetting;
 import owo.pigeon.settings.IntSetting;
+import owo.pigeon.settings.ModeSetting;
 import owo.pigeon.utils.PlayerUtil;
 
 import java.util.ArrayList;
@@ -22,17 +23,24 @@ public class ChestStealer extends Module {
         super("ChestStealer", Category.PLAYER, -1);
     }
 
+    public enum smartModeEnum {
+        SKYWARS, THEPIT
+    }
+
     public IntSetting startDelay = setting("start-delay", 1, 0, 20, v -> true);
     public IntSetting minDelay = setting("min-delay", 2, 0, 20, v -> true);
     public IntSetting maxDelay = setting("max-delay", 3, 0, 20, v -> true);
     public EnableSetting checkTitle = setting("check-title", true, v -> true);
+    public EnableSetting randomOrder = setting("random-order",true,v->true);
+
     public EnableSetting smartPick = setting("smart-pick", true, v -> true);
+    public ModeSetting<smartModeEnum> smartMode = setting("smart-mode", smartModeEnum.SKYWARS, v -> true);
 
     private int s_delay = 0;
     private int p_delay = 0;
     private boolean isFetched = false;
     private boolean fullWarning = false;
-    private List<Integer> slotList = new ArrayList<Integer>();
+    private List<Integer> slotList = new ArrayList<>();
 
     private int debug_action = 0;
 
@@ -187,16 +195,21 @@ public class ChestStealer extends Module {
                 // sendCustomPrefixMessage("DEBUG " + this.name,"Action - " + ++debug_action + "; s_delay - " + s_delay + "; p_delay - " + p_delay);
 
                 if (!slotList.isEmpty() && s_delay <= 0 && p_delay <= 0) {
-                    int randomIndex = intRandom(0, slotList.size() - 1);
                     int windowId = chest.windowId;
-                    int slotid = slotList.get(randomIndex);
 
-                    PlayerUtil.ClickWindow(windowId, slotid, 0, 1);
-                    p_delay = intRandom(minDelay.getValue(), maxDelay.getValue());
+                    while (!slotList.isEmpty()) {
+                        int index = randomOrder.getValue() ? intRandom(0, slotList.size() - 1) : 0;
+                        int slotid = slotList.get(index);
 
-                    // sendCustomPrefixMessage("DEBUG " + this.name,"Action - " + debug_action + "; Click");
+                        PlayerUtil.ClickWindow(windowId, slotid, 0, 1);
+                        p_delay = intRandom(minDelay.getValue(), maxDelay.getValue());
+                        slotList.remove(index);
+                        if (p_delay > 0) {
+                            return;
+                        }
 
-                    slotList.remove(randomIndex);
+                        // sendCustomPrefixMessage("DEBUG " + this.name,"Action - " + debug_action + "; Click");
+                    }
                 }
             }
         }
