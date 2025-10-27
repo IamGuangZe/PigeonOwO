@@ -51,6 +51,15 @@ public class ClickGuiScreen extends GuiScreen {
                 this.height - fontRenderer.FONT_HEIGHT - 2,
                 Color.WHITE.getRGB()
         );
+
+        fontRenderer.drawStringWithShadow("[Left Click] Toggle module",
+                2,
+                this.height - fontRenderer.FONT_HEIGHT * 2 - 2,
+                Color.WHITE.getRGB());
+        fontRenderer.drawStringWithShadow("[Right Click] Expand/Collapse",
+                2,
+                this.height - fontRenderer.FONT_HEIGHT - 2,
+                Color.WHITE.getRGB());
     }
 
     @Override
