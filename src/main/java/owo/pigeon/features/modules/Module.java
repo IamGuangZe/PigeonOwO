@@ -52,17 +52,21 @@ public class Module extends SettingDesigner {
     }
 
     public final void enable() {
-        Enable = true;
-        MinecraftForge.EVENT_BUS.register(this);
+        if (!Enable) {
+            Enable = true;
+            MinecraftForge.EVENT_BUS.register(this);
+            onEnable();
+        }
         ChatUtil.sendMessage(this.name + " has §aEnabled!");
-        onEnable();
     }
 
     public final void disable() {
-        Enable = false;
-        MinecraftForge.EVENT_BUS.unregister(this);
+        if (Enable) {
+            Enable = false;
+            MinecraftForge.EVENT_BUS.unregister(this);
+            onDisable();
+        }
         ChatUtil.sendMessage(this.name + " has §4Disabled!");
-        onDisable();
     }
 
     public void toggle() {

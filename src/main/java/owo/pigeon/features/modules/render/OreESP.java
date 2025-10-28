@@ -44,7 +44,7 @@ public class OreESP extends Module {
     @Override
     public void onWorldLoad() {
         clearAll();
-        ChatUtil.sendCustomPrefixMessage(this.name, "World loaded, cleared ore cache.");
+        ChatUtil.sendCustomPrefixMessage(this.name, "Detected world loaded, cleared ore cache.");
     }
 
     @SubscribeEvent

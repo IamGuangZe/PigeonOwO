@@ -22,7 +22,16 @@ public class ClickGuiScreen extends GuiScreen {
         int x = 5;
         int y = 5;
         int width = 90;
-        int height = 19;
+        int height = 20;
+        switch (((ClickGui) ModuleUtil.getModule(ClickGui.class)).style.getValue()) {
+            case OLD:
+                height = 20;
+                break;
+            case NEW:
+            default:
+                height = 17;
+                break;
+        }
         for (Category category : Category.values()) {
             categoryPanels.add(new CategoryPanel(category, x, y, width, height));
             x += width + 2;
