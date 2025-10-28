@@ -9,7 +9,7 @@ import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
-import owo.pigeon.utils.PlayerUtil;
+import owo.pigeon.utils.ItemUtil;
 import owo.pigeon.utils.WorldUtil;
 
 import static owo.pigeon.features.modules.Module.mc;
@@ -62,7 +62,7 @@ public class HypixelUtil {
         if (!isInGame(HypixelGames.ZOMBIES) || slot > 3 || slot < 0) {
             return false;
         }
-        ItemStack itemStack = PlayerUtil.getItemStackfromSlot(slot);
+        ItemStack itemStack = ItemUtil.getItemStackfromSlot(slot);
         if (itemStack == null) {
             return false;   // 物品为空时则直接返回为假
         } else {
@@ -81,7 +81,7 @@ public class HypixelUtil {
 
     public static boolean isHypixelZombieGun(int slot) {
         if (isHypixelZombieWeapon(slot)) {
-            ItemStack itemStack = PlayerUtil.getItemStackfromSlot(slot);
+            ItemStack itemStack = ItemUtil.getItemStackfromSlot(slot);
             if (itemStack == null) {
                 return false;
             }
@@ -95,7 +95,7 @@ public class HypixelUtil {
 
     public static String getHypixelZombieWeapon(int slot) {
         if (isHypixelZombieWeapon(slot)) {
-            return String.valueOf(PlayerUtil.getItemStackfromSlot(slot).getDisplayName());
+            return String.valueOf(ItemUtil.getItemStackfromSlot(slot).getDisplayName());
         }
         return "&cNone";
     }

@@ -4,6 +4,7 @@ import org.lwjgl.input.Keyboard;
 import owo.pigeon.features.modules.Category;
 import owo.pigeon.features.modules.Module;
 import owo.pigeon.utils.ChatUtil;
+import owo.pigeon.utils.ItemUtil;
 import owo.pigeon.utils.PlayerUtil;
 
 import static owo.pigeon.utils.WorldUtil.isNotNull;
@@ -23,7 +24,7 @@ public class InstantUseItem extends Module {
         if (isNotNull()) {
             if (Keyboard.isKeyDown(key)) {
                 if (iskeyup) {
-                    int slot = PlayerUtil.getSlotfromItemname(itemname);
+                    int slot = ItemUtil.getSlotfromItemname(itemname);
                     if (slot == -1) {
                         ChatUtil.sendCustomPrefixMessage(this.name, "Item not found");
                     } else {

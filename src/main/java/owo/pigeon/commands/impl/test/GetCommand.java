@@ -13,8 +13,8 @@ import net.minecraft.scoreboard.ScoreObjective;
 import net.minecraft.scoreboard.Scoreboard;
 import owo.pigeon.commands.Command;
 import owo.pigeon.utils.ChatUtil;
+import owo.pigeon.utils.ItemUtil;
 import owo.pigeon.utils.OtherUtil;
-import owo.pigeon.utils.PlayerUtil;
 import owo.pigeon.utils.WorldUtil;
 import owo.pigeon.utils.hypixel.HypixelUtil;
 
@@ -87,29 +87,29 @@ public class GetCommand extends Command {
 
             case "tool":
             case "t":
-                ItemStack tool = PlayerUtil.getBestToolFromHotbar(mc.theWorld.getBlockState(mc.objectMouseOver.getBlockPos()).getBlock());
-                ChatUtil.sendMessage("BestToolAt : " + PlayerUtil.getSlotfromItemStackEx(tool, true));
+                ItemStack tool = ItemUtil.getBestToolFromHotbar(mc.theWorld.getBlockState(mc.objectMouseOver.getBlockPos()).getBlock());
+                ChatUtil.sendMessage("BestToolAt : " + ItemUtil.getSlotfromItemStackEx(tool, true));
 
                 break;
 
             case "weapon":
             case "w":
-                ItemStack weapon = PlayerUtil.getBestWeapon();
-                ChatUtil.sendMessage("BestWeaponAt : " + PlayerUtil.getSlotfromItemStackEx(weapon, false));
+                ItemStack weapon = ItemUtil.getBestWeapon();
+                ChatUtil.sendMessage("BestWeaponAt : " + ItemUtil.getSlotfromItemStackEx(weapon, false));
 
                 break;
 
             case "armor":
             case "a":
-                ItemStack Helmet = PlayerUtil.getBestHelmet();
-                ItemStack Chestplate = PlayerUtil.getBestChestplate();
-                ItemStack Leggings = PlayerUtil.getBestLeggings();
-                ItemStack Boots = PlayerUtil.getBestBoots();
+                ItemStack Helmet = ItemUtil.getBestHelmet();
+                ItemStack Chestplate = ItemUtil.getBestChestplate();
+                ItemStack Leggings = ItemUtil.getBestLeggings();
+                ItemStack Boots = ItemUtil.getBestBoots();
                 ChatUtil.sendMessage("BestArmorAT : " +
-                        PlayerUtil.getSlotfromItemStackEx(Helmet, false) + "; " +
-                        PlayerUtil.getSlotfromItemStackEx(Chestplate, false) + "; " +
-                        PlayerUtil.getSlotfromItemStackEx(Leggings, false) + "; " +
-                        PlayerUtil.getSlotfromItemStackEx(Boots, false)
+                        ItemUtil.getSlotfromItemStackEx(Helmet, false) + "; " +
+                        ItemUtil.getSlotfromItemStackEx(Chestplate, false) + "; " +
+                        ItemUtil.getSlotfromItemStackEx(Leggings, false) + "; " +
+                        ItemUtil.getSlotfromItemStackEx(Boots, false)
                 );
 
                 break;

@@ -6,6 +6,7 @@ import net.minecraft.util.BlockPos;
 import owo.pigeon.features.modules.Category;
 import owo.pigeon.features.modules.Module;
 import owo.pigeon.settings.EnableSetting;
+import owo.pigeon.utils.ItemUtil;
 import owo.pigeon.utils.PlayerUtil;
 import owo.pigeon.utils.WorldUtil;
 
@@ -25,9 +26,9 @@ public class AutoTool extends Module {
             if (PlayerUtil.isBreakingBlock()) {
                 BlockPos blockPos = mc.objectMouseOver.getBlockPos();
                 Block block = mc.theWorld.getBlockState(blockPos).getBlock();
-                ItemStack tool = PlayerUtil.getBestToolFromHotbar(block);
+                ItemStack tool = ItemUtil.getBestToolFromHotbar(block);
                 if (tool != null) {
-                    PlayerUtil.switchItemSlot(PlayerUtil.getSlotfromItemStackEx(tool, true));
+                    PlayerUtil.switchItemSlot(ItemUtil.getSlotfromItemStackEx(tool, true));
                     israwslot = false;
                 } else {
                     PlayerUtil.switchItemSlot(rawslot);

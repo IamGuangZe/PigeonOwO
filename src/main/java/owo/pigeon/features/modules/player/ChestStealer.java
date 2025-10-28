@@ -9,6 +9,7 @@ import owo.pigeon.features.modules.Module;
 import owo.pigeon.settings.EnableSetting;
 import owo.pigeon.settings.IntSetting;
 import owo.pigeon.settings.ModeSetting;
+import owo.pigeon.utils.ItemUtil;
 import owo.pigeon.utils.PlayerUtil;
 
 import java.util.ArrayList;
@@ -16,7 +17,6 @@ import java.util.List;
 
 import static owo.pigeon.utils.ChatUtil.sendCustomPrefixMessage;
 import static owo.pigeon.utils.OtherUtil.intRandom;
-import static owo.pigeon.utils.PlayerUtil.*;
 import static owo.pigeon.utils.WorldUtil.isNotNull;
 
 public class ChestStealer extends Module {
@@ -98,32 +98,32 @@ public class ChestStealer extends Module {
             if (!isFetched) {
                 if (smartPick.getValue()) {
                     int bestWeaponSlot = -1;
-                    double bestWeaponDamage = getItemDamage(getBestWeapon());
+                    double bestWeaponDamage = ItemUtil.getItemDamage(ItemUtil.getBestWeapon());
 
                     int bestHelmetSlot = -1;
-                    double bestHelmetValue = getTotalArmorReduction(getBestHelmet());
+                    double bestHelmetValue = ItemUtil.getTotalArmorReduction(ItemUtil.getBestHelmet());
 
                     int bestChestSlot = -1;
-                    double bestChestValue = getTotalArmorReduction(getBestChestplate());
+                    double bestChestValue = ItemUtil.getTotalArmorReduction(ItemUtil.getBestChestplate());
 
                     int bestLeggingsSlot = -1;
-                    double bestLeggingsValue = getTotalArmorReduction(getBestLeggings());
+                    double bestLeggingsValue = ItemUtil.getTotalArmorReduction(ItemUtil.getBestLeggings());
 
                     int bestBootsSlot = -1;
-                    double bestBootsValue = getTotalArmorReduction(getBestBoots());
+                    double bestBootsValue = ItemUtil.getTotalArmorReduction(ItemUtil.getBestBoots());
 
                     int bestPickaxeSlot = -1;
-                    double bestPickaxeSpeed = getToolMiningSpeed(getBestTool(ToolType.PICKAXE), Blocks.stone);
+                    double bestPickaxeSpeed = ItemUtil.getToolMiningSpeed(ItemUtil.getBestTool(ItemUtil.ToolType.PICKAXE), Blocks.stone);
 
                     int bestAxeSlot = -1;
-                    double bestAxeSpeed = getToolMiningSpeed(getBestTool(ToolType.AXE), Blocks.planks);
+                    double bestAxeSpeed = ItemUtil.getToolMiningSpeed(ItemUtil.getBestTool(ItemUtil.ToolType.AXE), Blocks.planks);
 
                     int bestShovelSlot = -1;
-                    double bestShovelSpeed = getToolMiningSpeed(getBestTool(ToolType.SHOVEL), Blocks.dirt);
+                    double bestShovelSpeed = ItemUtil.getToolMiningSpeed(ItemUtil.getBestTool(ItemUtil.ToolType.SHOVEL), Blocks.dirt);
 
-                    int waterCount = PlayerUtil.getTotalItemCount(Items.water_bucket);
-                    int lavaCount = PlayerUtil.getTotalItemCount(Items.lava_bucket);
-                    int rodCount = PlayerUtil.getTotalItemCount(Items.fishing_rod);
+                    int waterCount = ItemUtil.getTotalItemCount(Items.water_bucket);
+                    int lavaCount = ItemUtil.getTotalItemCount(Items.lava_bucket);
+                    int rodCount = ItemUtil.getTotalItemCount(Items.fishing_rod);
 
                     for (int i = 0; i < chestSize; i++) {
                         ItemStack itemStack = chest.getLowerChestInventory().getStackInSlot(i);
@@ -131,14 +131,14 @@ public class ChestStealer extends Module {
 
                         Item item = itemStack.getItem();
                         if (item instanceof ItemSword && pickSword.getValue()) {
-                            double dmg = getItemDamage(itemStack);
+                            double dmg = ItemUtil.getItemDamage(itemStack);
                             if (dmg > bestWeaponDamage) {
                                 bestWeaponDamage = dmg;
                                 bestWeaponSlot = i;
                             }
                         } else if (item instanceof ItemArmor && pickArmor.getValue()) {
                             ItemArmor armor = (ItemArmor) item;
-                            double value = getTotalArmorReduction(itemStack);
+                            double value = ItemUtil.getTotalArmorReduction(itemStack);
                             switch (armor.armorType) {
                                 case 0:
                                     if (value > bestHelmetValue) {
@@ -166,19 +166,19 @@ public class ChestStealer extends Module {
                                     break;
                             }
                         } else if (item instanceof ItemPickaxe && pickPickaxe.getValue()) {
-                            double speed = getToolMiningSpeed(itemStack, Blocks.stone);
+                            double speed = ItemUtil.getToolMiningSpeed(itemStack, Blocks.stone);
                             if (speed > bestPickaxeSpeed) {
                                 bestPickaxeSpeed = speed;
                                 bestPickaxeSlot = i;
                             }
                         } else if (item instanceof ItemAxe && pickAxe.getValue()) {
-                            double speed = getToolMiningSpeed(itemStack, Blocks.planks);
+                            double speed = ItemUtil.getToolMiningSpeed(itemStack, Blocks.planks);
                             if (speed > bestAxeSpeed) {
                                 bestAxeSpeed = speed;
                                 bestAxeSlot = i;
                             }
                         } else if (item instanceof ItemSpade && pickShovel.getValue()) {
-                            double speed = getToolMiningSpeed(itemStack, Blocks.dirt);
+                            double speed = ItemUtil.getToolMiningSpeed(itemStack, Blocks.dirt);
                             if (speed > bestShovelSpeed) {
                                 bestShovelSpeed = speed;
                                 bestShovelSlot = i;
@@ -195,7 +195,7 @@ public class ChestStealer extends Module {
                         } else if (item instanceof ItemEnderPearl ||
                                 item instanceof ItemPotion ||
                                 (item instanceof ItemMonsterPlacer && pickSpawnegg.getValue()) ||
-                                (item instanceof ItemFood && PlayerUtil.isGoodFood(item)) ||
+                                (item instanceof ItemFood && ItemUtil.isGoodFood(item)) ||
                                 (item instanceof ItemBlock && ((ItemBlock) item).getBlock().getMaterial().isSolid())
                         ) {
                             slotList.add(i);
