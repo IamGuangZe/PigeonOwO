@@ -31,10 +31,16 @@ public class ChestStealer extends Module {
     public IntSetting minDelay = setting("min-delay", 2, 0, 20, v -> true);
     public IntSetting maxDelay = setting("max-delay", 3, 0, 20, v -> true);
     public EnableSetting checkTitle = setting("check-title", true, v -> true);
-    public EnableSetting randomOrder = setting("random-order",true,v->true);
+    public EnableSetting randomOrder = setting("random-order", true, v -> true);
 
     public EnableSetting smartPick = setting("smart-pick", true, v -> true);
     public ModeSetting<smartModeEnum> smartMode = setting("smart-mode", smartModeEnum.SKYWARS, v -> true);
+
+    public EnableSetting pickSword = setting("sword", true, v -> true);
+    public EnableSetting pickArmor = setting("armor", true, v -> true);
+    public EnableSetting pickPickaxe = setting("pickaxe", true, v -> true);
+    public EnableSetting pickAxe = setting("axe", true, v -> true);
+    public EnableSetting pickShovel = setting("shovel", true, v -> true);
 
     private int s_delay = 0;
     private int p_delay = 0;
@@ -112,13 +118,13 @@ public class ChestStealer extends Module {
                         if (itemStack == null) continue;
 
                         Item item = itemStack.getItem();
-                        if (item instanceof ItemSword) {
+                        if (item instanceof ItemSword && pickSword.getValue()) {
                             double dmg = getItemDamage(itemStack);
                             if (dmg > bestWeaponDamage) {
                                 bestWeaponDamage = dmg;
                                 bestWeaponSlot = i;
                             }
-                        } else if (item instanceof ItemArmor) {
+                        } else if (item instanceof ItemArmor && pickArmor.getValue()) {
                             ItemArmor armor = (ItemArmor) item;
                             double value = getTotalArmorReduction(itemStack);
                             switch (armor.armorType) {
@@ -147,19 +153,19 @@ public class ChestStealer extends Module {
                                     }
                                     break;
                             }
-                        } else if (item instanceof ItemPickaxe) {
+                        } else if (item instanceof ItemPickaxe && pickPickaxe.getValue()) {
                             double speed = getToolMiningSpeed(itemStack, Blocks.stone);
                             if (speed > bestPickaxeSpeed) {
                                 bestPickaxeSpeed = speed;
                                 bestPickaxeSlot = i;
                             }
-                        } else if (item instanceof ItemAxe) {
+                        } else if (item instanceof ItemAxe && pickAxe.getValue()) {
                             double speed = getToolMiningSpeed(itemStack, Blocks.planks);
                             if (speed > bestAxeSpeed) {
                                 bestAxeSpeed = speed;
                                 bestAxeSlot = i;
                             }
-                        } else if (item instanceof ItemSpade) {
+                        } else if (item instanceof ItemSpade && pickShovel.getValue()) {
                             double speed = getToolMiningSpeed(itemStack, Blocks.dirt);
                             if (speed > bestShovelSpeed) {
                                 bestShovelSpeed = speed;
