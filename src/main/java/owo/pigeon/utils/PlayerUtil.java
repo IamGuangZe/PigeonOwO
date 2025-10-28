@@ -7,6 +7,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.*;
 import net.minecraft.network.play.client.C0EPacketClickWindow;
 import net.minecraft.util.BlockPos;
@@ -472,6 +473,24 @@ public class PlayerUtil {
         }
 
         return bestBoots;
+    }
+
+    public static int getTotalItemCount(Item item) {
+        int totalCount = 0;
+        for (int i = 0; i < mc.thePlayer.inventory.mainInventory.length; i++) {
+            ItemStack itemStack = mc.thePlayer.inventory.getStackInSlot(i);
+            if (itemStack != null && itemStack.getItem() == item) {
+                totalCount += itemStack.stackSize;
+            }
+        }
+        return totalCount;
+    }
+
+    public static boolean isGoodFood(Item item) {
+        if (!(item instanceof ItemFood)) return false;
+        return item != Items.rotten_flesh
+                && item != Items.poisonous_potato
+                && item != Items.spider_eye;
     }
 
     public static boolean isBreakingBlock() {

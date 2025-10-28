@@ -1,6 +1,7 @@
 package owo.pigeon.features.modules.player;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.ContainerChest;
 import net.minecraft.item.*;
 import owo.pigeon.features.modules.Category;
@@ -41,6 +42,13 @@ public class ChestStealer extends Module {
     public EnableSetting pickPickaxe = setting("pickaxe", true, v -> true);
     public EnableSetting pickAxe = setting("axe", true, v -> true);
     public EnableSetting pickShovel = setting("shovel", true, v -> true);
+    public EnableSetting pickRod = setting("fishrod", true, v -> true);
+    public EnableSetting pickSpawnegg = setting("spawnegg", true, v -> true);
+    public EnableSetting pickWater = setting("water", true, v -> true);
+    public IntSetting waterBuckets = setting("water-buckets", 2, 1, 18, v -> true);
+    public EnableSetting pickLava = setting("lava", true, v -> true);
+    public IntSetting lavaBuckets = setting("lava-buckets", 2, 1, 18, v -> true);
+
 
     private int s_delay = 0;
     private int p_delay = 0;
@@ -113,6 +121,10 @@ public class ChestStealer extends Module {
                     int bestShovelSlot = -1;
                     double bestShovelSpeed = getToolMiningSpeed(getBestTool(ToolType.SHOVEL), Blocks.dirt);
 
+                    int waterCount = PlayerUtil.getTotalItemCount(Items.water_bucket);
+                    int lavaCount = PlayerUtil.getTotalItemCount(Items.lava_bucket);
+                    int rodCount = PlayerUtil.getTotalItemCount(Items.fishing_rod);
+
                     for (int i = 0; i < chestSize; i++) {
                         ItemStack itemStack = chest.getLowerChestInventory().getStackInSlot(i);
                         if (itemStack == null) continue;
@@ -171,7 +183,21 @@ public class ChestStealer extends Module {
                                 bestShovelSpeed = speed;
                                 bestShovelSlot = i;
                             }
-                        } else {
+                        } else if (item instanceof ItemFishingRod && pickRod.getValue() && rodCount < 1) {
+                            slotList.add(i);
+                            rodCount++;
+                        } else if (item == Items.water_bucket && pickWater.getValue() && waterCount < waterBuckets.getValue()) {
+                            slotList.add(i);
+                            waterCount++;
+                        } else if (item == Items.lava_bucket && pickLava.getValue() && lavaCount < lavaBuckets.getValue()) {
+                            slotList.add(i);
+                            lavaCount++;
+                        } else if (item instanceof ItemEnderPearl ||
+                                item instanceof ItemPotion ||
+                                (item instanceof ItemMonsterPlacer && pickSpawnegg.getValue()) ||
+                                (item instanceof ItemFood && PlayerUtil.isGoodFood(item)) ||
+                                (item instanceof ItemBlock && ((ItemBlock) item).getBlock().getMaterial().isSolid())
+                        ) {
                             slotList.add(i);
                         }
                     }
