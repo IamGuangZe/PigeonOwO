@@ -6,7 +6,7 @@ public abstract class AbstractDisplableItem {
 
     protected abstract void drawScreen(int mouseX, int mouseY, float partialTicks);
 
-    boolean isHovered(int mouseX, int mouseY) {
+    public boolean isHovered(int mouseX, int mouseY) {
         return (mouseX > x && mouseX < x + width) && (mouseY > y && mouseY < y + height);
     }
 

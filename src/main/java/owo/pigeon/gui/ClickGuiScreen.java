@@ -78,8 +78,14 @@ public class ClickGuiScreen extends GuiScreen {
 
     @Override
     public void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
-        for (CategoryPanel categorypanel : categoryPanels) {
-            categorypanel.mouseClicked(mouseX, mouseY, mouseButton);
+        for (int i = categoryPanels.size() - 1; i >= 0; i--) {
+            CategoryPanel panel = categoryPanels.get(i);
+            if (panel.isHovered(mouseX, mouseY) || panel.isModuleHovered(mouseX, mouseY)) {
+                panel.mouseClicked(mouseX, mouseY, mouseButton);
+                categoryPanels.remove(panel);
+                categoryPanels.add(panel);
+                return;
+            }
         }
         super.mouseClicked(mouseX, mouseY, mouseButton);
     }

@@ -97,8 +97,12 @@ public class CategoryPanel extends AbstractDisplableItem {
             displaymodule = !displaymodule;
         }
 
-        for (ModulePanel modulePanel : modulePanels) {
-            modulePanel.mouseClicked(mouseX, mouseY, mouseButton);
+        for (int i = modulePanels.size() - 1; i >= 0; i--) {
+            ModulePanel panel = modulePanels.get(i);
+            if (panel.isHovered(mouseX, mouseY)) {
+                panel.mouseClicked(mouseX, mouseY, mouseButton);
+                return;
+            }
         }
     }
 
@@ -114,5 +118,13 @@ public class CategoryPanel extends AbstractDisplableItem {
 
     public void setDisplayModule(boolean value) {
         displaymodule = value;
+    }
+
+    public boolean isModuleHovered(int mouseX, int mouseY) {
+        for (ModulePanel panel : modulePanels) {
+            if (!panel.isHovered(mouseX, mouseY)) continue;
+            return true;
+        }
+        return false;
     }
 }
