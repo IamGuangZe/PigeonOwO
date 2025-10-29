@@ -97,119 +97,165 @@ public class ChestStealer extends Module {
 
             if (!isFetched) {
                 if (smartPick.getValue()) {
-                    int bestWeaponSlot = -1;
-                    double bestWeaponDamage = ItemUtil.getItemDamage(ItemUtil.getBestWeapon());
+                    if (smartMode.getValue() == smartModeEnum.SKYWARS) {
+                        int bestWeaponSlot = -1;
+                        double bestWeaponDamage = ItemUtil.getItemDamage(ItemUtil.getBestWeapon());
 
-                    int bestHelmetSlot = -1;
-                    double bestHelmetValue = ItemUtil.getTotalArmorReduction(ItemUtil.getBestHelmet());
+                        int bestHelmetSlot = -1;
+                        double bestHelmetValue = ItemUtil.getTotalArmorReduction(ItemUtil.getBestHelmet());
 
-                    int bestChestSlot = -1;
-                    double bestChestValue = ItemUtil.getTotalArmorReduction(ItemUtil.getBestChestplate());
+                        int bestChestSlot = -1;
+                        double bestChestValue = ItemUtil.getTotalArmorReduction(ItemUtil.getBestChestplate());
 
-                    int bestLeggingsSlot = -1;
-                    double bestLeggingsValue = ItemUtil.getTotalArmorReduction(ItemUtil.getBestLeggings());
+                        int bestLeggingsSlot = -1;
+                        double bestLeggingsValue = ItemUtil.getTotalArmorReduction(ItemUtil.getBestLeggings());
 
-                    int bestBootsSlot = -1;
-                    double bestBootsValue = ItemUtil.getTotalArmorReduction(ItemUtil.getBestBoots());
+                        int bestBootsSlot = -1;
+                        double bestBootsValue = ItemUtil.getTotalArmorReduction(ItemUtil.getBestBoots());
 
-                    int bestPickaxeSlot = -1;
-                    double bestPickaxeSpeed = ItemUtil.getToolMiningSpeed(ItemUtil.getBestTool(ItemUtil.ToolType.PICKAXE), Blocks.stone);
+                        int bestPickaxeSlot = -1;
+                        double bestPickaxeSpeed = ItemUtil.getToolMiningSpeed(ItemUtil.getBestTool(ItemUtil.ToolType.PICKAXE), Blocks.stone);
 
-                    int bestAxeSlot = -1;
-                    double bestAxeSpeed = ItemUtil.getToolMiningSpeed(ItemUtil.getBestTool(ItemUtil.ToolType.AXE), Blocks.planks);
+                        int bestAxeSlot = -1;
+                        double bestAxeSpeed = ItemUtil.getToolMiningSpeed(ItemUtil.getBestTool(ItemUtil.ToolType.AXE), Blocks.planks);
 
-                    int bestShovelSlot = -1;
-                    double bestShovelSpeed = ItemUtil.getToolMiningSpeed(ItemUtil.getBestTool(ItemUtil.ToolType.SHOVEL), Blocks.dirt);
+                        int bestShovelSlot = -1;
+                        double bestShovelSpeed = ItemUtil.getToolMiningSpeed(ItemUtil.getBestTool(ItemUtil.ToolType.SHOVEL), Blocks.dirt);
 
-                    int waterCount = ItemUtil.getTotalItemCount(Items.water_bucket);
-                    int lavaCount = ItemUtil.getTotalItemCount(Items.lava_bucket);
-                    int rodCount = ItemUtil.getTotalItemCount(Items.fishing_rod);
+                        int waterCount = ItemUtil.getTotalItemCount(Items.water_bucket);
+                        int lavaCount = ItemUtil.getTotalItemCount(Items.lava_bucket);
+                        int rodCount = ItemUtil.getTotalItemCount(Items.fishing_rod);
 
-                    for (int i = 0; i < chestSize; i++) {
-                        ItemStack itemStack = chest.getLowerChestInventory().getStackInSlot(i);
-                        if (itemStack == null) continue;
+                        for (int i = 0; i < chestSize; i++) {
+                            ItemStack itemStack = chest.getLowerChestInventory().getStackInSlot(i);
+                            if (itemStack == null) continue;
 
-                        Item item = itemStack.getItem();
-                        if (item instanceof ItemSword && pickSword.getValue()) {
-                            double dmg = ItemUtil.getItemDamage(itemStack);
-                            if (dmg > bestWeaponDamage) {
-                                bestWeaponDamage = dmg;
-                                bestWeaponSlot = i;
+                            Item item = itemStack.getItem();
+                            if (item instanceof ItemSword && pickSword.getValue()) {
+                                double dmg = ItemUtil.getItemDamage(itemStack);
+                                if (dmg > bestWeaponDamage) {
+                                    bestWeaponDamage = dmg;
+                                    bestWeaponSlot = i;
+                                }
+                            } else if (item instanceof ItemArmor && pickArmor.getValue()) {
+                                ItemArmor armor = (ItemArmor) item;
+                                double value = ItemUtil.getTotalArmorReduction(itemStack);
+                                switch (armor.armorType) {
+                                    case 0:
+                                        if (value > bestHelmetValue) {
+                                            bestHelmetValue = value;
+                                            bestHelmetSlot = i;
+                                        }
+                                        break;
+                                    case 1:
+                                        if (value > bestChestValue) {
+                                            bestChestValue = value;
+                                            bestChestSlot = i;
+                                        }
+                                        break;
+                                    case 2:
+                                        if (value > bestLeggingsValue) {
+                                            bestLeggingsValue = value;
+                                            bestLeggingsSlot = i;
+                                        }
+                                        break;
+                                    case 3:
+                                        if (value > bestBootsValue) {
+                                            bestBootsValue = value;
+                                            bestBootsSlot = i;
+                                        }
+                                        break;
+                                }
+                            } else if (item instanceof ItemPickaxe && pickPickaxe.getValue()) {
+                                double speed = ItemUtil.getToolMiningSpeed(itemStack, Blocks.stone);
+                                if (speed > bestPickaxeSpeed) {
+                                    bestPickaxeSpeed = speed;
+                                    bestPickaxeSlot = i;
+                                }
+                            } else if (item instanceof ItemAxe && pickAxe.getValue()) {
+                                double speed = ItemUtil.getToolMiningSpeed(itemStack, Blocks.planks);
+                                if (speed > bestAxeSpeed) {
+                                    bestAxeSpeed = speed;
+                                    bestAxeSlot = i;
+                                }
+                            } else if (item instanceof ItemSpade && pickShovel.getValue()) {
+                                double speed = ItemUtil.getToolMiningSpeed(itemStack, Blocks.dirt);
+                                if (speed > bestShovelSpeed) {
+                                    bestShovelSpeed = speed;
+                                    bestShovelSlot = i;
+                                }
+                            } else if (item instanceof ItemFishingRod && pickRod.getValue() && rodCount < 1) {
+                                slotList.add(i);
+                                rodCount++;
+                            } else if (item == Items.water_bucket && pickWater.getValue() && waterCount < waterBuckets.getValue()) {
+                                slotList.add(i);
+                                waterCount++;
+                            } else if (item == Items.lava_bucket && pickLava.getValue() && lavaCount < lavaBuckets.getValue()) {
+                                slotList.add(i);
+                                lavaCount++;
+                            } else if (item instanceof ItemEnderPearl ||
+                                    item instanceof ItemPotion ||
+                                    (item instanceof ItemMonsterPlacer && pickSpawnegg.getValue()) ||
+                                    (item instanceof ItemFood && ItemUtil.isGoodFood(item)) ||
+                                    (item instanceof ItemBlock && ((ItemBlock) item).getBlock().getMaterial().isSolid())
+                            ) {
+                                slotList.add(i);
                             }
-                        } else if (item instanceof ItemArmor && pickArmor.getValue()) {
-                            ItemArmor armor = (ItemArmor) item;
-                            double value = ItemUtil.getTotalArmorReduction(itemStack);
-                            switch (armor.armorType) {
-                                case 0:
-                                    if (value > bestHelmetValue) {
-                                        bestHelmetValue = value;
-                                        bestHelmetSlot = i;
-                                    }
-                                    break;
-                                case 1:
-                                    if (value > bestChestValue) {
-                                        bestChestValue = value;
-                                        bestChestSlot = i;
-                                    }
-                                    break;
-                                case 2:
-                                    if (value > bestLeggingsValue) {
-                                        bestLeggingsValue = value;
-                                        bestLeggingsSlot = i;
-                                    }
-                                    break;
-                                case 3:
-                                    if (value > bestBootsValue) {
-                                        bestBootsValue = value;
-                                        bestBootsSlot = i;
-                                    }
-                                    break;
-                            }
-                        } else if (item instanceof ItemPickaxe && pickPickaxe.getValue()) {
-                            double speed = ItemUtil.getToolMiningSpeed(itemStack, Blocks.stone);
-                            if (speed > bestPickaxeSpeed) {
-                                bestPickaxeSpeed = speed;
-                                bestPickaxeSlot = i;
-                            }
-                        } else if (item instanceof ItemAxe && pickAxe.getValue()) {
-                            double speed = ItemUtil.getToolMiningSpeed(itemStack, Blocks.planks);
-                            if (speed > bestAxeSpeed) {
-                                bestAxeSpeed = speed;
-                                bestAxeSlot = i;
-                            }
-                        } else if (item instanceof ItemSpade && pickShovel.getValue()) {
-                            double speed = ItemUtil.getToolMiningSpeed(itemStack, Blocks.dirt);
-                            if (speed > bestShovelSpeed) {
-                                bestShovelSpeed = speed;
-                                bestShovelSlot = i;
-                            }
-                        } else if (item instanceof ItemFishingRod && pickRod.getValue() && rodCount < 1) {
-                            slotList.add(i);
-                            rodCount++;
-                        } else if (item == Items.water_bucket && pickWater.getValue() && waterCount < waterBuckets.getValue()) {
-                            slotList.add(i);
-                            waterCount++;
-                        } else if (item == Items.lava_bucket && pickLava.getValue() && lavaCount < lavaBuckets.getValue()) {
-                            slotList.add(i);
-                            lavaCount++;
-                        } else if (item instanceof ItemEnderPearl ||
-                                item instanceof ItemPotion ||
-                                (item instanceof ItemMonsterPlacer && pickSpawnegg.getValue()) ||
-                                (item instanceof ItemFood && ItemUtil.isGoodFood(item)) ||
-                                (item instanceof ItemBlock && ((ItemBlock) item).getBlock().getMaterial().isSolid())
-                        ) {
-                            slotList.add(i);
                         }
-                    }
 
-                    if (bestWeaponSlot != -1) slotList.add(bestWeaponSlot);
-                    if (bestHelmetSlot != -1) slotList.add(bestHelmetSlot);
-                    if (bestChestSlot != -1) slotList.add(bestChestSlot);
-                    if (bestLeggingsSlot != -1) slotList.add(bestLeggingsSlot);
-                    if (bestBootsSlot != -1) slotList.add(bestBootsSlot);
-                    if (bestPickaxeSlot != -1) slotList.add(bestPickaxeSlot);
-                    if (bestAxeSlot != -1) slotList.add(bestAxeSlot);
-                    if (bestShovelSlot != -1) slotList.add(bestShovelSlot);
+                        if (bestWeaponSlot != -1) slotList.add(bestWeaponSlot);
+                        if (bestHelmetSlot != -1) slotList.add(bestHelmetSlot);
+                        if (bestChestSlot != -1) slotList.add(bestChestSlot);
+                        if (bestLeggingsSlot != -1) slotList.add(bestLeggingsSlot);
+                        if (bestBootsSlot != -1) slotList.add(bestBootsSlot);
+                        if (bestPickaxeSlot != -1) slotList.add(bestPickaxeSlot);
+                        if (bestAxeSlot != -1) slotList.add(bestAxeSlot);
+                        if (bestShovelSlot != -1) slotList.add(bestShovelSlot);
+
+                    } else if (smartMode.getValue() == smartModeEnum.THEPIT) {
+
+                        List<Integer> mystic_sword = new ArrayList<>();
+                        List<Integer> mystic_bow = new ArrayList<>();
+                        List<Integer> fresh_pants = new ArrayList<>();
+                        List<Integer> xp = new ArrayList<>();
+                        List<Integer> gold = new ArrayList<>();
+                        List<Integer> diamond_armor = new ArrayList<>();
+                        List<Integer> diamond_sword = new ArrayList<>();
+                        List<Integer> others = new ArrayList<>();
+
+                        for (int i = 0; i < chestSize; i++) {
+                            ItemStack itemStack = chest.getLowerChestInventory().getStackInSlot(i);
+                            if (itemStack == null) continue;
+
+                            Item item = itemStack.getItem();
+                            if (item instanceof ItemSword && item == Items.golden_sword) {
+                                mystic_sword.add(i);
+                            } else if (item instanceof ItemBow) {
+                                mystic_bow.add(i);
+                            } else if (item instanceof ItemArmor && ((ItemArmor) item).getArmorMaterial() == ItemArmor.ArmorMaterial.LEATHER && pickArmor.getValue()) {
+                                fresh_pants.add(i);
+                            } else if (item instanceof ItemExpBottle) {
+                                xp.add(i);
+                            } else if (item == Items.gold_ingot) {
+                                gold.add(i);
+                            } else if (item instanceof ItemArmor && ((ItemArmor) item).getArmorMaterial() == ItemArmor.ArmorMaterial.DIAMOND && pickArmor.getValue()) {
+                                diamond_armor.add(i);
+                            } else if (item instanceof ItemSword && item == Items.diamond_sword) {
+                                diamond_sword.add(i);
+                            } else {
+                                others.add(i);
+                            }
+                        }
+
+                        slotList.addAll(mystic_sword);
+                        slotList.addAll(mystic_bow);
+                        slotList.addAll(fresh_pants);
+                        slotList.addAll(xp);
+                        slotList.addAll(gold);
+                        slotList.addAll(diamond_armor);
+                        slotList.addAll(diamond_sword);
+                        slotList.addAll(others);
+                    }
 
                 } else {
                     for (int i = 0; i < chestSize; i++) {
@@ -230,7 +276,7 @@ public class ChestStealer extends Module {
                     int windowId = chest.windowId;
 
                     while (!slotList.isEmpty()) {
-                        int index = randomOrder.getValue() ? intRandom(0, slotList.size() - 1) : 0;
+                        int index = randomOrder.getValue() && smartMode.getValue() != smartModeEnum.THEPIT ? intRandom(0, slotList.size() - 1) : 0;
                         int slotid = slotList.get(index);
 
                         PlayerUtil.ClickWindow(windowId, slotid, 0, 1);
