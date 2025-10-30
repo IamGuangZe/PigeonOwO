@@ -6,7 +6,9 @@ import owo.pigeon.configs.SettingConfig;
 import owo.pigeon.utils.ChatUtil;
 import owo.pigeon.utils.CommandUtil;
 
+import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 
 import static owo.pigeon.commands.CommandManager.commandPrefix;
 
@@ -105,13 +107,12 @@ public class ConfigCommand extends Command {
                 break;
 
             case "list":
-                File dir = ConfigManager.settingDir;
-                if (!dir.exists() || !dir.isDirectory()) {
+                if (!ConfigManager.settingDir.exists() || !ConfigManager.settingDir.isDirectory()) {
                     this.sendCommandError("No configs found!");
                     return;
                 }
 
-                String[] files = dir.list((d, name) -> name.endsWith(".json"));
+                String[] files = ConfigManager.settingDir.list((d, name) -> name.endsWith(".json"));
                 if (files == null || files.length == 0) {
                     this.sendCommandError("No configs found!");
                     return;
@@ -141,6 +142,23 @@ public class ConfigCommand extends Command {
                 ChatUtil.sendMessage("&8Use \"" + commandPrefix + " config list <page>\" to view other pages.");
                 break;
 
+            case "dir":
+                if (!ConfigManager.settingDir.exists()) {
+                    ConfigManager.settingDir.mkdirs();
+                }
+
+                try {
+                    if (Desktop.isDesktopSupported()) {
+                        Desktop.getDesktop().open(ConfigManager.settingDir);
+                        ChatUtil.sendMessage("&aOpened config folder: &7" + ConfigManager.settingDir.getAbsolutePath());
+                    } else {
+                        this.sendCommandError("Desktop is not supported on this system!");
+                    }
+                } catch (IOException e) {
+                    this.sendCommandError("Failed to open config folder: " + e.getMessage());
+                }
+                break;
+
             default:
                 CommandUtil.sendCommandError(CommandUtil.errorReason.IncorrectArgument,
                         this.getCommand(),
@@ -155,6 +173,7 @@ public class ConfigCommand extends Command {
     public String getUsage() {
         return commandPrefix + "config (save|load|delete) <name>\n" +
                 commandPrefix + "config rename <oldname> <newname>\n" +
-                commandPrefix + "config list [<page>]";
+                commandPrefix + "config list [<page>]\n" +
+                commandPrefix + "config dir";
     }
 }
