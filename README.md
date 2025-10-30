@@ -19,7 +19,7 @@ I sincerely appreciate their contribution to the community and for making their 
 - [odtheking/Odin](https://github.com/odtheking/Odin)
 - [iM4dCat/ZombieCat](https://github.com/iM4dCat/ZombieCat)
 - [Skytils/SkytilsMod](https://github.com/Skytils/SkytilsMod)
-- ItzGreenCat/Antimony (Project deleted; name uncertain)
+- [ItzGreenCat](https://github.com/ItzGreenCat)/Antimony (Project deleted; name uncertain)
 
 ## AI Acknowledgements
 This project was partially developed with assistance from AI models such as GPT-4o, GPT-5, and DeepSeek-R1.
