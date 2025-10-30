@@ -16,9 +16,9 @@ import java.util.Set;
 
 import static owo.pigeon.utils.WorldUtil.isNotNull;
 
-public class PartyNotify extends Module {
-    public PartyNotify() {
-        super("PartyNotify", Category.HYPIXEL, -1);
+public class PartyDetector extends Module {
+    public PartyDetector() {
+        super("PartyDetector", Category.HYPIXEL, -1);
     }
 
     public enum detectionModeEnum {

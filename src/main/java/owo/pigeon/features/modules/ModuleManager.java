@@ -75,7 +75,7 @@ public class ModuleManager {
         modules.add(new FarmhuntHelper());
         modules.add(new GTBHelper());
         modules.add(new MurderHelper());
-        modules.add(new PartyNotify());
+        modules.add(new PartyDetector());
         modules.add(new PixelHelper());
         modules.add(new ProphuntHelper());
         modules.add(new ZombieHelper());

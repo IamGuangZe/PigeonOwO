@@ -12,10 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.scoreboard.ScoreObjective;
 import net.minecraft.scoreboard.Scoreboard;
 import owo.pigeon.commands.Command;
-import owo.pigeon.utils.ChatUtil;
-import owo.pigeon.utils.ItemUtil;
-import owo.pigeon.utils.OtherUtil;
-import owo.pigeon.utils.WorldUtil;
+import owo.pigeon.utils.*;
 import owo.pigeon.utils.hypixel.HypixelUtil;
 
 import java.util.ArrayList;
@@ -161,18 +158,20 @@ public class GetCommand extends Command {
 
             case "player":
             case "p":
-                List<String> playerlist = new ArrayList<>();
+                List<String> names = new ArrayList<>();
+                List<String> displayNames = new ArrayList<>();
 
                 for (Entity entity : mc.theWorld.loadedEntityList) {
                     if (entity instanceof EntityPlayer) {
                         if (!HypixelUtil.isNPC(entity)) {
-                            String playername = entity.getName();
-                            playerlist.add(playername);
+                            names.add(entity.getName());
+                            displayNames.add(entity.getDisplayName().getFormattedText());
                         }
                     }
                 }
 
-                ChatUtil.sendMessage("Players : " + String.join("&r, ", playerlist));
+                ChatUtil.sendMessage("Player names : " + String.join("&r, ", names));
+                ChatUtil.sendMessage("Player displaynames : " + String.join("&r, ", displayNames));
 
                 break;
 
@@ -201,6 +200,14 @@ public class GetCommand extends Command {
                     ChatUtil.sendMessage("&cBossbar Not Found!");
                 }
 
+                break;
+
+            case "team":
+                ChatUtil.sendMessage("ScoreBoard : " + PlayerUtil.getTeamScoreBoard(mc.thePlayer));
+                ChatUtil.sendMessage("ScoreBoardPrefix : " + PlayerUtil.getTeamScoreBoardPrefix(mc.thePlayer));
+                ChatUtil.sendMessage("ScoreBoardColorPrefix : " + PlayerUtil.getTeamScoreBoardColorPrefix(mc.thePlayer));
+                ChatUtil.sendMessage("Name : " + PlayerUtil.getTeamNameColorPrefix(mc.thePlayer));
+                ChatUtil.sendMessage("Armor : " + PlayerUtil.getTeamArmorColor(mc.thePlayer));
                 break;
 
             default:

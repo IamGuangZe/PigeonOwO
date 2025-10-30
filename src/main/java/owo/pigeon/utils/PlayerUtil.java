@@ -1,9 +1,15 @@
 package owo.pigeon.utils;
 
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.client.C0EPacketClickWindow;
+import net.minecraft.scoreboard.ScorePlayerTeam;
+import net.minecraft.scoreboard.Team;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.IChatComponent;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.WorldSettings;
 import org.lwjgl.input.Mouse;
@@ -106,5 +112,60 @@ public class PlayerUtil {
 
     public static void ClickWindow(int windowId, int slotId, int mouseButtonClicked, int mode) {
         mc.playerController.windowClick(windowId, slotId, mouseButtonClicked, mode, mc.thePlayer);
+    }
+
+    public static Team getTeamScoreBoard(Entity entity) {
+        if (!(entity instanceof EntityPlayer)) return null;
+        return ((EntityPlayer)entity).getTeam();
+    }
+
+    public static String getTeamScoreBoardPrefix(Entity entity) {
+        ScorePlayerTeam playerTeam = (ScorePlayerTeam) getTeamScoreBoard(entity);
+        if (playerTeam == null) return null;
+        return playerTeam.getColorPrefix();
+    }
+
+    public static Character getTeamScoreBoardColorPrefix(Entity entity) {
+        String teamPrefix = getTeamScoreBoardPrefix(entity);
+        if (teamPrefix == null) return null;
+        if (teamPrefix.length() > 1 && teamPrefix.startsWith("§")) {
+            return teamPrefix.charAt(1);
+        }
+        return null;
+    }
+
+    public static Character getTeamNameColorPrefix(Entity entity) {
+        if (!(entity instanceof EntityPlayer) || entity.getDisplayName() == null) return null;
+
+        IChatComponent displayName = entity.getDisplayName();
+        String name = displayName.getFormattedText().replaceAll("§r","");
+
+        if (name.length() > 1 && name.startsWith("§")) {
+            return name.charAt(1);
+        }
+
+        return null;
+    }
+
+    public static Integer getTeamArmorColor(Entity entity) {
+        if (!(entity instanceof EntityPlayer) || entity.getDisplayName() == null) return null;
+
+        Integer color = null;
+
+        for (int i = 0; i < 3; i++) {
+            ItemStack armorSlot = ((EntityPlayer) entity).getCurrentArmor(i);
+            if (armorSlot == null) continue;
+            if (!(armorSlot.getItem() instanceof ItemArmor)) continue;
+
+            ItemArmor armor = (ItemArmor) armorSlot.getItem();
+            if (armor.getArmorMaterial() != ItemArmor.ArmorMaterial.LEATHER) continue;
+
+            if (color == null) {
+                color = armor.getColor(armorSlot);
+            } else if (!color.equals(armor.getColor(armorSlot))) {
+                return null;
+            }
+        }
+        return color;
     }
 }
