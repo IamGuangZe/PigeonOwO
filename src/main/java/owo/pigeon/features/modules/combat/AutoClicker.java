@@ -24,7 +24,7 @@ public class AutoClicker extends Module {
     public IntSetting maxCPS = setting("max-cps", 18, 1, 20, v -> true);
     public EnableSetting leftClick = setting("left-click", true, v -> true);
     public EnableSetting rightClick = setting("right-click", true, v -> true);
-    public EnableSetting onlySword = setting("only-sword", false, v -> true);
+    public EnableSetting onlySword = setting("only-sword", false, v -> leftClick.getValue());
 
     private boolean firstLeftClick = true;
     private boolean firstRightClick = true;

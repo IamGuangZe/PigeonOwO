@@ -31,7 +31,7 @@ public class GTBHelper extends Module {
 
     public EnableSetting autoSkip = setting("auto-skip", false, v -> true);
     public EnableSetting autoAnswer = setting("auto-answer", false, v -> true);
-    public EnableSetting secondAnswer = setting("second-answer", true, v -> true);
+    public EnableSetting secondAnswer = setting("second-answer", true, v -> autoAnswer.getValue());
 
     private String theme = "&mUnknown";
     private boolean clicked = false;

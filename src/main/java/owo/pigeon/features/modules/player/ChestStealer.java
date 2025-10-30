@@ -35,19 +35,19 @@ public class ChestStealer extends Module {
     public EnableSetting randomOrder = setting("random-order", true, v -> true);
 
     public EnableSetting smartPick = setting("smart-pick", true, v -> true);
-    public ModeSetting<smartModeEnum> smartMode = setting("smart-mode", smartModeEnum.SKYWARS, v -> true);
+    public ModeSetting<smartModeEnum> smartMode = setting("smart-mode", smartModeEnum.SKYWARS, v -> smartPick.getValue());
 
-    public EnableSetting pickSword = setting("sword", true, v -> true);
-    public EnableSetting pickArmor = setting("armor", true, v -> true);
-    public EnableSetting pickPickaxe = setting("pickaxe", true, v -> true);
-    public EnableSetting pickAxe = setting("axe", true, v -> true);
-    public EnableSetting pickShovel = setting("shovel", true, v -> true);
-    public EnableSetting pickRod = setting("fishrod", true, v -> true);
-    public EnableSetting pickSpawnegg = setting("spawnegg", true, v -> true);
-    public EnableSetting pickWater = setting("water", true, v -> true);
-    public IntSetting waterBuckets = setting("water-buckets", 2, 1, 18, v -> true);
-    public EnableSetting pickLava = setting("lava", true, v -> true);
-    public IntSetting lavaBuckets = setting("lava-buckets", 2, 1, 18, v -> true);
+    public EnableSetting pickSword = setting("sword", true, v -> smartMode.getValue() == smartModeEnum.SKYWARS);
+    public EnableSetting pickArmor = setting("armor", true, v -> smartMode.getValue() == smartModeEnum.SKYWARS);
+    public EnableSetting pickPickaxe = setting("pickaxe", true, v -> smartMode.getValue() == smartModeEnum.SKYWARS);
+    public EnableSetting pickAxe = setting("axe", true, v -> smartMode.getValue() == smartModeEnum.SKYWARS);
+    public EnableSetting pickShovel = setting("shovel", true, v -> smartMode.getValue() == smartModeEnum.SKYWARS);
+    public EnableSetting pickRod = setting("fishrod", true, v -> smartMode.getValue() == smartModeEnum.SKYWARS);
+    public EnableSetting pickSpawnegg = setting("spawnegg", true, v -> smartMode.getValue() == smartModeEnum.SKYWARS);
+    public EnableSetting pickWater = setting("water", true, v -> smartMode.getValue() == smartModeEnum.SKYWARS);
+    public IntSetting waterBuckets = setting("water-buckets", 2, 1, 18, v -> smartMode.getValue() == smartModeEnum.SKYWARS);
+    public EnableSetting pickLava = setting("lava", true, v -> smartMode.getValue() == smartModeEnum.SKYWARS);
+    public IntSetting lavaBuckets = setting("lava-buckets", 2, 1, 18, v -> smartMode.getValue() == smartModeEnum.SKYWARS);
 
 
     private int s_delay = 0;

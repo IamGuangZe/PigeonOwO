@@ -23,13 +23,13 @@ public class GhostBlock extends Module {
     }
 
     public EnableSetting onlySkyblock = setting("only-skyblock", true, v -> true);
-    public EnableSetting onlyDungeon = setting("only-dungeon", true, v -> true);
+    public EnableSetting onlyDungeon = setting("only-dungeon", true, v -> onlySkyblock.getValue());
 
-    public EnableSetting createWithPickaxe = setting("create-with-pickaxe", true, v -> true);
+    public EnableSetting createWithPickaxe = setting("create-with-pickaxe", false, v -> true);
     public EnableSetting onlyHoldPickaxe = setting("only-hold-pickaxe", false, v -> true);
 
     public EnableSetting createWithKeyDown = setting("create-with-keydown", true, v -> true);
-    public KeySetting key = setting("create-key", Keyboard.KEY_G, v -> true);
+    public KeySetting key = setting("create-key", Keyboard.KEY_G, v -> createWithKeyDown.getValue());
 
     private final Set<Block> blackListBlock = Sets.newHashSet(
             Blocks.stone_button,

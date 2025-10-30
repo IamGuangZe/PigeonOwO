@@ -41,7 +41,7 @@ public class AutoFish extends Module {
     public ModeSetting<checkModeEnum> checkMode = setting("check-mode", checkModeEnum.ARMORSTANDNAME, v -> true);
     public ModeSetting<fishModeEnum> FishMode = setting("fish-mode", fishModeEnum.PACKET, v -> true);
     public EnableSetting reThrow = setting("re-throw", true, v -> true);
-    public IntSetting reThrowTick = setting("re-throw-tick", 10, 0, 20, v -> true);
+    public IntSetting reThrowTick = setting("re-throw-tick", 10, 0, 20, v -> reThrow.getValue());
     public EnableSetting rotate = setting("rotate", true, v -> true);
     public EnableSetting move = setting("move", true, v -> true);
 

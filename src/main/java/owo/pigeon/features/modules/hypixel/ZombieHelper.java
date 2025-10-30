@@ -39,9 +39,9 @@ public class ZombieHelper extends Module {
     public EnableSetting hud = setting("hud", true, v -> true);
     public EnableSetting easyRevive = setting("easy-revive", true, v -> true);
     public EnableSetting cyclicSwitch = setting("cyclic-switch", true, v -> true);
-    public EnableSetting thirdGun = setting("3rd", false, v -> true);
-    public EnableSetting smartThirdGun = setting("smart-3rd", true, v -> true);
-    public FloatSetting health = setting("health", 10F, 1F, 20F, v -> true);
+    public EnableSetting thirdGun = setting("3rd", false, v -> cyclicSwitch.getValue());
+    public EnableSetting smartThirdGun = setting("smart-3rd", true, v -> thirdGun.getValue());
+    public FloatSetting health = setting("health", 10F, 1F, 20F, v -> smartThirdGun.getValue());
 
     public EnableSetting esp = setting("esp", true, v -> true);
     public ModeSetting<espModeEnum> espMode = setting("esp-mode", espModeEnum.EYE, v -> true);
