@@ -11,7 +11,8 @@ Most features are simple and intended for personal experimentation.
 
 ## Credits & Acknowledgements
 I have studied and learned from the following open-source repositories.  
-I sincerely appreciate their contribution to the community and for making their code available for learning:
+I sincerely appreciate their contribution to the community and for making their code available for learning.  
+**The order is not indicative of ranking.**
 
 - [CCBlueX/LiquidBounce](https://github.com/CCBlueX/LiquidBounce/tree/b100)
 - [SkidderMC/FDPClient](https://github.com/SkidderMC/FDPClient)
@@ -21,6 +22,7 @@ I sincerely appreciate their contribution to the community and for making their 
 - [Skytils/SkytilsMod](https://github.com/Skytils/SkytilsMod)
 - [ItzGreenCat](https://github.com/ItzGreenCat)/Antimony (Project deleted; name uncertain)
 - [casparml/GTBSolver](https://github.com/casparml/GTBSolver/)
+- [jiyun233/TutorialMod](https://github.com/jiyun233/TutorialMod)
 
 ## AI Acknowledgements
 This project was partially developed with assistance from AI models such as GPT-4o, GPT-5, and DeepSeek-R1.
