@@ -5,24 +5,6 @@ import com.google.common.collect.Sets;
 import java.util.Set;
 
 public class HypixelData {
-
-    // 游戏名称
-    public static final Set<String> SKYBLOCK = Sets.newHashSet(
-            "SKYBLOCK", "SKYBLOCK CO-OP", "空岛生存", "空島生存", "SKIBLOCK"
-    );
-    public static final Set<String> ZOMBIES = Sets.newHashSet(
-            "ZOMBIES", "僵尸末日", "殭屍末日"
-    );
-    public static final Set<String> MURDER = Sets.newHashSet(
-            "MURDER MYSTERY", "密室杀手"
-    );
-    public static final Set<String> PIXELPARTY = Sets.newHashSet(
-            "PIXEL PARTY", "像素派对", "跳色舞會"
-    );
-    public static final Set<String> BEDWARS = Sets.newHashSet(
-            "BED WARS", "起床战争", "床戰"
-    );
-
     // 消息
     public static final String[] JOINLOBBY = {
             "joined the lobby!",
@@ -77,7 +59,7 @@ public class HypixelData {
     );
 
     public static final String[] BTGLIST = {
-            //Update at 8/21/25
+            //Update at 8/21/25 (Incomplete)
             "Abandoned Mansion",
             "Abonded Mansion",
             "Advent Calendar",

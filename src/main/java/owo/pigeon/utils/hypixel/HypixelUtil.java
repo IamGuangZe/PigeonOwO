@@ -27,26 +27,12 @@ public class HypixelUtil {
     }
 
     public static boolean isInGame(HypixelGames game) {
-        String scoreboardname = WorldUtil.getScoreboardDisplayNameWithoutColor();
-        if (scoreboardname == null) {
-            return false;
-        }
+        String scoreboardName = WorldUtil.getScoreboardDisplayNameWithoutColor();
+        if (scoreboardName == null) return false;
 
-        switch (game) {
-            case MURDER:
-                return HypixelData.MURDER.contains(scoreboardname);
-            case SKYBLOCK:
-                return HypixelData.SKYBLOCK.contains(scoreboardname);
-            case ZOMBIES:
-                return HypixelData.ZOMBIES.contains(scoreboardname);
-            case PIXELPARTY:
-                return HypixelData.PIXELPARTY.contains(scoreboardname);
-            case BEDWARS:
-                return HypixelData.BEDWARS.contains(scoreboardname);
-            default:
-                return false;
-        }
+        return game.getDisplayNames().contains(scoreboardName);
     }
+
 
     public static boolean isNPC(Entity entity) {
         if (entity instanceof EntityPlayer) {
