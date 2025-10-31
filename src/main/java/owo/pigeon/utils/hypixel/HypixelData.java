@@ -19,6 +19,9 @@ public class HypixelData {
     public static final Set<String> PIXELPARTY = Sets.newHashSet(
             "PIXEL PARTY", "像素派对", "跳色舞會"
     );
+    public static final Set<String> BEDWARS = Sets.newHashSet(
+            "BED WARS", "起床战争", "床戰"
+    );
 
     // 消息
     public static final String[] JOINLOBBY = {

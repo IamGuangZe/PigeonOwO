@@ -41,6 +41,8 @@ public class HypixelUtil {
                 return HypixelData.ZOMBIES.contains(scoreboardname);
             case PIXELPARTY:
                 return HypixelData.PIXELPARTY.contains(scoreboardname);
+            case BEDWARS:
+                return HypixelData.BEDWARS.contains(scoreboardname);
             default:
                 return false;
         }

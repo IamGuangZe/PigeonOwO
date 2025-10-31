@@ -210,6 +210,26 @@ public class GetCommand extends Command {
                 ChatUtil.sendMessage("Armor : " + PlayerUtil.getTeamArmorColor(mc.thePlayer));
                 break;
 
+            case "playerteam":
+            case "pt":
+                List<String> playerteam = new ArrayList<>();
+
+                for (Entity entity : mc.theWorld.loadedEntityList) {
+                    if (entity instanceof EntityPlayer) {
+                        if (!HypixelUtil.isNPC(entity)) {
+                            playerteam.add(entity.getName() + " &r(" +
+                                    PlayerUtil.getTeamScoreBoardPrefix(entity) + "&r, " +
+                                    PlayerUtil.getTeamScoreBoardColorPrefix(entity) + "&r, " +
+                                    PlayerUtil.getTeamNameColorPrefix(entity) + "&r, " +
+                                    PlayerUtil.getTeamArmorColor(entity) + ")"
+                            );
+                        }
+                    }
+                }
+
+                ChatUtil.sendMultiLineMessage("PlayerTeams :\n" + String.join("\n",playerteam));
+                break;
+
             default:
                 ChatUtil.sendMessage("&cType Not Found!");
                 ChatUtil.sendMessage("&cType : allarmorstandname(aasn), scoreboard(s), tool(t), weapon(w), armor(a), item(i), player(p), block(b), bossbar(bb)");
