@@ -4,6 +4,7 @@
 例如，`§e` 会显示为黄色。
 
 ![Minecraft 颜色与格式代码示例](https://zh.minecraft.wiki/images/Minecraft_Formatting.gif)
+<img src="https://zh.minecraft.wiki/images/Minecraft_Formatting.gif" alt="Minecraft 颜色与格式代码示例" width="125%">
 
 | 代码 | 名称 | 预览 | R | G | B | Hex | 背景预览 | R(bg) | G(bg) | B(bg) | Hex(bg) | ANSI转义序列 | 备注 |
 |------|------|-------|---|---|---|------|------------|--------|--------|--------|----------|----------------|------|
